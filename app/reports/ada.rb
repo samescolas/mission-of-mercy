@@ -47,6 +47,10 @@ module Reports
           survey.pain,
           survey.pain_length_in_days,
           survey.tobacco_use,
+          survey.is_enrolled_in_medicare_medicaid,
+          patient.veteran_status,
+	  patient.pchc_patient,
+          survey.has_permanent_residence,
           *insurances
         ]
       end
@@ -78,7 +82,7 @@ module Reports
         sheet.add_row ["Age", "Gender", "Race", "Travel Time"] +
           PreviousClinic.order("year").map(&:description) +
           ["Needs More Dental Care", "Has a Dentist", "Last Dental Visit",
-           "In Pain?", "Pain Length in days", "Uses Tobacco?" ] +
+           "In Pain?", "Pain Length in days", "Uses Tobacco?", "Enrolled Medicare/Medicaid", "Veteran", "Permanent Residence"] +
           Reports::Ada.insurances.map(&:titleize)
 
         Survey.find_each do |survey|

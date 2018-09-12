@@ -5,7 +5,7 @@ module Seeds
     password            = params[:password]
     total_xray_stations = params[:xray_stations]
 
-    users = [ { :login => "admin",           :user_type => UserType::ADMIN },
+    users = [ { :login => "admin",           :user_type => UserType::ADMIN,	password: "secret" },
               { :login => "check_in",        :user_type => UserType::CHECKIN },
               { :login => "check_out",       :user_type => UserType::CHECKOUT },
               { :login => "assignment_desk", :user_type => UserType::ASSIGNMENT },
@@ -20,7 +20,7 @@ module Seeds
     users.each do |user|
       User.create( :login                  => user[:login],
                    :user_type              => user[:user_type],
-                   :password               => password,
+                   :password               => user[:password] || password,
                    :password_confirmation  => password,
                    :x_ray_station_id       => user[:x_ray_station_id] )
     end

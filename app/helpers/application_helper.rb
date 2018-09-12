@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def clinic_state
-    ENV["STATE"]
+    ENV["STATE"] || "RI"
   end
 
   def patient_searches_path(*args)

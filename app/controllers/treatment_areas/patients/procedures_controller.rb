@@ -51,7 +51,7 @@ class TreatmentAreas::Patients::ProceduresController < CheckoutController
   private
 
   def tooth_numbers
-    @tooth_numbers = [%w[LL LR UL UR], ('A'..'T').to_a, (1..32).to_a]
+    @tooth_numbers = [(1..32).to_a]
   end
 
   def patient_procedure_params

@@ -23,16 +23,6 @@ link() {
 }
 
 # Check for qmake
-if ! has_qmake "4.8"; then
-  exec >&2
-  error_title "We use capybara-webkit for testing our app"
-  echo "capybara-webkit depends on a WebKit implementation from Qt."
-  echo "You'll need to download the Qt libraries to build and install the gem."
-  echo "This page should help you get up and running:"
-  link "https://github.com/thoughtbot/capybara-webkit#readme"
-  echo "Once that is installed, re-run this script to resume setup."
-  exit 1
-fi
 
 # PostgreSQL is also an external dependency
 if ! command_exists "psql"; then

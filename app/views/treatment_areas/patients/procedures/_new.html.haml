@@ -64,7 +64,7 @@
       %dt.surface-code
         = f.label :surface_code, "Surface Code(s):"
       %dd.surface-code
-        - "FLOMDIB".chars.sort.each do |code|
+        - "FLOMDIB".chars.sort.unshift("N/A").each do |code|
           .check-field
             = label_tag "patient_procedure_surface_code_#{code}" do
               = check_box_tag "patient_procedure_surface_code_#{code}",

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140221194030) do
+ActiveRecord::Schema.define(version: 20180912012627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,11 @@ ActiveRecord::Schema.define(version: 20140221194030) do
     t.string   "phone"
     t.integer  "previous_chart_number"
     t.boolean  "chart_printed",                          default: false, null: false
+    t.boolean  "interpreter_needed",                     default: false, null: false
+    t.text     "language"
+    t.boolean  "veteran_status"
+    t.boolean  "has_permanent_residence"
+    t.boolean  "pchc_patient"
   end
 
   create_table "pre_meds", force: true do |t|
@@ -201,13 +206,15 @@ ActiveRecord::Schema.define(version: 20140221194030) do
     t.boolean  "self_purchase_insurance"
     t.string   "other_insurance"
     t.boolean  "tobacco_use"
-    t.boolean  "saga_insurance"
-    t.boolean  "husky_insurance_a"
-    t.boolean  "husky_insurance_b"
-    t.boolean  "husky_insurance_c"
-    t.boolean  "husky_insurance_d"
-    t.boolean  "husky_insurance_unknown"
-    t.boolean  "charter_oak"
+    t.boolean  "is_enrolled_in_medicare_medicaid"
+    t.boolean  "dental_insurance"
+    t.boolean  "medical_insurance"
+    t.boolean  "has_place_to_be_seen_for_medical_care"
+    t.boolean  "er_last_6_months",                      default: false, null: false
+    t.boolean  "er_last_year",                          default: false, null: false
+    t.boolean  "veteran_status"
+    t.boolean  "has_permanent_residence"
+    t.boolean  "pchc_patient"
   end
 
   create_table "treatment_areas", force: true do |t|

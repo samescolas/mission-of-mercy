@@ -11,18 +11,24 @@ namespace :procedures do
     import_file ||= File.join(Rails.root, "data", "procedures.csv")
 
     CSV.foreach(import_file, :headers => true) do |row|
+      
+      treatment_areas = (row["Treatment Areas"] || "").split(",").reject {|t| t.blank? }
+      if not treatment_areas.include?("Restoration") then
+        requires_surface_code = "FALSE"
+      else
+        requires_surface_code = row["Requires Surface Code"]
+      end
       procedure = Procedure.create(
         :code                  => row["Procedure Code"],
         :description           => row["Description"],
         :requires_tooth_number => row["Requires Tooth Number"],
-        :requires_surface_code => row["Requires Surface Code"],
+        :requires_surface_code => requires_surface_code,
         :procedure_type        => row["Procedure Type"],
         :auto_add              => row["Auto Add"],
         :cost                  => row["Cost"],
         :number_of_surfaces    => row["Number of Surfaces"]
       )
 
-      treatment_areas = (row["Treatment Areas"] || "").split(",").reject {|t| t.blank? }
 
       treatment_areas.each do |name|
         treatment_area = TreatmentArea.find_by_name(name.strip)

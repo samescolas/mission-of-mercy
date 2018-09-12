@@ -24,7 +24,8 @@ end
 
 if Treatment.count.zero?
   treatments = [ { :name => "Filling" },
-                 { :name => "Cleaning" },
+                 { :name => "Partial denture" },
+                 { :name => "Denture repair" },
                  { :name => "Extraction" } ]
 
   treatments.each do |treatment|
@@ -35,10 +36,8 @@ end
 if TreatmentArea.count.zero?
 
   areas = [ { :name => "Radiology",   :capacity => 50 },
-            { :name => "Hygiene",     :capacity => 50 },
             { :name => "Restoration", :capacity => 50,
                 :amalgam_composite_procedures => true },
-            { :name => "Pediatrics",  :capacity => 50 },
             { :name => "Endodontics", :capacity => 50 },
             { :name => "Surgery",     :capacity => 50 },
             { :name => "Prosthetics", :capacity => 15 } ]
@@ -70,6 +69,33 @@ else
   puts "Skip: #{Race.count} races already exist"
 end
 
+if Prescription.count.zero?
+	prescriptions = [
+		{:name => "Amoxicillin", :strength => "500mg", :quantity => 21, :dosage => "1 TID x 7 days", :cost => 25},
+		{:name => "Clindamycin", :strength => "300mg", :quantity => 21, :dosage => "1 TID x 7 days", :cost => 50},
+		{:name => "Ibuprofen", :strength => "800mg", :quantity => 8, :dosage => "1 Q 6h prn pain", :cost => 12.5},
+		{:name => "Acetaminophen", :strength => "500mg", :quantity => 12, :dosage => "2 Q 6-8h prn pain", :cost => 7.5}
+	]
+	prescriptions.each do |prescription|
+		Prescription.create(prescription)
+	end
+
+	puts "#{Prescription.count} prescriptions created"
+else
+	puts "Skip: #{Prescription.count} prescriptions already exist"
+end
+
+if PreMed.count.zero?
+  premeds = [ { :description => "Amoxicillin", :cost => 10.0 },
+              { :description => "Clindamycin", :cost => 10.0 } ]
+  premeds.each do |premed|
+    PreMed.create(premed)
+  end
+  puts "#{PreMed.count} premeds created"
+else
+  puts "Skip: #{PreMed.count} premeds already exist"
+end
+
 if HeardAboutClinic.count.zero?
   reasons = [ { :reason => "Friend or Family" },
               { :reason => "Media: Newspaper/TV/Radio" },
@@ -86,12 +112,11 @@ else
 end
 
 if !PreviousClinic.any?
-  clinics = [ { :year => 2008, :location => "Tolland" },
-              { :year => 2009, :location => "New Haven" },
-              { :year => 2010, :location => "Middletown" },
-              { :year => 2011, :location => "Waterbury" },
-              { :year => 2012, :location => "Danbury" },
-              { :year => 2013, :location => "Bridgeport" } ]
+  clinics = [ { :year => 2012, :location => "CCRI" },
+              { :year => 2013, :location => "CCRI" },
+              { :year => 2014, :location => "CCRI" },
+              { :year => 2015, :location => "CCRI" },
+              { :year => 2016, :location => "CCRI" } ]
 
   clinics.each {|clinic| PreviousClinic.create(clinic) }
 

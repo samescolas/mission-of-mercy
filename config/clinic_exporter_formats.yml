@@ -11,12 +11,16 @@ patients:
   zip: Zip
   phone: Phone
   race: Race
-  travel_time: Travel Time (in days)
+  travel_time: Travel Time (in minutes)
   chief_complaint: Chief Complaint
   last_dental_visit: Last Dental Visit
   pain: In Pain?
   pain_length_in_days: Pain Length (in days)
   previous_chart_number: Previous Chart Number (for returning patients)
+  interpreter_needed: Interpreter was needed
+  language: Language spoken
+  veteran_status: Veteran status
+  pchc_patient: PCHC Patient
 
 procedures:
   patient_id: "Chart #"
@@ -61,6 +65,10 @@ surveys:
   told_needed_more_dental_treatment: Told needed more dental treatment
   has_place_to_be_seen_for_dental_care: Has a place to be seen for dental care
   tobacco_use: Uses Tobacco
-  no_insurance: No Insurance
-  insurance_from_job: Insurance from Job
-  self_purchase_insurance: Self Purchase Insurance
+  dental_insurance: Has Dental Insurnace
+  medical_insurance: Has Medical Insurnace
+  has_place_to_be_seen_for_medical_care: Has a place to be seen for medical care
+  is_enrolled_in_medicare_medicaid: Is enrolled in Medicare / Medicaid
+  has_permanent_residence: Has permanent residence
+  er_last_6_months: Have you been to the ER in the last 6 months for dental issues?
+  er_last_year: Have you been to the ER in the last year for dental issues?

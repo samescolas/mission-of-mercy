@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.1.9'
 gem 'json',  '~> 1.7.7'
 gem 'unicorn'
-gem 'pg'
+gem 'pg', '~> 0.20'
 gem 'haml'
 gem 'sass'
 gem 'dotenv-rails'
@@ -22,7 +22,7 @@ gem 'prawn-js', git: 'https://github.com/RailsData/prawn-js'
 gem 'resque'
 gem 'resque-web', require: 'resque_web'
 
-gem 'jquery-rails'
+gem "jquery-rails", "~> 2.3.0"
 gem 'will_paginate-bootstrap'
 
 gem 'rails_setup'
@@ -32,9 +32,11 @@ gem 'rubyzip', '0.9.9', :require => false
 gem 'coffee-rails', '~> 4.0.0'
 gem 'sass-rails',   '~> 4.0.0'
 gem 'uglifier'
-gem 'compass-rails'
+gem 'compass-rails', github: 'Compass/compass-rails'
 gem 'bootstrap-sass-rails', '~> 2.3.2.1'
 gem 'font-awesome-rails'
+
+gem 'sprockets', '2.11.0'
 
 # MOMMA Gems
 
