@@ -29,7 +29,9 @@ gem 'rails_setup'
 gem 'faker',            :require => false
 gem 'rubyzip', '0.9.9', :require => false
 
-gem 'coffee-rails', '~> 4.0.0'
+
+#gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 gem 'sass-rails',   '~> 4.0.0'
 gem 'uglifier'
 gem 'compass-rails', github: 'Compass/compass-rails'
@@ -52,12 +54,8 @@ end
 
 group :test do
   gem 'minitest-spec-rails', '~> 5.2.0'
-  gem 'capybara_minitest_spec'
   gem 'minitest-metadata'
   gem 'factory_girl_rails'
-  gem 'capybara'
-  gem 'capybara-webkit'
-  gem 'capybara-screenshot'
   gem 'launchy'
   gem 'database_cleaner'
   gem 'timecop'

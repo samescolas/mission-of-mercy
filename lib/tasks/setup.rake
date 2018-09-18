@@ -14,7 +14,7 @@ end
 desc 'runs the tasks necessary to setup MoM'
 setup_task :setup do
   puts
-  puts "#{heart} Thanks for helping thousands of people get the dental care they need #{heart}"
+  puts "Thanks for helping thousands of people get the dental care they need"
 
   section 'Configuration Files' do
     Rake::Task['setup:dotenv'].invoke
