@@ -2,17 +2,11 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.14
--- Dumped by pg_dump version 9.5.14
-
 SET statement_timeout = 0;
-SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET client_min_messages = warning;
-SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
@@ -28,15 +22,17 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
+SET search_path = public, pg_catalog;
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: heard_about_clinics; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: heard_about_clinics; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.heard_about_clinics (
+CREATE TABLE heard_about_clinics (
     id integer NOT NULL,
     reason character varying(255),
     created_at timestamp without time zone,
@@ -44,13 +40,13 @@ CREATE TABLE public.heard_about_clinics (
 );
 
 
-ALTER TABLE public.heard_about_clinics OWNER TO ubuntu;
+ALTER TABLE public.heard_about_clinics OWNER TO postgres;
 
 --
--- Name: heard_about_clinics_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: heard_about_clinics_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.heard_about_clinics_id_seq
+CREATE SEQUENCE heard_about_clinics_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -58,20 +54,20 @@ CREATE SEQUENCE public.heard_about_clinics_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.heard_about_clinics_id_seq OWNER TO ubuntu;
+ALTER TABLE public.heard_about_clinics_id_seq OWNER TO postgres;
 
 --
--- Name: heard_about_clinics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: heard_about_clinics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.heard_about_clinics_id_seq OWNED BY public.heard_about_clinics.id;
+ALTER SEQUENCE heard_about_clinics_id_seq OWNED BY heard_about_clinics.id;
 
 
 --
--- Name: patient_assignments; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: patient_assignments; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.patient_assignments (
+CREATE TABLE patient_assignments (
     id integer NOT NULL,
     patient_id integer,
     treatment_area_id integer,
@@ -81,13 +77,13 @@ CREATE TABLE public.patient_assignments (
 );
 
 
-ALTER TABLE public.patient_assignments OWNER TO ubuntu;
+ALTER TABLE public.patient_assignments OWNER TO postgres;
 
 --
--- Name: patient_assignments_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: patient_assignments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.patient_assignments_id_seq
+CREATE SEQUENCE patient_assignments_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -95,20 +91,20 @@ CREATE SEQUENCE public.patient_assignments_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.patient_assignments_id_seq OWNER TO ubuntu;
+ALTER TABLE public.patient_assignments_id_seq OWNER TO postgres;
 
 --
--- Name: patient_assignments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: patient_assignments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.patient_assignments_id_seq OWNED BY public.patient_assignments.id;
+ALTER SEQUENCE patient_assignments_id_seq OWNED BY patient_assignments.id;
 
 
 --
--- Name: patient_flows; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: patient_flows; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.patient_flows (
+CREATE TABLE patient_flows (
     id integer NOT NULL,
     treatment_area_id integer,
     patient_id integer,
@@ -118,13 +114,13 @@ CREATE TABLE public.patient_flows (
 );
 
 
-ALTER TABLE public.patient_flows OWNER TO ubuntu;
+ALTER TABLE public.patient_flows OWNER TO postgres;
 
 --
--- Name: patient_flows_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: patient_flows_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.patient_flows_id_seq
+CREATE SEQUENCE patient_flows_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -132,20 +128,20 @@ CREATE SEQUENCE public.patient_flows_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.patient_flows_id_seq OWNER TO ubuntu;
+ALTER TABLE public.patient_flows_id_seq OWNER TO postgres;
 
 --
--- Name: patient_flows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: patient_flows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.patient_flows_id_seq OWNED BY public.patient_flows.id;
+ALTER SEQUENCE patient_flows_id_seq OWNED BY patient_flows.id;
 
 
 --
--- Name: patient_pre_meds; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: patient_pre_meds; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.patient_pre_meds (
+CREATE TABLE patient_pre_meds (
     id integer NOT NULL,
     patient_id integer,
     pre_med_id integer,
@@ -155,13 +151,13 @@ CREATE TABLE public.patient_pre_meds (
 );
 
 
-ALTER TABLE public.patient_pre_meds OWNER TO ubuntu;
+ALTER TABLE public.patient_pre_meds OWNER TO postgres;
 
 --
--- Name: patient_pre_meds_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: patient_pre_meds_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.patient_pre_meds_id_seq
+CREATE SEQUENCE patient_pre_meds_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -169,20 +165,20 @@ CREATE SEQUENCE public.patient_pre_meds_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.patient_pre_meds_id_seq OWNER TO ubuntu;
+ALTER TABLE public.patient_pre_meds_id_seq OWNER TO postgres;
 
 --
--- Name: patient_pre_meds_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: patient_pre_meds_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.patient_pre_meds_id_seq OWNED BY public.patient_pre_meds.id;
+ALTER SEQUENCE patient_pre_meds_id_seq OWNED BY patient_pre_meds.id;
 
 
 --
--- Name: patient_prescriptions; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: patient_prescriptions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.patient_prescriptions (
+CREATE TABLE patient_prescriptions (
     id integer NOT NULL,
     patient_id integer,
     prescription_id integer,
@@ -192,13 +188,13 @@ CREATE TABLE public.patient_prescriptions (
 );
 
 
-ALTER TABLE public.patient_prescriptions OWNER TO ubuntu;
+ALTER TABLE public.patient_prescriptions OWNER TO postgres;
 
 --
--- Name: patient_prescriptions_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: patient_prescriptions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.patient_prescriptions_id_seq
+CREATE SEQUENCE patient_prescriptions_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -206,20 +202,20 @@ CREATE SEQUENCE public.patient_prescriptions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.patient_prescriptions_id_seq OWNER TO ubuntu;
+ALTER TABLE public.patient_prescriptions_id_seq OWNER TO postgres;
 
 --
--- Name: patient_prescriptions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: patient_prescriptions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.patient_prescriptions_id_seq OWNED BY public.patient_prescriptions.id;
+ALTER SEQUENCE patient_prescriptions_id_seq OWNED BY patient_prescriptions.id;
 
 
 --
--- Name: patient_previous_mom_clinics; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: patient_previous_mom_clinics; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.patient_previous_mom_clinics (
+CREATE TABLE patient_previous_mom_clinics (
     id integer NOT NULL,
     patient_id integer,
     location character varying(255),
@@ -230,13 +226,13 @@ CREATE TABLE public.patient_previous_mom_clinics (
 );
 
 
-ALTER TABLE public.patient_previous_mom_clinics OWNER TO ubuntu;
+ALTER TABLE public.patient_previous_mom_clinics OWNER TO postgres;
 
 --
--- Name: patient_previous_mom_clinics_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: patient_previous_mom_clinics_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.patient_previous_mom_clinics_id_seq
+CREATE SEQUENCE patient_previous_mom_clinics_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -244,20 +240,20 @@ CREATE SEQUENCE public.patient_previous_mom_clinics_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.patient_previous_mom_clinics_id_seq OWNER TO ubuntu;
+ALTER TABLE public.patient_previous_mom_clinics_id_seq OWNER TO postgres;
 
 --
--- Name: patient_previous_mom_clinics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: patient_previous_mom_clinics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.patient_previous_mom_clinics_id_seq OWNED BY public.patient_previous_mom_clinics.id;
+ALTER SEQUENCE patient_previous_mom_clinics_id_seq OWNED BY patient_previous_mom_clinics.id;
 
 
 --
--- Name: patient_procedures; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: patient_procedures; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.patient_procedures (
+CREATE TABLE patient_procedures (
     id integer NOT NULL,
     patient_id integer,
     procedure_id integer,
@@ -269,13 +265,13 @@ CREATE TABLE public.patient_procedures (
 );
 
 
-ALTER TABLE public.patient_procedures OWNER TO ubuntu;
+ALTER TABLE public.patient_procedures OWNER TO postgres;
 
 --
--- Name: patient_procedures_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: patient_procedures_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.patient_procedures_id_seq
+CREATE SEQUENCE patient_procedures_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -283,20 +279,20 @@ CREATE SEQUENCE public.patient_procedures_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.patient_procedures_id_seq OWNER TO ubuntu;
+ALTER TABLE public.patient_procedures_id_seq OWNER TO postgres;
 
 --
--- Name: patient_procedures_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: patient_procedures_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.patient_procedures_id_seq OWNED BY public.patient_procedures.id;
+ALTER SEQUENCE patient_procedures_id_seq OWNED BY patient_procedures.id;
 
 
 --
--- Name: patient_zipcodes; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: patient_zipcodes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.patient_zipcodes (
+CREATE TABLE patient_zipcodes (
     id integer NOT NULL,
     zip character varying(255),
     city character varying(255),
@@ -309,13 +305,13 @@ CREATE TABLE public.patient_zipcodes (
 );
 
 
-ALTER TABLE public.patient_zipcodes OWNER TO ubuntu;
+ALTER TABLE public.patient_zipcodes OWNER TO postgres;
 
 --
--- Name: patient_zipcodes_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: patient_zipcodes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.patient_zipcodes_id_seq
+CREATE SEQUENCE patient_zipcodes_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -323,20 +319,20 @@ CREATE SEQUENCE public.patient_zipcodes_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.patient_zipcodes_id_seq OWNER TO ubuntu;
+ALTER TABLE public.patient_zipcodes_id_seq OWNER TO postgres;
 
 --
--- Name: patient_zipcodes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: patient_zipcodes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.patient_zipcodes_id_seq OWNED BY public.patient_zipcodes.id;
+ALTER SEQUENCE patient_zipcodes_id_seq OWNED BY patient_zipcodes.id;
 
 
 --
--- Name: patients; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: patients; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.patients (
+CREATE TABLE patients (
     id integer NOT NULL,
     first_name character varying(255),
     last_name character varying(255),
@@ -368,13 +364,13 @@ CREATE TABLE public.patients (
 );
 
 
-ALTER TABLE public.patients OWNER TO ubuntu;
+ALTER TABLE public.patients OWNER TO postgres;
 
 --
--- Name: patients_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: patients_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.patients_id_seq
+CREATE SEQUENCE patients_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -382,20 +378,20 @@ CREATE SEQUENCE public.patients_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.patients_id_seq OWNER TO ubuntu;
+ALTER TABLE public.patients_id_seq OWNER TO postgres;
 
 --
--- Name: patients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: patients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.patients_id_seq OWNED BY public.patients.id;
+ALTER SEQUENCE patients_id_seq OWNED BY patients.id;
 
 
 --
--- Name: pre_meds; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: pre_meds; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.pre_meds (
+CREATE TABLE pre_meds (
     id integer NOT NULL,
     description character varying(255),
     cost double precision,
@@ -404,13 +400,13 @@ CREATE TABLE public.pre_meds (
 );
 
 
-ALTER TABLE public.pre_meds OWNER TO ubuntu;
+ALTER TABLE public.pre_meds OWNER TO postgres;
 
 --
--- Name: pre_meds_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: pre_meds_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.pre_meds_id_seq
+CREATE SEQUENCE pre_meds_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -418,20 +414,20 @@ CREATE SEQUENCE public.pre_meds_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.pre_meds_id_seq OWNER TO ubuntu;
+ALTER TABLE public.pre_meds_id_seq OWNER TO postgres;
 
 --
--- Name: pre_meds_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: pre_meds_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.pre_meds_id_seq OWNED BY public.pre_meds.id;
+ALTER SEQUENCE pre_meds_id_seq OWNED BY pre_meds.id;
 
 
 --
--- Name: prescriptions; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: prescriptions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.prescriptions (
+CREATE TABLE prescriptions (
     id integer NOT NULL,
     name character varying(255),
     strength character varying(255),
@@ -444,13 +440,13 @@ CREATE TABLE public.prescriptions (
 );
 
 
-ALTER TABLE public.prescriptions OWNER TO ubuntu;
+ALTER TABLE public.prescriptions OWNER TO postgres;
 
 --
--- Name: prescriptions_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: prescriptions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.prescriptions_id_seq
+CREATE SEQUENCE prescriptions_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -458,20 +454,20 @@ CREATE SEQUENCE public.prescriptions_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.prescriptions_id_seq OWNER TO ubuntu;
+ALTER TABLE public.prescriptions_id_seq OWNER TO postgres;
 
 --
--- Name: prescriptions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: prescriptions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.prescriptions_id_seq OWNED BY public.prescriptions.id;
+ALTER SEQUENCE prescriptions_id_seq OWNED BY prescriptions.id;
 
 
 --
--- Name: previous_clinics; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: previous_clinics; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.previous_clinics (
+CREATE TABLE previous_clinics (
     id integer NOT NULL,
     location character varying(255),
     year integer,
@@ -480,13 +476,13 @@ CREATE TABLE public.previous_clinics (
 );
 
 
-ALTER TABLE public.previous_clinics OWNER TO ubuntu;
+ALTER TABLE public.previous_clinics OWNER TO postgres;
 
 --
--- Name: previous_clinics_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: previous_clinics_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.previous_clinics_id_seq
+CREATE SEQUENCE previous_clinics_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -494,20 +490,20 @@ CREATE SEQUENCE public.previous_clinics_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.previous_clinics_id_seq OWNER TO ubuntu;
+ALTER TABLE public.previous_clinics_id_seq OWNER TO postgres;
 
 --
--- Name: previous_clinics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: previous_clinics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.previous_clinics_id_seq OWNED BY public.previous_clinics.id;
+ALTER SEQUENCE previous_clinics_id_seq OWNED BY previous_clinics.id;
 
 
 --
--- Name: procedure_treatment_area_mappings; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: procedure_treatment_area_mappings; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.procedure_treatment_area_mappings (
+CREATE TABLE procedure_treatment_area_mappings (
     id integer NOT NULL,
     procedure_id integer,
     treatment_area_id integer,
@@ -517,13 +513,13 @@ CREATE TABLE public.procedure_treatment_area_mappings (
 );
 
 
-ALTER TABLE public.procedure_treatment_area_mappings OWNER TO ubuntu;
+ALTER TABLE public.procedure_treatment_area_mappings OWNER TO postgres;
 
 --
--- Name: procedure_treatment_area_mappings_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: procedure_treatment_area_mappings_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.procedure_treatment_area_mappings_id_seq
+CREATE SEQUENCE procedure_treatment_area_mappings_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -531,20 +527,20 @@ CREATE SEQUENCE public.procedure_treatment_area_mappings_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.procedure_treatment_area_mappings_id_seq OWNER TO ubuntu;
+ALTER TABLE public.procedure_treatment_area_mappings_id_seq OWNER TO postgres;
 
 --
--- Name: procedure_treatment_area_mappings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: procedure_treatment_area_mappings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.procedure_treatment_area_mappings_id_seq OWNED BY public.procedure_treatment_area_mappings.id;
+ALTER SEQUENCE procedure_treatment_area_mappings_id_seq OWNED BY procedure_treatment_area_mappings.id;
 
 
 --
--- Name: procedures; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: procedures; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.procedures (
+CREATE TABLE procedures (
     id integer NOT NULL,
     code integer,
     description character varying(255),
@@ -559,13 +555,13 @@ CREATE TABLE public.procedures (
 );
 
 
-ALTER TABLE public.procedures OWNER TO ubuntu;
+ALTER TABLE public.procedures OWNER TO postgres;
 
 --
--- Name: procedures_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: procedures_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.procedures_id_seq
+CREATE SEQUENCE procedures_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -573,20 +569,20 @@ CREATE SEQUENCE public.procedures_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.procedures_id_seq OWNER TO ubuntu;
+ALTER TABLE public.procedures_id_seq OWNER TO postgres;
 
 --
--- Name: procedures_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: procedures_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.procedures_id_seq OWNED BY public.procedures.id;
+ALTER SEQUENCE procedures_id_seq OWNED BY procedures.id;
 
 
 --
--- Name: races; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: races; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.races (
+CREATE TABLE races (
     id integer NOT NULL,
     category character varying(255),
     created_at timestamp without time zone,
@@ -594,13 +590,13 @@ CREATE TABLE public.races (
 );
 
 
-ALTER TABLE public.races OWNER TO ubuntu;
+ALTER TABLE public.races OWNER TO postgres;
 
 --
--- Name: races_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: races_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.races_id_seq
+CREATE SEQUENCE races_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -608,31 +604,31 @@ CREATE SEQUENCE public.races_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.races_id_seq OWNER TO ubuntu;
+ALTER TABLE public.races_id_seq OWNER TO postgres;
 
 --
--- Name: races_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: races_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.races_id_seq OWNED BY public.races.id;
+ALTER SEQUENCE races_id_seq OWNED BY races.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.schema_migrations (
+CREATE TABLE schema_migrations (
     version character varying(255) NOT NULL
 );
 
 
-ALTER TABLE public.schema_migrations OWNER TO ubuntu;
+ALTER TABLE public.schema_migrations OWNER TO postgres;
 
 --
--- Name: support_requests; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: support_requests; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.support_requests (
+CREATE TABLE support_requests (
     id integer NOT NULL,
     user_id integer,
     area_id integer,
@@ -645,13 +641,13 @@ CREATE TABLE public.support_requests (
 );
 
 
-ALTER TABLE public.support_requests OWNER TO ubuntu;
+ALTER TABLE public.support_requests OWNER TO postgres;
 
 --
--- Name: support_requests_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: support_requests_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.support_requests_id_seq
+CREATE SEQUENCE support_requests_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -659,20 +655,20 @@ CREATE SEQUENCE public.support_requests_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.support_requests_id_seq OWNER TO ubuntu;
+ALTER TABLE public.support_requests_id_seq OWNER TO postgres;
 
 --
--- Name: support_requests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: support_requests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.support_requests_id_seq OWNED BY public.support_requests.id;
+ALTER SEQUENCE support_requests_id_seq OWNED BY support_requests.id;
 
 
 --
--- Name: surveys; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: surveys; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.surveys (
+CREATE TABLE surveys (
     id integer NOT NULL,
     city character varying(255),
     state character varying(255),
@@ -706,13 +702,13 @@ CREATE TABLE public.surveys (
 );
 
 
-ALTER TABLE public.surveys OWNER TO ubuntu;
+ALTER TABLE public.surveys OWNER TO postgres;
 
 --
--- Name: surveys_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: surveys_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.surveys_id_seq
+CREATE SEQUENCE surveys_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -720,20 +716,20 @@ CREATE SEQUENCE public.surveys_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.surveys_id_seq OWNER TO ubuntu;
+ALTER TABLE public.surveys_id_seq OWNER TO postgres;
 
 --
--- Name: surveys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: surveys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.surveys_id_seq OWNED BY public.surveys.id;
+ALTER SEQUENCE surveys_id_seq OWNED BY surveys.id;
 
 
 --
--- Name: treatment_areas; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: treatment_areas; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.treatment_areas (
+CREATE TABLE treatment_areas (
     id integer NOT NULL,
     name character varying(255),
     capacity integer,
@@ -743,13 +739,13 @@ CREATE TABLE public.treatment_areas (
 );
 
 
-ALTER TABLE public.treatment_areas OWNER TO ubuntu;
+ALTER TABLE public.treatment_areas OWNER TO postgres;
 
 --
--- Name: treatment_areas_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: treatment_areas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.treatment_areas_id_seq
+CREATE SEQUENCE treatment_areas_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -757,20 +753,20 @@ CREATE SEQUENCE public.treatment_areas_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.treatment_areas_id_seq OWNER TO ubuntu;
+ALTER TABLE public.treatment_areas_id_seq OWNER TO postgres;
 
 --
--- Name: treatment_areas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: treatment_areas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.treatment_areas_id_seq OWNED BY public.treatment_areas.id;
+ALTER SEQUENCE treatment_areas_id_seq OWNED BY treatment_areas.id;
 
 
 --
--- Name: treatments; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: treatments; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.treatments (
+CREATE TABLE treatments (
     id integer NOT NULL,
     name character varying(255),
     created_at timestamp without time zone,
@@ -779,13 +775,13 @@ CREATE TABLE public.treatments (
 );
 
 
-ALTER TABLE public.treatments OWNER TO ubuntu;
+ALTER TABLE public.treatments OWNER TO postgres;
 
 --
--- Name: treatments_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: treatments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.treatments_id_seq
+CREATE SEQUENCE treatments_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -793,20 +789,20 @@ CREATE SEQUENCE public.treatments_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.treatments_id_seq OWNER TO ubuntu;
+ALTER TABLE public.treatments_id_seq OWNER TO postgres;
 
 --
--- Name: treatments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: treatments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.treatments_id_seq OWNED BY public.treatments.id;
+ALTER SEQUENCE treatments_id_seq OWNED BY treatments.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: ubuntu
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE TABLE public.users (
+CREATE TABLE users (
     id integer NOT NULL,
     login character varying(40),
     name character varying(100) DEFAULT ''::character varying,
@@ -823,13 +819,13 @@ CREATE TABLE public.users (
 );
 
 
-ALTER TABLE public.users OWNER TO ubuntu;
+ALTER TABLE public.users OWNER TO postgres;
 
 --
--- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE public.users_id_seq
+CREATE SEQUENCE users_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -837,160 +833,160 @@ CREATE SEQUENCE public.users_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.users_id_seq OWNER TO ubuntu;
+ALTER TABLE public.users_id_seq OWNER TO postgres;
 
 --
--- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
---
-
-ALTER TABLE ONLY public.heard_about_clinics ALTER COLUMN id SET DEFAULT nextval('public.heard_about_clinics_id_seq'::regclass);
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.patient_assignments ALTER COLUMN id SET DEFAULT nextval('public.patient_assignments_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
---
-
-ALTER TABLE ONLY public.patient_flows ALTER COLUMN id SET DEFAULT nextval('public.patient_flows_id_seq'::regclass);
+ALTER TABLE ONLY heard_about_clinics ALTER COLUMN id SET DEFAULT nextval('heard_about_clinics_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.patient_pre_meds ALTER COLUMN id SET DEFAULT nextval('public.patient_pre_meds_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
---
-
-ALTER TABLE ONLY public.patient_prescriptions ALTER COLUMN id SET DEFAULT nextval('public.patient_prescriptions_id_seq'::regclass);
+ALTER TABLE ONLY patient_assignments ALTER COLUMN id SET DEFAULT nextval('patient_assignments_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.patient_previous_mom_clinics ALTER COLUMN id SET DEFAULT nextval('public.patient_previous_mom_clinics_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
---
-
-ALTER TABLE ONLY public.patient_procedures ALTER COLUMN id SET DEFAULT nextval('public.patient_procedures_id_seq'::regclass);
+ALTER TABLE ONLY patient_flows ALTER COLUMN id SET DEFAULT nextval('patient_flows_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.patient_zipcodes ALTER COLUMN id SET DEFAULT nextval('public.patient_zipcodes_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
---
-
-ALTER TABLE ONLY public.patients ALTER COLUMN id SET DEFAULT nextval('public.patients_id_seq'::regclass);
+ALTER TABLE ONLY patient_pre_meds ALTER COLUMN id SET DEFAULT nextval('patient_pre_meds_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.pre_meds ALTER COLUMN id SET DEFAULT nextval('public.pre_meds_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
---
-
-ALTER TABLE ONLY public.prescriptions ALTER COLUMN id SET DEFAULT nextval('public.prescriptions_id_seq'::regclass);
+ALTER TABLE ONLY patient_prescriptions ALTER COLUMN id SET DEFAULT nextval('patient_prescriptions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.previous_clinics ALTER COLUMN id SET DEFAULT nextval('public.previous_clinics_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
---
-
-ALTER TABLE ONLY public.procedure_treatment_area_mappings ALTER COLUMN id SET DEFAULT nextval('public.procedure_treatment_area_mappings_id_seq'::regclass);
+ALTER TABLE ONLY patient_previous_mom_clinics ALTER COLUMN id SET DEFAULT nextval('patient_previous_mom_clinics_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.procedures ALTER COLUMN id SET DEFAULT nextval('public.procedures_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
---
-
-ALTER TABLE ONLY public.races ALTER COLUMN id SET DEFAULT nextval('public.races_id_seq'::regclass);
+ALTER TABLE ONLY patient_procedures ALTER COLUMN id SET DEFAULT nextval('patient_procedures_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.support_requests ALTER COLUMN id SET DEFAULT nextval('public.support_requests_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
---
-
-ALTER TABLE ONLY public.surveys ALTER COLUMN id SET DEFAULT nextval('public.surveys_id_seq'::regclass);
+ALTER TABLE ONLY patient_zipcodes ALTER COLUMN id SET DEFAULT nextval('patient_zipcodes_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.treatment_areas ALTER COLUMN id SET DEFAULT nextval('public.treatment_areas_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
---
-
-ALTER TABLE ONLY public.treatments ALTER COLUMN id SET DEFAULT nextval('public.treatments_id_seq'::regclass);
+ALTER TABLE ONLY patients ALTER COLUMN id SET DEFAULT nextval('patients_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+ALTER TABLE ONLY pre_meds ALTER COLUMN id SET DEFAULT nextval('pre_meds_id_seq'::regclass);
 
 
 --
--- Data for Name: heard_about_clinics; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-COPY public.heard_about_clinics (id, reason, created_at, updated_at) FROM stdin;
+ALTER TABLE ONLY prescriptions ALTER COLUMN id SET DEFAULT nextval('prescriptions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY previous_clinics ALTER COLUMN id SET DEFAULT nextval('previous_clinics_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY procedure_treatment_area_mappings ALTER COLUMN id SET DEFAULT nextval('procedure_treatment_area_mappings_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY procedures ALTER COLUMN id SET DEFAULT nextval('procedures_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY races ALTER COLUMN id SET DEFAULT nextval('races_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY support_requests ALTER COLUMN id SET DEFAULT nextval('support_requests_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY surveys ALTER COLUMN id SET DEFAULT nextval('surveys_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY treatment_areas ALTER COLUMN id SET DEFAULT nextval('treatment_areas_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY treatments ALTER COLUMN id SET DEFAULT nextval('treatments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Data for Name: heard_about_clinics; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY heard_about_clinics (id, reason, created_at, updated_at) FROM stdin;
 1	Friend or Family	2018-06-07 15:26:55.039476	2018-06-07 15:26:55.039476
 2	Media: Newspaper/TV/Radio	2018-06-07 15:26:55.041872	2018-06-07 15:26:55.041872
 3	Flyer or Poster	2018-06-07 15:26:55.043597	2018-06-07 15:26:55.043597
@@ -999,407 +995,198 @@ COPY public.heard_about_clinics (id, reason, created_at, updated_at) FROM stdin;
 
 
 --
--- Name: heard_about_clinics_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: heard_about_clinics_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.heard_about_clinics_id_seq', 4, true);
+SELECT pg_catalog.setval('heard_about_clinics_id_seq', 4, true);
 
 
 --
--- Data for Name: patient_assignments; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: patient_assignments; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.patient_assignments (id, patient_id, treatment_area_id, checked_out_at, created_at, updated_at) FROM stdin;
-1	4	3	\N	2018-09-08 14:01:08.942615	2018-09-08 14:01:08.942615
-3	7	5	\N	2018-09-11 09:14:28.186749	2018-09-11 09:14:28.186749
-2	8	2	2018-09-11 09:54:53.667271	2018-09-11 09:05:44.800377	2018-09-11 09:54:53.667681
+COPY patient_assignments (id, patient_id, treatment_area_id, checked_out_at, created_at, updated_at) FROM stdin;
 \.
 
 
 --
--- Name: patient_assignments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: patient_assignments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.patient_assignments_id_seq', 3, true);
+SELECT pg_catalog.setval('patient_assignments_id_seq', 3, true);
 
 
 --
--- Data for Name: patient_flows; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: patient_flows; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.patient_flows (id, treatment_area_id, patient_id, area_id, created_at, updated_at) FROM stdin;
-1	\N	1	1	2018-06-07 15:31:30.363004	2018-06-07 15:31:30.363004
-2	\N	2	1	2018-06-07 15:32:27.821859	2018-06-07 15:32:27.821859
-3	\N	1	5	2018-06-07 15:33:57.300325	2018-06-07 15:33:57.300325
-4	3	1	4	2018-06-07 15:33:57.302349	2018-06-07 15:33:57.302349
-5	\N	2	5	2018-06-07 15:34:31.582121	2018-06-07 15:34:31.582121
-6	3	2	4	2018-06-07 15:34:31.584165	2018-06-07 15:34:31.584165
-7	\N	1	5	2018-06-07 17:54:27.02068	2018-06-07 17:54:27.02068
-8	2	1	4	2018-06-07 17:54:27.0228	2018-06-07 17:54:27.0228
-9	\N	1	5	2018-06-07 18:15:29.643181	2018-06-07 18:15:29.643181
-10	2	1	4	2018-06-07 18:15:29.645243	2018-06-07 18:15:29.645243
-11	\N	3	1	2018-06-07 18:16:22.796287	2018-06-07 18:16:22.796287
-12	\N	3	5	2018-06-07 18:17:53.260587	2018-06-07 18:17:53.260587
-13	3	3	4	2018-06-07 18:17:53.262575	2018-06-07 18:17:53.262575
-14	\N	4	1	2018-07-18 17:59:46.549776	2018-07-18 17:59:46.549776
-15	\N	4	5	2018-07-18 18:07:22.708005	2018-07-18 18:07:22.708005
-16	3	4	4	2018-07-18 18:07:22.710168	2018-07-18 18:07:22.710168
-17	\N	4	2	2018-07-18 18:18:21.773701	2018-07-18 18:18:21.773701
-18	\N	4	2	2018-07-18 18:18:30.025505	2018-07-18 18:18:30.025505
-19	\N	1	5	2018-07-31 16:36:05.403031	2018-07-31 16:36:05.403031
-20	2	1	4	2018-07-31 16:36:05.405011	2018-07-31 16:36:05.405011
-21	\N	1	5	2018-07-31 16:36:14.295201	2018-07-31 16:36:14.295201
-22	2	1	4	2018-07-31 16:36:14.297156	2018-07-31 16:36:14.297156
-23	\N	5	1	2018-07-31 16:38:16.563	2018-07-31 16:38:16.563
-24	\N	6	1	2018-07-31 16:38:58.384959	2018-07-31 16:38:58.384959
-25	\N	5	2	2018-07-31 16:49:02.860638	2018-07-31 16:49:02.860638
-26	\N	6	2	2018-07-31 16:49:04.911775	2018-07-31 16:49:04.911775
-27	\N	6	2	2018-07-31 16:49:30.852036	2018-07-31 16:49:30.852036
-28	\N	1	2	2018-08-02 01:14:30.778984	2018-08-02 01:14:30.778984
-29	\N	6	2	2018-08-02 10:30:21.781486	2018-08-02 10:30:21.781486
-30	\N	3	2	2018-08-02 23:14:29.46522	2018-08-02 23:14:29.46522
-31	\N	7	1	2018-08-07 20:32:57.800844	2018-08-07 20:32:57.800844
-32	\N	8	1	2018-08-07 20:33:04.961868	2018-08-07 20:33:04.961868
-33	\N	3	5	2018-08-27 17:15:35.026533	2018-08-27 17:15:35.026533
-34	2	3	4	2018-08-27 17:15:35.02934	2018-08-27 17:15:35.02934
-35	\N	3	2	2018-08-27 17:19:21.319779	2018-08-27 17:19:21.319779
-36	\N	3	2	2018-08-27 17:19:26.129313	2018-08-27 17:19:26.129313
-37	\N	3	2	2018-08-27 17:19:33.612109	2018-08-27 17:19:33.612109
-38	\N	3	2	2018-08-27 17:19:36.054714	2018-08-27 17:19:36.054714
-39	\N	3	2	2018-08-28 12:36:21.86134	2018-08-28 12:36:21.86134
-40	\N	3	2	2018-08-28 14:33:40.128963	2018-08-28 14:33:40.128963
-41	\N	9	1	2018-08-30 12:12:54.59834	2018-08-30 12:12:54.59834
-42	\N	4	2	2018-09-08 14:01:44.366696	2018-09-08 14:01:44.366696
-43	\N	10	1	2018-09-08 16:18:51.346201	2018-09-08 16:18:51.346201
-44	\N	3	2	2018-09-08 16:42:21.941788	2018-09-08 16:42:21.941788
-45	\N	3	2	2018-09-08 16:42:26.109771	2018-09-08 16:42:26.109771
-46	\N	3	2	2018-09-08 16:42:31.96473	2018-09-08 16:42:31.96473
-47	\N	3	2	2018-09-08 16:44:25.569367	2018-09-08 16:44:25.569367
-48	\N	11	1	2018-09-11 09:16:02.634099	2018-09-11 09:16:02.634099
-49	\N	8	5	2018-09-11 09:54:53.662687	2018-09-11 09:54:53.662687
-50	3	8	4	2018-09-11 09:54:53.664801	2018-09-11 09:54:53.664801
-51	\N	12	1	2018-09-12 01:00:10.258292	2018-09-12 01:00:10.258292
-52	\N	13	1	2018-09-12 01:31:17.686712	2018-09-12 01:31:17.686712
-53	\N	14	1	2018-09-12 19:37:11.457745	2018-09-12 19:37:11.457745
-54	\N	3	5	2018-09-12 19:42:25.405717	2018-09-12 19:42:25.405717
-55	5	3	4	2018-09-12 19:42:25.407924	2018-09-12 19:42:25.407924
-56	\N	5	5	2018-09-12 19:43:19.000208	2018-09-12 19:43:19.000208
-57	5	5	4	2018-09-12 19:43:19.002287	2018-09-12 19:43:19.002287
-58	\N	13	5	2018-09-12 19:44:57.80662	2018-09-12 19:44:57.80662
-59	2	13	4	2018-09-12 19:44:57.808832	2018-09-12 19:44:57.808832
-60	\N	14	5	2018-09-12 19:45:37.861245	2018-09-12 19:45:37.861245
-61	2	14	4	2018-09-12 19:45:37.863391	2018-09-12 19:45:37.863391
-62	\N	15	1	2018-09-12 19:51:51.0436	2018-09-12 19:51:51.0436
-63	\N	16	1	2018-09-12 20:17:51.801017	2018-09-12 20:17:51.801017
-64	\N	1	5	2018-09-14 00:35:19.706874	2018-09-14 00:35:19.706874
-65	2	1	4	2018-09-14 00:35:19.709395	2018-09-14 00:35:19.709395
-66	\N	17	1	2018-09-14 01:09:09.586985	2018-09-14 01:09:09.586985
-67	\N	3	2	2018-09-17 15:33:29.511297	2018-09-17 15:33:29.511297
-68	\N	3	2	2018-09-17 15:33:41.112089	2018-09-17 15:33:41.112089
-69	\N	3	2	2018-09-17 15:33:42.795391	2018-09-17 15:33:42.795391
+COPY patient_flows (id, treatment_area_id, patient_id, area_id, created_at, updated_at) FROM stdin;
+88	\N	23	1	2019-05-17 16:37:38.804357	2019-05-17 16:37:38.804357
+89	\N	1	1	2019-05-17 16:40:14.276767	2019-05-17 16:40:14.276767
+90	\N	1	1	2019-05-17 16:44:01.836233	2019-05-17 16:44:01.836233
+91	\N	1	1	2019-05-17 16:48:25.360498	2019-05-17 16:48:25.360498
+92	\N	1	5	2019-05-18 02:59:03.96082	2019-05-18 02:59:03.96082
+93	\N	2	1	2019-08-24 21:13:38.233384	2019-08-24 21:13:38.233384
+94	\N	2	5	2019-08-24 21:15:36.227655	2019-08-24 21:15:36.227655
+95	4	2	4	2019-08-24 21:15:36.229827	2019-08-24 21:15:36.229827
+96	\N	3	1	2019-08-30 18:21:17.126373	2019-08-30 18:21:17.126373
 \.
 
 
 --
--- Name: patient_flows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: patient_flows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.patient_flows_id_seq', 69, true);
+SELECT pg_catalog.setval('patient_flows_id_seq', 96, true);
 
 
 --
--- Data for Name: patient_pre_meds; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: patient_pre_meds; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.patient_pre_meds (id, patient_id, pre_med_id, created_at, updated_at, prescribed) FROM stdin;
-1	1	1	2018-06-07 15:33:47.321077	2018-06-07 15:33:47.321077	t
-4	2	2	2018-06-07 15:34:16.087007	2018-06-07 15:34:16.087007	t
-5	3	1	2018-06-07 18:17:34.475714	2018-06-07 18:17:34.475714	t
-7	4	1	2018-07-18 18:06:24.350324	2018-07-18 18:06:24.350324	t
-8	4	2	2018-07-18 18:06:24.351227	2018-07-18 18:06:24.351227	t
-21	5	1	2018-09-12 19:43:03.485229	2018-09-12 19:43:03.485229	t
-23	13	1	2018-09-12 19:43:39.507715	2018-09-12 19:43:39.507715	t
-25	14	1	2018-09-12 19:45:25.12086	2018-09-12 19:45:25.12086	t
-29	15	1	2018-09-12 19:53:09.044921	2018-09-12 19:53:09.044921	t
+COPY patient_pre_meds (id, patient_id, pre_med_id, created_at, updated_at, prescribed) FROM stdin;
+43	1	2	2019-05-17 17:21:44.53267	2019-05-17 17:21:44.53267	t
 \.
 
 
 --
--- Name: patient_pre_meds_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: patient_pre_meds_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.patient_pre_meds_id_seq', 30, true);
+SELECT pg_catalog.setval('patient_pre_meds_id_seq', 51, true);
 
 
 --
--- Data for Name: patient_prescriptions; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: patient_prescriptions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.patient_prescriptions (id, patient_id, prescription_id, prescribed, created_at, updated_at) FROM stdin;
-7	2	3	t	2018-06-07 15:34:31.578863	2018-06-07 15:34:31.578863
-8	2	4	t	2018-06-07 15:34:31.579653	2018-06-07 15:34:31.579653
-9	1	1	t	2018-06-07 17:54:27.014003	2018-06-07 17:54:27.014003
-21	4	2	t	2018-07-18 18:07:22.703865	2018-07-18 18:07:22.703865
-30	3	1	t	2018-08-27 17:15:35.018477	2018-08-27 17:15:35.018477
-41	5	1	t	2018-09-12 19:43:18.993571	2018-09-12 19:43:18.993571
-45	13	1	t	2018-09-12 19:44:57.800146	2018-09-12 19:44:57.800146
+COPY patient_prescriptions (id, patient_id, prescription_id, prescribed, created_at, updated_at) FROM stdin;
+73	1	1	t	2019-05-18 02:59:03.953845	2019-05-18 02:59:03.953845
+74	1	2	t	2019-05-18 02:59:03.955442	2019-05-18 02:59:03.955442
+75	1	3	t	2019-05-18 02:59:03.956516	2019-05-18 02:59:03.956516
+76	1	4	t	2019-05-18 02:59:03.957507	2019-05-18 02:59:03.957507
+77	2	1	t	2019-08-24 21:15:36.218783	2019-08-24 21:15:36.218783
+78	2	2	t	2019-08-24 21:15:36.22184	2019-08-24 21:15:36.22184
 \.
 
 
 --
--- Name: patient_prescriptions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: patient_prescriptions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.patient_prescriptions_id_seq', 55, true);
+SELECT pg_catalog.setval('patient_prescriptions_id_seq', 80, true);
 
 
 --
--- Data for Name: patient_previous_mom_clinics; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: patient_previous_mom_clinics; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.patient_previous_mom_clinics (id, patient_id, location, clinic_year, created_at, updated_at, attended) FROM stdin;
+COPY patient_previous_mom_clinics (id, patient_id, location, clinic_year, created_at, updated_at, attended) FROM stdin;
+143	3	CCRI	2015	2019-08-30 18:21:17.129769	2019-08-30 18:21:17.129769	t
+144	3	CCRI	2016	2019-08-30 18:21:17.13091	2019-08-30 18:21:17.13091	t
+145	3	PCHC	2018	2019-08-30 18:21:17.131815	2019-08-30 18:21:17.131815	t
+137	2	PCHC	2018	2019-08-24 21:13:38.24269	2019-08-24 21:13:38.24269	t
 \.
 
 
 --
--- Name: patient_previous_mom_clinics_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: patient_previous_mom_clinics_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.patient_previous_mom_clinics_id_seq', 85, true);
+SELECT pg_catalog.setval('patient_previous_mom_clinics_id_seq', 148, true);
 
 
 --
--- Data for Name: patient_procedures; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: patient_procedures; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.patient_procedures (id, patient_id, procedure_id, tooth_number, surface_code, provider_id, created_at, updated_at) FROM stdin;
-1	1	227	\N	\N	\N	2018-06-07 15:31:30.417591	2018-06-07 15:31:30.417591
-2	1	233	\N	\N	\N	2018-06-07 15:31:30.419456	2018-06-07 15:31:30.419456
-3	2	227	\N	\N	\N	2018-06-07 15:32:27.82292	2018-06-07 15:32:27.82292
-4	2	233	\N	\N	\N	2018-06-07 15:32:27.823901	2018-06-07 15:32:27.823901
-5	2	267	11	\N	\N	2018-06-07 15:34:22.064909	2018-06-07 15:34:22.064909
-7	3	227	\N	\N	\N	2018-06-07 18:16:22.797295	2018-06-07 18:16:22.797295
-8	3	233	\N	\N	\N	2018-06-07 18:16:22.798254	2018-06-07 18:16:22.798254
-9	3	266	2	\N	\N	2018-06-07 18:17:43.515206	2018-06-07 18:17:43.515206
-10	4	227	\N	\N	\N	2018-07-18 17:59:46.550898	2018-07-18 17:59:46.550898
-11	4	233	\N	\N	\N	2018-07-18 17:59:46.551869	2018-07-18 17:59:46.551869
-12	4	266	1	\N	\N	2018-07-18 18:06:52.361976	2018-07-18 18:06:52.361976
-13	1	252	11	D	\N	2018-07-31 16:32:52.861249	2018-07-31 16:32:52.861249
-14	1	252	7	BDLMO	\N	2018-07-31 16:33:12.526448	2018-07-31 16:33:12.526448
-15	5	227	\N	\N	\N	2018-07-31 16:38:16.563998	2018-07-31 16:38:16.563998
-16	5	233	\N	\N	\N	2018-07-31 16:38:16.56497	2018-07-31 16:38:16.56497
-17	6	227	\N	\N	\N	2018-07-31 16:38:58.385974	2018-07-31 16:38:58.385974
-18	6	233	\N	\N	\N	2018-07-31 16:38:58.3869	2018-07-31 16:38:58.3869
-19	5	230	\N	\N	\N	2018-07-31 16:49:31.734127	2018-07-31 16:49:31.734127
-20	6	230	\N	\N	\N	2018-07-31 16:49:40.187519	2018-07-31 16:49:40.187519
-21	7	227	\N	\N	\N	2018-08-07 20:32:57.802091	2018-08-07 20:32:57.802091
-22	7	233	\N	\N	\N	2018-08-07 20:32:57.803285	2018-08-07 20:32:57.803285
-23	8	227	\N	\N	\N	2018-08-07 20:33:04.963082	2018-08-07 20:33:04.963082
-24	8	233	\N	\N	\N	2018-08-07 20:33:04.964189	2018-08-07 20:33:04.964189
-25	3	252	1	D	\N	2018-08-27 17:15:28.508956	2018-08-27 17:15:28.508956
-26	3	229	\N	\N	\N	2018-08-28 14:33:46.491724	2018-08-28 14:33:46.491724
-27	9	227	\N	\N	\N	2018-08-30 12:12:54.599587	2018-08-30 12:12:54.599587
-28	9	233	\N	\N	\N	2018-08-30 12:12:54.600765	2018-08-30 12:12:54.600765
-29	3	314	\N	\N	\N	2018-08-30 15:01:49.773451	2018-08-30 15:01:49.773451
-30	3	250	1	BDF	\N	2018-09-06 12:23:57.445725	2018-09-06 12:23:57.445725
-31	3	241	2	DFO	\N	2018-09-06 12:24:28.283752	2018-09-06 12:24:28.283752
-32	3	250	2	BDF	\N	2018-09-06 12:24:59.786337	2018-09-06 12:24:59.786337
-33	3	259	2	\N	\N	2018-09-06 12:25:31.318916	2018-09-06 12:25:31.318916
-34	3	252	2	B	\N	2018-09-06 12:25:50.519964	2018-09-06 12:25:50.519964
-35	3	250	4	BDM	\N	2018-09-06 12:27:30.932291	2018-09-06 12:27:30.932291
-36	3	251	4	BFMO	\N	2018-09-06 12:28:02.395911	2018-09-06 12:28:02.395911
-37	3	248	1	B	\N	2018-09-06 12:28:28.319476	2018-09-06 12:28:28.319476
-38	3	244	8	BD	\N	2018-09-06 12:29:00.831698	2018-09-06 12:29:00.831698
-39	3	252	12	D	\N	2018-09-06 12:29:34.255016	2018-09-06 12:29:34.255016
-40	3	259	1	\N	\N	2018-09-06 12:30:02.909902	2018-09-06 12:30:02.909902
-41	3	254	2	B	\N	2018-09-06 12:31:23.300715	2018-09-06 12:31:23.300715
-42	3	266	2	B	\N	2018-09-06 12:32:05.786222	2018-09-06 12:32:05.786222
-43	3	321	2	\N	\N	2018-09-06 12:33:17.059601	2018-09-06 12:33:17.059601
-44	3	322	1	\N	\N	2018-09-06 12:33:23.57705	2018-09-06 12:33:23.57705
-45	3	323	2	\N	\N	2018-09-06 12:33:36.898371	2018-09-06 12:33:36.898371
-46	3	326	3	\N	\N	2018-09-06 12:34:26.168338	2018-09-06 12:34:26.168338
-47	3	320	1	B	\N	2018-09-06 12:35:16.602495	2018-09-06 12:35:16.602495
-48	3	333	26	O	\N	2018-09-06 13:18:21.738655	2018-09-06 13:18:21.738655
-49	3	333	6	B	\N	2018-09-06 13:18:57.772582	2018-09-06 13:18:57.772582
-50	3	254	11	B	\N	2018-09-06 13:34:42.131171	2018-09-06 13:34:42.131171
-51	3	333	2	B	\N	2018-09-06 17:45:35.832362	2018-09-06 17:45:35.832362
-52	3	256	6	B	\N	2018-09-06 17:54:29.220271	2018-09-06 17:54:29.220271
-53	3	291	1	O	\N	2018-09-06 17:57:23.605973	2018-09-06 17:57:23.605973
-54	3	292	1	O	\N	2018-09-06 17:58:53.760079	2018-09-06 17:58:53.760079
-55	3	293	1	O	\N	2018-09-06 17:59:57.70861	2018-09-06 17:59:57.70861
-56	3	248	1	B	\N	2018-09-06 18:01:19.535019	2018-09-06 18:01:19.535019
-57	3	331	1	O	\N	2018-09-06 18:14:24.784894	2018-09-06 18:14:24.784894
-58	4	259	2	\N	\N	2018-09-08 13:55:23.839099	2018-09-08 13:55:23.839099
-59	4	292	6	B	\N	2018-09-08 13:56:08.427647	2018-09-08 13:56:08.427647
-60	4	321	1	\N	\N	2018-09-08 13:56:43.170044	2018-09-08 13:56:43.170044
-61	4	292	11	O	\N	2018-09-08 13:57:52.39367	2018-09-08 13:57:52.39367
-62	4	268	1	\N	\N	2018-09-08 13:58:21.704115	2018-09-08 13:58:21.704115
-63	4	303	1	B	\N	2018-09-08 13:58:54.689698	2018-09-08 13:58:54.689698
-64	4	229	\N	\N	\N	2018-09-08 14:01:55.443198	2018-09-08 14:01:55.443198
-65	4	230	\N	\N	\N	2018-09-08 14:01:58.305807	2018-09-08 14:01:58.305807
-66	4	231	\N	\N	\N	2018-09-08 14:02:01.282154	2018-09-08 14:02:01.282154
-67	10	233	\N	\N	\N	2018-09-08 16:18:51.347451	2018-09-08 16:18:51.347451
-68	10	227	\N	\N	\N	2018-09-08 16:18:51.348655	2018-09-08 16:18:51.348655
-69	3	326	1	B	\N	2018-09-08 16:27:17.093909	2018-09-08 16:27:17.093909
-70	3	326	1	B	\N	2018-09-08 16:27:55.036326	2018-09-08 16:27:55.036326
-71	3	231	\N	\N	\N	2018-09-08 16:42:26.548688	2018-09-08 16:42:26.548688
-72	3	229	\N	\N	\N	2018-09-08 16:44:21.213687	2018-09-08 16:44:21.213687
-73	11	233	\N	\N	\N	2018-09-11 09:16:02.637822	2018-09-11 09:16:02.637822
-74	11	227	\N	\N	\N	2018-09-11 09:16:02.641838	2018-09-11 09:16:02.641838
-75	12	233	\N	\N	\N	2018-09-12 01:00:10.260265	2018-09-12 01:00:10.260265
-76	12	227	\N	\N	\N	2018-09-12 01:00:10.26168	2018-09-12 01:00:10.26168
-77	13	233	\N	\N	\N	2018-09-12 01:31:17.688885	2018-09-12 01:31:17.688885
-78	13	227	\N	\N	\N	2018-09-12 01:31:17.690328	2018-09-12 01:31:17.690328
-79	14	233	\N	\N	\N	2018-09-12 19:37:11.459383	2018-09-12 19:37:11.459383
-80	14	227	\N	\N	\N	2018-09-12 19:37:11.460622	2018-09-12 19:37:11.460622
-81	3	268	2	\N	\N	2018-09-12 19:39:19.813654	2018-09-12 19:39:19.813654
-82	3	266	1	\N	\N	2018-09-12 19:39:49.798357	2018-09-12 19:39:49.798357
-83	3	266	1	\N	\N	2018-09-12 19:40:04.278741	2018-09-12 19:40:04.278741
-84	3	268	2	O	\N	2018-09-12 19:40:20.698549	2018-09-12 19:40:20.698549
-85	3	321	1	\N	\N	2018-09-12 19:40:35.320845	2018-09-12 19:40:35.320845
-86	13	281	2	\N	\N	2018-09-12 19:43:47.475988	2018-09-12 19:43:47.475988
-87	13	266	6	\N	\N	2018-09-12 19:43:55.976815	2018-09-12 19:43:55.976815
-88	13	239	12	M	\N	2018-09-12 19:44:05.702353	2018-09-12 19:44:05.702353
-89	13	252	1	O	\N	2018-09-12 19:44:17.445095	2018-09-12 19:44:17.445095
-90	13	259	2	\N	\N	2018-09-12 19:44:43.983537	2018-09-12 19:44:43.983537
-91	13	259	2	\N	\N	2018-09-12 19:44:51.705731	2018-09-12 19:44:51.705731
-92	15	233	\N	\N	\N	2018-09-12 19:51:51.044665	2018-09-12 19:51:51.044665
-93	15	227	\N	\N	\N	2018-09-12 19:51:51.045672	2018-09-12 19:51:51.045672
-94	15	259	2	\N	\N	2018-09-12 19:53:20.415854	2018-09-12 19:53:20.415854
-95	15	252	2	O	\N	2018-09-12 19:53:37.595044	2018-09-12 19:53:37.595044
-96	16	233	\N	\N	\N	2018-09-12 20:17:51.802056	2018-09-12 20:17:51.802056
-97	16	227	\N	\N	\N	2018-09-12 20:17:51.803051	2018-09-12 20:17:51.803051
-98	1	252	1	N/A	\N	2018-09-14 00:34:35.945861	2018-09-14 00:34:35.945861
-99	4	239	12	B	\N	2018-09-14 00:44:04.307322	2018-09-14 00:44:04.307322
-100	4	239	6	B	\N	2018-09-14 00:44:16.480918	2018-09-14 00:44:16.480918
-101	4	241	8	N/A	\N	2018-09-14 00:44:26.513582	2018-09-14 00:44:26.513582
-102	4	239	1	L	\N	2018-09-14 00:44:40.160458	2018-09-14 00:44:40.160458
-103	4	247	22	BDMO	\N	2018-09-14 00:58:34.024595	2018-09-14 00:58:34.024595
-104	4	247	17	BDMO	\N	2018-09-14 00:58:44.357392	2018-09-14 00:58:44.357392
-105	17	233	\N	\N	\N	2018-09-14 01:09:09.58842	2018-09-14 01:09:09.58842
-106	17	227	\N	\N	\N	2018-09-14 01:09:09.589407	2018-09-14 01:09:09.589407
-107	4	240	1	BD	\N	2018-09-14 10:17:36.951846	2018-09-14 10:17:36.951846
-108	4	242	13	DFMO	\N	2018-09-14 10:18:18.665728	2018-09-14 10:18:18.665728
-109	4	241	14	N/A	\N	2018-09-14 10:18:48.688051	2018-09-14 10:18:48.688051
-110	4	242	1	BDMO	\N	2018-09-14 10:19:11.200272	2018-09-14 10:19:11.200272
-111	4	242	18	BDFILM	\N	2018-09-14 10:19:29.533623	2018-09-14 10:19:29.533623
-112	4	242	3	BDFL	\N	2018-09-14 10:24:27.231275	2018-09-14 10:24:27.231275
-113	4	242	2	DFMO	\N	2018-09-14 10:24:37.110181	2018-09-14 10:24:37.110181
-114	4	242	24	BDFIL	\N	2018-09-14 10:24:49.608963	2018-09-14 10:24:49.608963
-115	2	243	12	BL	\N	2018-09-14 10:26:35.053533	2018-09-14 10:26:35.053533
-116	2	243	7	BDFILO	\N	2018-09-14 10:27:02.586028	2018-09-14 10:27:02.586028
-117	3	250	23	BDFMO	\N	2018-09-14 10:37:35.496531	2018-09-14 10:37:35.496531
-118	3	251	14	BDMO	\N	2018-09-14 10:38:08.375109	2018-09-14 10:38:08.375109
-119	3	248	7	BM	\N	2018-09-14 10:38:22.441903	2018-09-14 10:38:22.441903
-120	3	244	1	B	\N	2018-09-14 10:39:29.096386	2018-09-14 10:39:29.096386
-121	3	243	17	BMO	\N	2018-09-14 10:40:15.218755	2018-09-14 10:40:15.218755
-122	3	242	8	DFMO	\N	2018-09-14 10:40:43.141448	2018-09-14 10:40:43.141448
-123	3	241	14	DFO	\N	2018-09-14 10:40:56.661758	2018-09-14 10:40:56.661758
-124	3	242	24	BDLMO	\N	2018-09-14 10:41:06.193691	2018-09-14 10:41:06.193691
-125	3	242	29	BDFILMO	\N	2018-09-14 10:41:25.817454	2018-09-14 10:41:25.817454
-126	3	242	28	BDFILMO	\N	2018-09-14 10:42:02.674413	2018-09-14 10:42:02.674413
-127	3	242	13	BDFLMO	\N	2018-09-14 10:42:18.966215	2018-09-14 10:42:18.966215
-128	3	251	7	BDFILMO	\N	2018-09-14 10:42:52.610541	2018-09-14 10:42:52.610541
-129	3	242	13	BDFILMO	\N	2018-09-14 10:43:22.38553	2018-09-14 10:43:22.38553
-130	3	241	22	BDF	\N	2018-09-14 10:43:36.497678	2018-09-14 10:43:36.497678
-131	3	242	20	BDIMO	\N	2018-09-14 11:30:31.804104	2018-09-14 11:30:31.804104
-132	3	242	18	BDILO	\N	2018-09-14 11:31:28.868921	2018-09-14 11:31:28.868921
-133	3	242	4	DFILM	\N	2018-09-14 11:31:57.645462	2018-09-14 11:31:57.645462
-134	3	242	23	BDLMO	\N	2018-09-14 11:32:47.963434	2018-09-14 11:32:47.963434
-135	3	251	2	BDILMO	\N	2018-09-14 11:33:21.612002	2018-09-14 11:33:21.612002
-136	3	240	8	DO	\N	2018-09-17 15:14:11.37959	2018-09-17 15:14:11.37959
-137	4	252	8	N/A	\N	2018-09-17 15:21:35.19585	2018-09-17 15:21:35.19585
-138	3	252	2	N/A	\N	2018-09-17 15:21:47.061327	2018-09-17 15:21:47.061327
-139	3	259	1	\N	\N	2018-09-17 15:22:41.242766	2018-09-17 15:22:41.242766
-140	3	241	16	BLO	\N	2018-09-17 15:23:56.484945	2018-09-17 15:23:56.484945
-141	4	241	16	BLO	\N	2018-09-17 15:23:57.025578	2018-09-17 15:23:57.025578
-142	3	241	16	FIM	\N	2018-09-17 15:24:20.313286	2018-09-17 15:24:20.313286
-143	3	242	8	BDFILMO	\N	2018-09-17 15:24:42.638883	2018-09-17 15:24:42.638883
-144	3	241	12	DMO	\N	2018-09-17 15:26:01.365019	2018-09-17 15:26:01.365019
-145	3	242	14	DFIMO	\N	2018-09-17 15:26:45.569132	2018-09-17 15:26:45.569132
-146	3	239	8	I	\N	2018-09-17 15:27:48.81982	2018-09-17 15:27:48.81982
-147	4	239	8	I	\N	2018-09-17 15:28:20.303466	2018-09-17 15:28:20.303466
-148	3	239	8	I	\N	2018-09-17 15:28:20.689901	2018-09-17 15:28:20.689901
-149	3	241	13	DMO	\N	2018-09-17 15:30:27.335456	2018-09-17 15:30:27.335456
-150	3	241	12	BDM	\N	2018-09-17 15:30:35.897888	2018-09-17 15:30:35.897888
-151	3	321	3	\N	\N	2018-09-17 15:31:10.657238	2018-09-17 15:31:10.657238
-152	3	323	7	\N	\N	2018-09-17 15:31:15.475419	2018-09-17 15:31:15.475419
-153	3	328	2	\N	\N	2018-09-17 15:31:23.248094	2018-09-17 15:31:23.248094
-154	3	266	1	\N	\N	2018-09-17 15:31:34.159693	2018-09-17 15:31:34.159693
-155	3	267	2	\N	\N	2018-09-17 15:31:39.06896	2018-09-17 15:31:39.06896
-156	3	268	2	\N	\N	2018-09-17 15:31:43.150297	2018-09-17 15:31:43.150297
-157	3	281	2	\N	\N	2018-09-17 15:32:07.01979	2018-09-17 15:32:07.01979
-158	3	297	12	\N	\N	2018-09-17 15:32:11.712826	2018-09-17 15:32:11.712826
-159	3	307	\N	\N	\N	2018-09-17 15:32:15.623341	2018-09-17 15:32:15.623341
-160	3	313	\N	\N	\N	2018-09-17 15:32:18.876026	2018-09-17 15:32:18.876026
-161	3	313	\N	\N	\N	2018-09-17 15:32:22.013702	2018-09-17 15:32:22.013702
-162	3	314	\N	\N	\N	2018-09-17 15:32:24.830894	2018-09-17 15:32:24.830894
-163	3	320	2	\N	\N	2018-09-17 15:32:35.303831	2018-09-17 15:32:35.303831
-164	3	228	\N	\N	\N	2018-09-17 15:34:05.82231	2018-09-17 15:34:05.82231
-165	3	230	\N	\N	\N	2018-09-17 15:34:09.916449	2018-09-17 15:34:09.916449
-166	3	228	\N	\N	\N	2018-09-17 15:34:56.785024	2018-09-17 15:34:56.785024
+COPY patient_procedures (id, patient_id, procedure_id, tooth_number, surface_code, provider_id, created_at, updated_at) FROM stdin;
+211	23	233	\N	\N	\N	2019-05-17 16:37:38.805977	2019-05-17 16:37:38.805977
+212	23	227	\N	\N	\N	2019-05-17 16:37:38.807468	2019-05-17 16:37:38.807468
+213	1	233	\N	\N	\N	2019-05-17 16:40:14.278101	2019-05-17 16:40:14.278101
+214	1	227	\N	\N	\N	2019-05-17 16:40:14.279335	2019-05-17 16:40:14.279335
+215	1	233	\N	\N	\N	2019-05-17 16:44:01.837612	2019-05-17 16:44:01.837612
+216	1	227	\N	\N	\N	2019-05-17 16:44:01.83916	2019-05-17 16:44:01.83916
+217	1	233	\N	\N	\N	2019-05-17 16:48:25.362013	2019-05-17 16:48:25.362013
+218	1	227	\N	\N	\N	2019-05-17 16:48:25.363271	2019-05-17 16:48:25.363271
+219	1	239	2	B	\N	2019-05-17 19:34:31.017297	2019-05-17 19:34:31.017297
+220	1	231	\N	\N	\N	2019-05-18 02:59:57.459216	2019-05-18 02:59:57.459216
+221	1	230	\N	\N	\N	2019-05-18 03:00:00.241043	2019-05-18 03:00:00.241043
+222	1	229	\N	\N	\N	2019-05-18 03:00:03.080238	2019-05-18 03:00:03.080238
+223	1	228	\N	\N	\N	2019-05-18 03:00:05.910167	2019-05-18 03:00:05.910167
+224	1	281	2	\N	\N	2019-05-18 03:00:12.283625	2019-05-18 03:00:12.283625
+225	2	233	\N	\N	\N	2019-08-24 21:13:38.237196	2019-08-24 21:13:38.237196
+226	2	227	\N	\N	\N	2019-08-24 21:13:38.241308	2019-08-24 21:13:38.241308
+227	2	228	\N	\N	\N	2019-08-24 21:15:18.317408	2019-08-24 21:15:18.317408
+228	2	322	3	\N	\N	2019-08-24 21:15:24.410936	2019-08-24 21:15:24.410936
+229	2	328	3	\N	\N	2019-08-24 21:15:29.765505	2019-08-24 21:15:29.765505
+230	3	233	\N	\N	\N	2019-08-30 18:21:17.127519	2019-08-30 18:21:17.127519
+231	3	227	\N	\N	\N	2019-08-30 18:21:17.128583	2019-08-30 18:21:17.128583
 \.
 
 
 --
--- Name: patient_procedures_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: patient_procedures_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.patient_procedures_id_seq', 166, true);
+SELECT pg_catalog.setval('patient_procedures_id_seq', 231, true);
 
 
 --
--- Data for Name: patient_zipcodes; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: patient_zipcodes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.patient_zipcodes (id, zip, city, state, latitude, longitude, created_at, updated_at, county) FROM stdin;
+COPY patient_zipcodes (id, zip, city, state, latitude, longitude, created_at, updated_at, county) FROM stdin;
 \.
 
 
 --
--- Name: patient_zipcodes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: patient_zipcodes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.patient_zipcodes_id_seq', 1, false);
+SELECT pg_catalog.setval('patient_zipcodes_id_seq', 1, false);
 
 
 --
--- Data for Name: patients; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: patients; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.patients (id, first_name, last_name, date_of_birth, sex, street, city, state, zip, race, travel_time, attended_previous_mom_event, previous_mom_event_location, chief_complaint, last_dental_visit, pain, pain_length_in_days, created_at, updated_at, survey_id, phone, previous_chart_number, chart_printed, interpreter_needed, language, veteran_status, has_permanent_residence, pchc_patient) FROM stdin;
+COPY patients (id, first_name, last_name, date_of_birth, sex, street, city, state, zip, race, travel_time, attended_previous_mom_event, previous_mom_event_location, chief_complaint, last_dental_visit, pain, pain_length_in_days, created_at, updated_at, survey_id, phone, previous_chart_number, chart_printed, interpreter_needed, language, veteran_status, has_permanent_residence, pchc_patient) FROM stdin;
+1	Reset	Script	1992-12-12	M	12 maid	wake	AM	12312	African American/Black	60	f	\N	Filling	First Time	f	0	2019-05-17 16:48:25.358213	2019-05-17 16:48:25.358213	1	1231231232	\N	f	f		f	\N	f
+2	Libby	Swan	1951-02-02	F	201 A Gravelly Hill road	Wakefield	RI	02879	Caucasian/White	60	t	\N	Filling	Between  1 and 2 Years	f	0	2019-08-24 21:13:38.156465	2019-08-24 21:13:58.271472	2	4012581161	\N	t	t	Hmung	f	\N	f
+3	Libby	Swan	1961-05-07	F	201 A Gravelly Hill road	Wakefield	RI	02879	Caucasian/White	60	t	\N	Filling	Less Than 30 Days	f	0	2019-08-30 18:21:17.124381	2019-08-30 18:21:35.831821	3	4012581161	\N	t	f		f	\N	f
 \.
 
 
 --
--- Name: patients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: patients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.patients_id_seq', 17, true);
+SELECT pg_catalog.setval('patients_id_seq', 3, true);
 
 
 --
--- Data for Name: pre_meds; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: pre_meds; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.pre_meds (id, description, cost, created_at, updated_at) FROM stdin;
+COPY pre_meds (id, description, cost, created_at, updated_at) FROM stdin;
 1	Amoxicillin	10	2018-06-07 15:26:55.028226	2018-06-07 15:26:55.028226
 2	Clindamycin	10	2018-06-07 15:26:55.030964	2018-06-07 15:26:55.030964
 \.
 
 
 --
--- Name: pre_meds_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: pre_meds_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.pre_meds_id_seq', 2, true);
+SELECT pg_catalog.setval('pre_meds_id_seq', 2, true);
 
 
 --
--- Data for Name: prescriptions; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: prescriptions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.prescriptions (id, name, strength, quantity, dosage, cost, created_at, updated_at, "position") FROM stdin;
+COPY prescriptions (id, name, strength, quantity, dosage, cost, created_at, updated_at, "position") FROM stdin;
 1	Amoxicillin	500mg	21	1 TID x 7 days	25	2018-06-07 15:26:55.008623	2018-06-07 15:26:55.008623	\N
 2	Clindamycin	300mg	21	1 TID x 7 days	50	2018-06-07 15:26:55.012324	2018-06-07 15:26:55.012324	\N
 3	Ibuprofen	800mg	8	1 Q 6h prn pain	12.5	2018-06-07 15:26:55.015145	2018-06-07 15:26:55.015145	\N
@@ -1408,37 +1195,38 @@ COPY public.prescriptions (id, name, strength, quantity, dosage, cost, created_a
 
 
 --
--- Name: prescriptions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: prescriptions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.prescriptions_id_seq', 4, true);
+SELECT pg_catalog.setval('prescriptions_id_seq', 4, true);
 
 
 --
--- Data for Name: previous_clinics; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: previous_clinics; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.previous_clinics (id, location, year, created_at, updated_at) FROM stdin;
+COPY previous_clinics (id, location, year, created_at, updated_at) FROM stdin;
 1	CCRI	2012	2018-06-07 15:26:55.05444	2018-06-07 15:26:55.05444
 2	CCRI	2013	2018-06-07 15:26:55.056886	2018-06-07 15:26:55.056886
 3	CCRI	2014	2018-06-07 15:26:55.058682	2018-06-07 15:26:55.058682
 4	CCRI	2015	2018-06-07 15:26:55.060714	2018-06-07 15:26:55.060714
 5	CCRI	2016	2018-06-07 15:26:55.062569	2018-06-07 15:26:55.062569
+6	PCHC	2018	2019-05-16 11:45:30.945479	2019-05-16 11:45:30.945479
 \.
 
 
 --
--- Name: previous_clinics_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: previous_clinics_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.previous_clinics_id_seq', 5, true);
+SELECT pg_catalog.setval('previous_clinics_id_seq', 6, true);
 
 
 --
--- Data for Name: procedure_treatment_area_mappings; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: procedure_treatment_area_mappings; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.procedure_treatment_area_mappings (id, procedure_id, treatment_area_id, created_at, updated_at, assigned) FROM stdin;
+COPY procedure_treatment_area_mappings (id, procedure_id, treatment_area_id, created_at, updated_at, assigned) FROM stdin;
 70	228	1	\N	\N	\N
 71	229	1	\N	\N	\N
 72	230	1	\N	\N	\N
@@ -1462,21 +1250,41 @@ COPY public.procedure_treatment_area_mappings (id, procedure_id, treatment_area_
 90	324	4	\N	\N	\N
 91	326	4	\N	\N	\N
 92	328	4	\N	\N	\N
+93	228	2	2019-05-16 12:00:29.847946	2019-05-16 12:00:29.847946	\N
+94	229	2	2019-05-16 12:00:29.847946	2019-05-16 12:00:29.847946	\N
+95	230	2	2019-05-16 12:00:29.847946	2019-05-16 12:00:29.847946	\N
+96	231	2	2019-05-16 12:00:29.847946	2019-05-16 12:00:29.847946	\N
+97	232	2	2019-05-16 12:00:29.847946	2019-05-16 12:00:29.847946	\N
+98	228	3	2019-05-16 12:00:51.166654	2019-05-16 12:00:51.166654	\N
+99	229	3	2019-05-16 12:00:51.166654	2019-05-16 12:00:51.166654	\N
+100	230	3	2019-05-16 12:00:51.166654	2019-05-16 12:00:51.166654	\N
+101	231	3	2019-05-16 12:00:51.166654	2019-05-16 12:00:51.166654	\N
+102	232	3	2019-05-16 12:00:51.166654	2019-05-16 12:00:51.166654	\N
+103	228	4	2019-05-16 12:01:08.2765	2019-05-16 12:01:08.2765	\N
+104	229	4	2019-05-16 12:01:08.2765	2019-05-16 12:01:08.2765	\N
+105	230	4	2019-05-16 12:01:08.2765	2019-05-16 12:01:08.2765	\N
+106	231	4	2019-05-16 12:01:08.2765	2019-05-16 12:01:08.2765	\N
+107	232	4	2019-05-16 12:01:08.2765	2019-05-16 12:01:08.2765	\N
+108	228	5	2019-05-16 12:01:33.670432	2019-05-16 12:01:33.670432	\N
+109	229	5	2019-05-16 12:01:33.670432	2019-05-16 12:01:33.670432	\N
+110	230	5	2019-05-16 12:01:33.670432	2019-05-16 12:01:33.670432	\N
+111	231	5	2019-05-16 12:01:33.670432	2019-05-16 12:01:33.670432	\N
+112	232	5	2019-05-16 12:01:33.670432	2019-05-16 12:01:33.670432	\N
 \.
 
 
 --
--- Name: procedure_treatment_area_mappings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: procedure_treatment_area_mappings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.procedure_treatment_area_mappings_id_seq', 92, true);
+SELECT pg_catalog.setval('procedure_treatment_area_mappings_id_seq', 112, true);
 
 
 --
--- Data for Name: procedures; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: procedures; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.procedures (id, code, description, requires_tooth_number, requires_surface_code, procedure_type, auto_add, cost, number_of_surfaces, created_at, updated_at) FROM stdin;
+COPY procedures (id, code, description, requires_tooth_number, requires_surface_code, procedure_type, auto_add, cost, number_of_surfaces, created_at, updated_at) FROM stdin;
 234	1110	Prophy - Adult	f	f	\N	f	94	\N	2018-06-07 15:30:25.226851	2018-06-07 15:30:25.226851
 235	1120	Prophy - Child	f	f	\N	f	68	\N	2018-06-07 15:30:25.230102	2018-06-07 15:30:25.230102
 236	1206	Fluoride Varnish	f	f	\N	f	48	\N	2018-06-07 15:30:25.233671	2018-06-07 15:30:25.233671
@@ -1594,17 +1402,17 @@ COPY public.procedures (id, code, description, requires_tooth_number, requires_s
 
 
 --
--- Name: procedures_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: procedures_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.procedures_id_seq', 339, true);
+SELECT pg_catalog.setval('procedures_id_seq', 339, true);
 
 
 --
--- Data for Name: races; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: races; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.races (id, category, created_at, updated_at) FROM stdin;
+COPY races (id, category, created_at, updated_at) FROM stdin;
 1	African American/Black	2018-06-07 15:26:54.98344	2018-06-07 15:26:54.98344
 2	American Indian/Alaska Native	2018-06-07 15:26:54.985873	2018-06-07 15:26:54.985873
 3	Asian/Pacific Islander	2018-06-07 15:26:54.987723	2018-06-07 15:26:54.987723
@@ -1616,17 +1424,17 @@ COPY public.races (id, category, created_at, updated_at) FROM stdin;
 
 
 --
--- Name: races_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: races_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.races_id_seq', 7, true);
+SELECT pg_catalog.setval('races_id_seq', 7, true);
 
 
 --
--- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.schema_migrations (version) FROM stdin;
+COPY schema_migrations (version) FROM stdin;
 20180607151203
 20100214190054
 20120216235440
@@ -1680,51 +1488,43 @@ COPY public.schema_migrations (version) FROM stdin;
 
 
 --
--- Data for Name: support_requests; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: support_requests; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.support_requests (id, user_id, area_id, treatment_area_id, ip_address, resolved, resolved_at, created_at, updated_at) FROM stdin;
+COPY support_requests (id, user_id, area_id, treatment_area_id, ip_address, resolved, resolved_at, created_at, updated_at) FROM stdin;
 \.
 
 
 --
--- Name: support_requests_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: support_requests_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.support_requests_id_seq', 1, false);
+SELECT pg_catalog.setval('support_requests_id_seq', 1, false);
 
 
 --
--- Data for Name: surveys; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: surveys; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.surveys (id, city, state, zip, age, sex, race, rating_of_services, created_at, updated_at, pain, pain_length_in_days, heard_about_clinic, told_needed_more_dental_treatment, has_place_to_be_seen_for_dental_care, no_insurance, insurance_from_job, medicaid_or_chp_plus, self_purchase_insurance, other_insurance, tobacco_use, is_enrolled_in_medicare_medicaid, dental_insurance, medical_insurance, has_place_to_be_seen_for_medical_care, er_last_6_months, er_last_year, veteran_status, has_permanent_residence, pchc_patient) FROM stdin;
-1	Boston	MA	02215	26	M	African American/Black	5	2018-06-07 15:31:30.333994	2018-06-07 15:33:47.319698	f	0	Friend or Family	t	f	\N	\N	\N	\N	\N	t	f	f	f	f	t	f	\N	f	\N
-2	Boston	MA	02215	18	M	African American/Black	4	2018-06-07 15:32:27.819048	2018-06-07 15:34:16.084252	f	0	Friend or Family	t	f	\N	\N	\N	\N	\N	t	f	f	f	f	f	f	\N	t	\N
-3	Wakefield	RI	02879	19	F	Caucasian/White	10	2018-06-07 18:16:22.793209	2018-06-07 18:17:34.474278	f	0	Friend or Family	f	f	\N	\N	\N	\N	\N	t	f	f	f	f	t	f	\N	f	\N
-4	AnyCity	CA	90210	17	M	Other	10	2018-07-18 17:59:46.547134	2018-07-18 18:06:24.349023	t	30	Friend or Family	t	f	\N	\N	\N	\N	\N	t	t	t	t	f	f	f	\N	f	\N
-5	Wakefield	RI	02879	0	F	Hispanic	1	2018-07-31 16:38:16.56007	2018-07-31 16:50:51.505645	f	0		t	f	\N	\N	\N	\N	\N	t	f	f	f	f	f	f	\N	t	\N
-6	Woof	PP	12345	4	F	Boxer	10	2018-07-31 16:38:58.382266	2018-07-31 16:51:00.712337	f	0	Flyer or Poster	f	f	\N	\N	\N	\N	\N	f	f	f	f	f	f	f	\N	t	\N
-7	Providence	RI	02908	57	F	Caucasian/White	\N	2018-08-07 20:32:57.79753	2018-08-07 20:34:53.492284	f	0	Friend or Family	\N	f	\N	\N	\N	\N	\N	\N	f	f	f	t	f	f	\N	\N	\N
-9	wakefiled	JA	01010	25	M	African American/Black	\N	2018-09-11 09:16:02.542462	2018-09-11 09:16:51.710998	f	0	Friend or Family	\N	f	\N	\N	\N	\N	\N	\N	f	f	t	f	f	f	\N	\N	\N
-8	Wakefield	RI	02879	57	M	Caucasian/White	3	2018-08-07 20:33:04.958708	2018-09-11 09:20:06.787988	t	365	Flyer or Poster	f	f	\N	\N	\N	\N	\N	t	f	f	f	f	f	f	\N	f	\N
-10	Wakefield	RI	02879	27	F	Caucasian/White	10	2018-09-12 19:37:11.44396	2018-09-12 19:45:25.119579	f	0	Flyer or Poster	\N	t	\N	\N	\N	\N	\N	f	f	f	t	t	f	f	\N	t	\N
-11	Wakefield	RI	02879	47	F	Caucasian/White	\N	2018-09-12 20:17:51.798288	2018-09-12 20:18:21.89882	f	0	billboard	\N	t	\N	\N	\N	\N	\N	\N	f	f	t	t	f	f	\N	\N	\N
+COPY surveys (id, city, state, zip, age, sex, race, rating_of_services, created_at, updated_at, pain, pain_length_in_days, heard_about_clinic, told_needed_more_dental_treatment, has_place_to_be_seen_for_dental_care, no_insurance, insurance_from_job, medicaid_or_chp_plus, self_purchase_insurance, other_insurance, tobacco_use, is_enrolled_in_medicare_medicaid, dental_insurance, medical_insurance, has_place_to_be_seen_for_medical_care, er_last_6_months, er_last_year, veteran_status, has_permanent_residence, pchc_patient) FROM stdin;
+1	wake	AM	12312	26	M	African American/Black	6	2019-05-17 16:48:25.356385	2019-05-17 17:21:44.528623	f	0	\N	f	\N	\N	\N	\N	\N	\N	t	\N	\N	\N	\N	f	f	\N	f	\N
+2	Wakefield	RI	02879	68	F	Caucasian/White	10	2019-08-24 21:13:38.137221	2019-08-24 21:15:11.808092	f	0	Flyer or Poster	t	f	\N	\N	\N	\N	\N	f	f	f	t	t	t	t	\N	t	\N
+3	Wakefield	RI	02879	58	F	Caucasian/White	\N	2019-08-30 18:21:17.123063	2019-08-30 18:21:34.874538	f	0	Flyer or Poster	\N	f	\N	\N	\N	\N	\N	\N	f	f	f	f	f	t	\N	\N	\N
 \.
 
 
 --
--- Name: surveys_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: surveys_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.surveys_id_seq', 11, true);
+SELECT pg_catalog.setval('surveys_id_seq', 3, true);
 
 
 --
--- Data for Name: treatment_areas; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: treatment_areas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.treatment_areas (id, name, capacity, created_at, updated_at, amalgam_composite_procedures) FROM stdin;
+COPY treatment_areas (id, name, capacity, created_at, updated_at, amalgam_composite_procedures) FROM stdin;
 1	Radiology	50	2018-06-07 15:26:54.965601	2018-06-07 15:26:54.965601	\N
 2	Restoration	50	2018-06-07 15:26:54.968422	2018-06-07 15:26:54.968422	t
 3	Endodontics	50	2018-06-07 15:26:54.970773	2018-06-07 15:26:54.970773	\N
@@ -1734,17 +1534,17 @@ COPY public.treatment_areas (id, name, capacity, created_at, updated_at, amalgam
 
 
 --
--- Name: treatment_areas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: treatment_areas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.treatment_areas_id_seq', 5, true);
+SELECT pg_catalog.setval('treatment_areas_id_seq', 5, true);
 
 
 --
--- Data for Name: treatments; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: treatments; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.treatments (id, name, created_at, updated_at, provided) FROM stdin;
+COPY treatments (id, name, created_at, updated_at, provided) FROM stdin;
 1	Filling	2018-06-07 15:26:54.943406	2018-06-07 15:26:54.943406	t
 2	Partial denture	2018-06-07 15:26:54.946318	2018-06-07 15:26:54.946318	t
 3	Denture repair	2018-06-07 15:26:54.948115	2018-06-07 15:26:54.948115	t
@@ -1753,248 +1553,248 @@ COPY public.treatments (id, name, created_at, updated_at, provided) FROM stdin;
 
 
 --
--- Name: treatments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: treatments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.treatments_id_seq', 4, true);
+SELECT pg_catalog.setval('treatments_id_seq', 4, true);
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: ubuntu
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.users (id, login, name, email, crypted_password, salt, remember_token, remember_token_expires_at, x_ray_station_id, user_type, created_at, updated_at, encrypted_password) FROM stdin;
+COPY users (id, login, name, email, crypted_password, salt, remember_token, remember_token_expires_at, x_ray_station_id, user_type, created_at, updated_at, encrypted_password) FROM stdin;
 11	admin		\N	\N	\N	\N	\N	\N	1	2018-06-07 18:10:08.833168	2018-06-07 18:10:08.833168	$2a$10$nltVx3Idl5JfYaAF52hWW.TaO5rW4B38ue7cojQfut0eg4O094f1G
 12	check_in		\N	\N	\N	\N	\N	\N	2	2018-06-07 18:10:08.914512	2018-06-07 18:10:08.914512	$2a$10$l90AFfbqb60EXSSFzj6MwOi1LyCtSLWPEc31uAJrn58Cf2eWtKJSm
 13	check_out		\N	\N	\N	\N	\N	\N	3	2018-06-07 18:10:08.99311	2018-06-07 18:10:08.99311	$2a$10$yPYW95y1q.mDPlzUgQ4fK.yeW1IS/JwoN.0WzmP26bEKQmV/iMGD.
 14	assignment_desk		\N	\N	\N	\N	\N	\N	6	2018-06-07 18:10:09.071179	2018-06-07 18:10:09.071179	$2a$10$8mh56tI69CT5kUfjQ.omUe/TGyXdgnYiUIqKZQigNJm3sj8IXwq4e
 15	pharmacy		\N	\N	\N	\N	\N	\N	5	2018-06-07 18:10:09.149116	2018-06-07 18:10:09.149116	$2a$10$i/RhtBei2UNjEkEic9GoUeNIAYDLliiixHxjXl4nJJAuaX1ZJVH72
-16	xray_1		\N	\N	\N	\N	\N	1	4	2018-06-07 18:10:09.227045	2018-06-07 18:10:09.227045	$2a$10$Wsm/K0bgZcdobnqt7vESlO4bYUSDywbJL.1J2C5ITzls028svhjka
 17	xray_2		\N	\N	\N	\N	\N	2	4	2018-06-07 18:10:09.305251	2018-06-07 18:10:09.305251	$2a$10$YMUukTrxKz6SbsKtZMZkGeEEUPS04OG3R2Jaf5NBv7MrXP3e5JDhu
 18	xray_3		\N	\N	\N	\N	\N	3	4	2018-06-07 18:10:09.383645	2018-06-07 18:10:09.383645	$2a$10$ksfpGlmvGuz13783GfQ29OBZLre3Bp7N6vHwakVammDnknPArL08.
 19	xray_4		\N	\N	\N	\N	\N	4	4	2018-06-07 18:10:09.461944	2018-06-07 18:10:09.461944	$2a$10$Clg3Il2WZDNVxSf5B6CopebDbc9mF2KKqIN8oPCdFR8NqkyEvH6Wi
 20	xray_5		\N	\N	\N	\N	\N	5	4	2018-06-07 18:10:09.540359	2018-06-07 18:10:09.540359	$2a$10$vUD5O3r/RckCjX8iAMkX1.wyXQ7jTBKbp2E40en6166faBWvylwuO
+16	xray_1		\N	\N	\N	\N	\N	1	4	2018-06-07 18:10:09.227045	2019-05-17 17:03:26.897333	$2a$10$.7VBPDMxpzmmtpW2xDHhY.Zm7Ht7oxdF5F5htyyYMrmFdkiu./Hsy
 \.
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 20, true);
+SELECT pg_catalog.setval('users_id_seq', 20, true);
 
 
 --
--- Name: heard_about_clinics_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: heard_about_clinics_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.heard_about_clinics
+ALTER TABLE ONLY heard_about_clinics
     ADD CONSTRAINT heard_about_clinics_pkey PRIMARY KEY (id);
 
 
 --
--- Name: patient_assignments_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: patient_assignments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.patient_assignments
+ALTER TABLE ONLY patient_assignments
     ADD CONSTRAINT patient_assignments_pkey PRIMARY KEY (id);
 
 
 --
--- Name: patient_flows_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: patient_flows_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.patient_flows
+ALTER TABLE ONLY patient_flows
     ADD CONSTRAINT patient_flows_pkey PRIMARY KEY (id);
 
 
 --
--- Name: patient_pre_meds_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: patient_pre_meds_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.patient_pre_meds
+ALTER TABLE ONLY patient_pre_meds
     ADD CONSTRAINT patient_pre_meds_pkey PRIMARY KEY (id);
 
 
 --
--- Name: patient_prescriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: patient_prescriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.patient_prescriptions
+ALTER TABLE ONLY patient_prescriptions
     ADD CONSTRAINT patient_prescriptions_pkey PRIMARY KEY (id);
 
 
 --
--- Name: patient_previous_mom_clinics_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: patient_previous_mom_clinics_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.patient_previous_mom_clinics
+ALTER TABLE ONLY patient_previous_mom_clinics
     ADD CONSTRAINT patient_previous_mom_clinics_pkey PRIMARY KEY (id);
 
 
 --
--- Name: patient_procedures_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: patient_procedures_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.patient_procedures
+ALTER TABLE ONLY patient_procedures
     ADD CONSTRAINT patient_procedures_pkey PRIMARY KEY (id);
 
 
 --
--- Name: patient_zipcodes_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: patient_zipcodes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.patient_zipcodes
+ALTER TABLE ONLY patient_zipcodes
     ADD CONSTRAINT patient_zipcodes_pkey PRIMARY KEY (id);
 
 
 --
--- Name: patients_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: patients_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.patients
+ALTER TABLE ONLY patients
     ADD CONSTRAINT patients_pkey PRIMARY KEY (id);
 
 
 --
--- Name: pre_meds_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: pre_meds_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.pre_meds
+ALTER TABLE ONLY pre_meds
     ADD CONSTRAINT pre_meds_pkey PRIMARY KEY (id);
 
 
 --
--- Name: prescriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: prescriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.prescriptions
+ALTER TABLE ONLY prescriptions
     ADD CONSTRAINT prescriptions_pkey PRIMARY KEY (id);
 
 
 --
--- Name: previous_clinics_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: previous_clinics_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.previous_clinics
+ALTER TABLE ONLY previous_clinics
     ADD CONSTRAINT previous_clinics_pkey PRIMARY KEY (id);
 
 
 --
--- Name: procedure_treatment_area_mappings_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: procedure_treatment_area_mappings_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.procedure_treatment_area_mappings
+ALTER TABLE ONLY procedure_treatment_area_mappings
     ADD CONSTRAINT procedure_treatment_area_mappings_pkey PRIMARY KEY (id);
 
 
 --
--- Name: procedures_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: procedures_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.procedures
+ALTER TABLE ONLY procedures
     ADD CONSTRAINT procedures_pkey PRIMARY KEY (id);
 
 
 --
--- Name: races_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: races_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.races
+ALTER TABLE ONLY races
     ADD CONSTRAINT races_pkey PRIMARY KEY (id);
 
 
 --
--- Name: support_requests_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: support_requests_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.support_requests
+ALTER TABLE ONLY support_requests
     ADD CONSTRAINT support_requests_pkey PRIMARY KEY (id);
 
 
 --
--- Name: surveys_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: surveys_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.surveys
+ALTER TABLE ONLY surveys
     ADD CONSTRAINT surveys_pkey PRIMARY KEY (id);
 
 
 --
--- Name: treatment_areas_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: treatment_areas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.treatment_areas
+ALTER TABLE ONLY treatment_areas
     ADD CONSTRAINT treatment_areas_pkey PRIMARY KEY (id);
 
 
 --
--- Name: treatments_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: treatments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.treatments
+ALTER TABLE ONLY treatments
     ADD CONSTRAINT treatments_pkey PRIMARY KEY (id);
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY public.users
+ALTER TABLE ONLY users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
 --
--- Name: index_patient_prescriptions_on_patient_id; Type: INDEX; Schema: public; Owner: ubuntu
+-- Name: index_patient_prescriptions_on_patient_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX index_patient_prescriptions_on_patient_id ON public.patient_prescriptions USING btree (patient_id);
-
-
---
--- Name: index_patient_prescriptions_on_prescription_id; Type: INDEX; Schema: public; Owner: ubuntu
---
-
-CREATE INDEX index_patient_prescriptions_on_prescription_id ON public.patient_prescriptions USING btree (prescription_id);
+CREATE INDEX index_patient_prescriptions_on_patient_id ON patient_prescriptions USING btree (patient_id);
 
 
 --
--- Name: index_patient_procedures_on_patient_id; Type: INDEX; Schema: public; Owner: ubuntu
+-- Name: index_patient_prescriptions_on_prescription_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX index_patient_procedures_on_patient_id ON public.patient_procedures USING btree (patient_id);
-
-
---
--- Name: index_patient_procedures_on_procedure_id; Type: INDEX; Schema: public; Owner: ubuntu
---
-
-CREATE INDEX index_patient_procedures_on_procedure_id ON public.patient_procedures USING btree (procedure_id);
+CREATE INDEX index_patient_prescriptions_on_prescription_id ON patient_prescriptions USING btree (prescription_id);
 
 
 --
--- Name: index_patient_zipcodes_on_zip; Type: INDEX; Schema: public; Owner: ubuntu
+-- Name: index_patient_procedures_on_patient_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE INDEX index_patient_zipcodes_on_zip ON public.patient_zipcodes USING btree (zip);
-
-
---
--- Name: index_users_on_login; Type: INDEX; Schema: public; Owner: ubuntu
---
-
-CREATE UNIQUE INDEX index_users_on_login ON public.users USING btree (login);
+CREATE INDEX index_patient_procedures_on_patient_id ON patient_procedures USING btree (patient_id);
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: ubuntu
+-- Name: index_patient_procedures_on_procedure_id; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
 --
 
-CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
+CREATE INDEX index_patient_procedures_on_procedure_id ON patient_procedures USING btree (procedure_id);
 
 
 --
--- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+-- Name: index_patient_zipcodes_on_zip; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE INDEX index_patient_zipcodes_on_zip ON patient_zipcodes USING btree (zip);
+
+
+--
+-- Name: index_users_on_login; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_login ON users USING btree (login);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
 
 REVOKE ALL ON SCHEMA public FROM PUBLIC;
