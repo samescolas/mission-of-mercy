@@ -1,0 +1,2009 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.14
+-- Dumped by pg_dump version 9.5.14
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: heard_about_clinics; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.heard_about_clinics (
+    id integer NOT NULL,
+    reason character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.heard_about_clinics OWNER TO ubuntu;
+
+--
+-- Name: heard_about_clinics_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.heard_about_clinics_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.heard_about_clinics_id_seq OWNER TO ubuntu;
+
+--
+-- Name: heard_about_clinics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.heard_about_clinics_id_seq OWNED BY public.heard_about_clinics.id;
+
+
+--
+-- Name: patient_assignments; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.patient_assignments (
+    id integer NOT NULL,
+    patient_id integer,
+    treatment_area_id integer,
+    checked_out_at timestamp without time zone,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.patient_assignments OWNER TO ubuntu;
+
+--
+-- Name: patient_assignments_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.patient_assignments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.patient_assignments_id_seq OWNER TO ubuntu;
+
+--
+-- Name: patient_assignments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.patient_assignments_id_seq OWNED BY public.patient_assignments.id;
+
+
+--
+-- Name: patient_flows; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.patient_flows (
+    id integer NOT NULL,
+    treatment_area_id integer,
+    patient_id integer,
+    area_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.patient_flows OWNER TO ubuntu;
+
+--
+-- Name: patient_flows_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.patient_flows_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.patient_flows_id_seq OWNER TO ubuntu;
+
+--
+-- Name: patient_flows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.patient_flows_id_seq OWNED BY public.patient_flows.id;
+
+
+--
+-- Name: patient_pre_meds; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.patient_pre_meds (
+    id integer NOT NULL,
+    patient_id integer,
+    pre_med_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    prescribed boolean
+);
+
+
+ALTER TABLE public.patient_pre_meds OWNER TO ubuntu;
+
+--
+-- Name: patient_pre_meds_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.patient_pre_meds_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.patient_pre_meds_id_seq OWNER TO ubuntu;
+
+--
+-- Name: patient_pre_meds_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.patient_pre_meds_id_seq OWNED BY public.patient_pre_meds.id;
+
+
+--
+-- Name: patient_prescriptions; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.patient_prescriptions (
+    id integer NOT NULL,
+    patient_id integer,
+    prescription_id integer,
+    prescribed boolean,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.patient_prescriptions OWNER TO ubuntu;
+
+--
+-- Name: patient_prescriptions_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.patient_prescriptions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.patient_prescriptions_id_seq OWNER TO ubuntu;
+
+--
+-- Name: patient_prescriptions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.patient_prescriptions_id_seq OWNED BY public.patient_prescriptions.id;
+
+
+--
+-- Name: patient_previous_mom_clinics; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.patient_previous_mom_clinics (
+    id integer NOT NULL,
+    patient_id integer,
+    location character varying(255),
+    clinic_year integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    attended boolean
+);
+
+
+ALTER TABLE public.patient_previous_mom_clinics OWNER TO ubuntu;
+
+--
+-- Name: patient_previous_mom_clinics_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.patient_previous_mom_clinics_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.patient_previous_mom_clinics_id_seq OWNER TO ubuntu;
+
+--
+-- Name: patient_previous_mom_clinics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.patient_previous_mom_clinics_id_seq OWNED BY public.patient_previous_mom_clinics.id;
+
+
+--
+-- Name: patient_procedures; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.patient_procedures (
+    id integer NOT NULL,
+    patient_id integer,
+    procedure_id integer,
+    tooth_number character varying(255),
+    surface_code character varying(255),
+    provider_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.patient_procedures OWNER TO ubuntu;
+
+--
+-- Name: patient_procedures_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.patient_procedures_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.patient_procedures_id_seq OWNER TO ubuntu;
+
+--
+-- Name: patient_procedures_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.patient_procedures_id_seq OWNED BY public.patient_procedures.id;
+
+
+--
+-- Name: patient_zipcodes; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.patient_zipcodes (
+    id integer NOT NULL,
+    zip character varying(255),
+    city character varying(255),
+    state character varying(255),
+    latitude character varying(255),
+    longitude character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    county character varying(255)
+);
+
+
+ALTER TABLE public.patient_zipcodes OWNER TO ubuntu;
+
+--
+-- Name: patient_zipcodes_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.patient_zipcodes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.patient_zipcodes_id_seq OWNER TO ubuntu;
+
+--
+-- Name: patient_zipcodes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.patient_zipcodes_id_seq OWNED BY public.patient_zipcodes.id;
+
+
+--
+-- Name: patients; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.patients (
+    id integer NOT NULL,
+    first_name character varying(255),
+    last_name character varying(255),
+    date_of_birth date,
+    sex character varying(2),
+    street character varying(255),
+    city character varying(255),
+    state character varying(2),
+    zip character varying(10),
+    race character varying(255),
+    travel_time double precision,
+    attended_previous_mom_event boolean,
+    previous_mom_event_location character varying(255),
+    chief_complaint character varying(255),
+    last_dental_visit character varying(255),
+    pain boolean,
+    pain_length_in_days integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    survey_id integer,
+    phone character varying(255),
+    previous_chart_number integer,
+    chart_printed boolean DEFAULT false NOT NULL,
+    interpreter_needed boolean DEFAULT false NOT NULL,
+    language text,
+    veteran_status boolean,
+    has_permanent_residence boolean,
+    pchc_patient boolean
+);
+
+
+ALTER TABLE public.patients OWNER TO ubuntu;
+
+--
+-- Name: patients_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.patients_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.patients_id_seq OWNER TO ubuntu;
+
+--
+-- Name: patients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.patients_id_seq OWNED BY public.patients.id;
+
+
+--
+-- Name: pre_meds; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.pre_meds (
+    id integer NOT NULL,
+    description character varying(255),
+    cost double precision,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.pre_meds OWNER TO ubuntu;
+
+--
+-- Name: pre_meds_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.pre_meds_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pre_meds_id_seq OWNER TO ubuntu;
+
+--
+-- Name: pre_meds_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.pre_meds_id_seq OWNED BY public.pre_meds.id;
+
+
+--
+-- Name: prescriptions; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.prescriptions (
+    id integer NOT NULL,
+    name character varying(255),
+    strength character varying(255),
+    quantity integer,
+    dosage character varying(255),
+    cost double precision,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    "position" integer
+);
+
+
+ALTER TABLE public.prescriptions OWNER TO ubuntu;
+
+--
+-- Name: prescriptions_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.prescriptions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.prescriptions_id_seq OWNER TO ubuntu;
+
+--
+-- Name: prescriptions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.prescriptions_id_seq OWNED BY public.prescriptions.id;
+
+
+--
+-- Name: previous_clinics; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.previous_clinics (
+    id integer NOT NULL,
+    location character varying(255),
+    year integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.previous_clinics OWNER TO ubuntu;
+
+--
+-- Name: previous_clinics_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.previous_clinics_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.previous_clinics_id_seq OWNER TO ubuntu;
+
+--
+-- Name: previous_clinics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.previous_clinics_id_seq OWNED BY public.previous_clinics.id;
+
+
+--
+-- Name: procedure_treatment_area_mappings; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.procedure_treatment_area_mappings (
+    id integer NOT NULL,
+    procedure_id integer,
+    treatment_area_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    assigned boolean
+);
+
+
+ALTER TABLE public.procedure_treatment_area_mappings OWNER TO ubuntu;
+
+--
+-- Name: procedure_treatment_area_mappings_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.procedure_treatment_area_mappings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.procedure_treatment_area_mappings_id_seq OWNER TO ubuntu;
+
+--
+-- Name: procedure_treatment_area_mappings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.procedure_treatment_area_mappings_id_seq OWNED BY public.procedure_treatment_area_mappings.id;
+
+
+--
+-- Name: procedures; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.procedures (
+    id integer NOT NULL,
+    code integer,
+    description character varying(255),
+    requires_tooth_number boolean,
+    requires_surface_code boolean,
+    procedure_type character varying(255),
+    auto_add boolean,
+    cost double precision,
+    number_of_surfaces integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.procedures OWNER TO ubuntu;
+
+--
+-- Name: procedures_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.procedures_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.procedures_id_seq OWNER TO ubuntu;
+
+--
+-- Name: procedures_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.procedures_id_seq OWNED BY public.procedures.id;
+
+
+--
+-- Name: races; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.races (
+    id integer NOT NULL,
+    category character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.races OWNER TO ubuntu;
+
+--
+-- Name: races_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.races_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.races_id_seq OWNER TO ubuntu;
+
+--
+-- Name: races_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.races_id_seq OWNED BY public.races.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.schema_migrations (
+    version character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.schema_migrations OWNER TO ubuntu;
+
+--
+-- Name: support_requests; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.support_requests (
+    id integer NOT NULL,
+    user_id integer,
+    area_id integer,
+    treatment_area_id integer,
+    ip_address character varying(255),
+    resolved boolean,
+    resolved_at timestamp without time zone,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE public.support_requests OWNER TO ubuntu;
+
+--
+-- Name: support_requests_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.support_requests_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.support_requests_id_seq OWNER TO ubuntu;
+
+--
+-- Name: support_requests_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.support_requests_id_seq OWNED BY public.support_requests.id;
+
+
+--
+-- Name: surveys; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.surveys (
+    id integer NOT NULL,
+    city character varying(255),
+    state character varying(255),
+    zip character varying(255),
+    age integer,
+    sex character varying(255),
+    race character varying(255),
+    rating_of_services integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    pain boolean,
+    pain_length_in_days integer,
+    heard_about_clinic character varying(255),
+    told_needed_more_dental_treatment boolean,
+    has_place_to_be_seen_for_dental_care boolean,
+    no_insurance boolean,
+    insurance_from_job boolean,
+    medicaid_or_chp_plus boolean,
+    self_purchase_insurance boolean,
+    other_insurance character varying(255),
+    tobacco_use boolean,
+    is_enrolled_in_medicare_medicaid boolean,
+    dental_insurance boolean,
+    medical_insurance boolean,
+    has_place_to_be_seen_for_medical_care boolean,
+    er_last_6_months boolean DEFAULT false NOT NULL,
+    er_last_year boolean DEFAULT false NOT NULL,
+    veteran_status boolean,
+    has_permanent_residence boolean,
+    pchc_patient boolean
+);
+
+
+ALTER TABLE public.surveys OWNER TO ubuntu;
+
+--
+-- Name: surveys_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.surveys_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.surveys_id_seq OWNER TO ubuntu;
+
+--
+-- Name: surveys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.surveys_id_seq OWNED BY public.surveys.id;
+
+
+--
+-- Name: treatment_areas; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.treatment_areas (
+    id integer NOT NULL,
+    name character varying(255),
+    capacity integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    amalgam_composite_procedures boolean
+);
+
+
+ALTER TABLE public.treatment_areas OWNER TO ubuntu;
+
+--
+-- Name: treatment_areas_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.treatment_areas_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.treatment_areas_id_seq OWNER TO ubuntu;
+
+--
+-- Name: treatment_areas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.treatment_areas_id_seq OWNED BY public.treatment_areas.id;
+
+
+--
+-- Name: treatments; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.treatments (
+    id integer NOT NULL,
+    name character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    provided boolean DEFAULT true
+);
+
+
+ALTER TABLE public.treatments OWNER TO ubuntu;
+
+--
+-- Name: treatments_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.treatments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.treatments_id_seq OWNER TO ubuntu;
+
+--
+-- Name: treatments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.treatments_id_seq OWNED BY public.treatments.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: ubuntu
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    login character varying(40),
+    name character varying(100) DEFAULT ''::character varying,
+    email character varying(100),
+    crypted_password character varying(40),
+    salt character varying(40),
+    remember_token character varying(40),
+    remember_token_expires_at timestamp without time zone,
+    x_ray_station_id integer,
+    user_type integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    encrypted_password character varying(128) NOT NULL
+);
+
+
+ALTER TABLE public.users OWNER TO ubuntu;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: ubuntu
+--
+
+CREATE SEQUENCE public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO ubuntu;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ubuntu
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.heard_about_clinics ALTER COLUMN id SET DEFAULT nextval('public.heard_about_clinics_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.patient_assignments ALTER COLUMN id SET DEFAULT nextval('public.patient_assignments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.patient_flows ALTER COLUMN id SET DEFAULT nextval('public.patient_flows_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.patient_pre_meds ALTER COLUMN id SET DEFAULT nextval('public.patient_pre_meds_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.patient_prescriptions ALTER COLUMN id SET DEFAULT nextval('public.patient_prescriptions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.patient_previous_mom_clinics ALTER COLUMN id SET DEFAULT nextval('public.patient_previous_mom_clinics_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.patient_procedures ALTER COLUMN id SET DEFAULT nextval('public.patient_procedures_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.patient_zipcodes ALTER COLUMN id SET DEFAULT nextval('public.patient_zipcodes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.patients ALTER COLUMN id SET DEFAULT nextval('public.patients_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.pre_meds ALTER COLUMN id SET DEFAULT nextval('public.pre_meds_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.prescriptions ALTER COLUMN id SET DEFAULT nextval('public.prescriptions_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.previous_clinics ALTER COLUMN id SET DEFAULT nextval('public.previous_clinics_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.procedure_treatment_area_mappings ALTER COLUMN id SET DEFAULT nextval('public.procedure_treatment_area_mappings_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.procedures ALTER COLUMN id SET DEFAULT nextval('public.procedures_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.races ALTER COLUMN id SET DEFAULT nextval('public.races_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.support_requests ALTER COLUMN id SET DEFAULT nextval('public.support_requests_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.surveys ALTER COLUMN id SET DEFAULT nextval('public.surveys_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.treatment_areas ALTER COLUMN id SET DEFAULT nextval('public.treatment_areas_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.treatments ALTER COLUMN id SET DEFAULT nextval('public.treatments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Data for Name: heard_about_clinics; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.heard_about_clinics (id, reason, created_at, updated_at) FROM stdin;
+1	Friend or Family	2018-06-07 15:26:55.039476	2018-06-07 15:26:55.039476
+2	Media: Newspaper/TV/Radio	2018-06-07 15:26:55.041872	2018-06-07 15:26:55.041872
+3	Flyer or Poster	2018-06-07 15:26:55.043597	2018-06-07 15:26:55.043597
+4	Other	2018-06-07 15:26:55.045464	2018-06-07 15:26:55.045464
+\.
+
+
+--
+-- Name: heard_about_clinics_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.heard_about_clinics_id_seq', 4, true);
+
+
+--
+-- Data for Name: patient_assignments; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.patient_assignments (id, patient_id, treatment_area_id, checked_out_at, created_at, updated_at) FROM stdin;
+1	4	3	\N	2018-09-08 14:01:08.942615	2018-09-08 14:01:08.942615
+3	7	5	\N	2018-09-11 09:14:28.186749	2018-09-11 09:14:28.186749
+2	8	2	2018-09-11 09:54:53.667271	2018-09-11 09:05:44.800377	2018-09-11 09:54:53.667681
+\.
+
+
+--
+-- Name: patient_assignments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.patient_assignments_id_seq', 3, true);
+
+
+--
+-- Data for Name: patient_flows; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.patient_flows (id, treatment_area_id, patient_id, area_id, created_at, updated_at) FROM stdin;
+1	\N	1	1	2018-06-07 15:31:30.363004	2018-06-07 15:31:30.363004
+2	\N	2	1	2018-06-07 15:32:27.821859	2018-06-07 15:32:27.821859
+3	\N	1	5	2018-06-07 15:33:57.300325	2018-06-07 15:33:57.300325
+4	3	1	4	2018-06-07 15:33:57.302349	2018-06-07 15:33:57.302349
+5	\N	2	5	2018-06-07 15:34:31.582121	2018-06-07 15:34:31.582121
+6	3	2	4	2018-06-07 15:34:31.584165	2018-06-07 15:34:31.584165
+7	\N	1	5	2018-06-07 17:54:27.02068	2018-06-07 17:54:27.02068
+8	2	1	4	2018-06-07 17:54:27.0228	2018-06-07 17:54:27.0228
+9	\N	1	5	2018-06-07 18:15:29.643181	2018-06-07 18:15:29.643181
+10	2	1	4	2018-06-07 18:15:29.645243	2018-06-07 18:15:29.645243
+11	\N	3	1	2018-06-07 18:16:22.796287	2018-06-07 18:16:22.796287
+12	\N	3	5	2018-06-07 18:17:53.260587	2018-06-07 18:17:53.260587
+13	3	3	4	2018-06-07 18:17:53.262575	2018-06-07 18:17:53.262575
+14	\N	4	1	2018-07-18 17:59:46.549776	2018-07-18 17:59:46.549776
+15	\N	4	5	2018-07-18 18:07:22.708005	2018-07-18 18:07:22.708005
+16	3	4	4	2018-07-18 18:07:22.710168	2018-07-18 18:07:22.710168
+17	\N	4	2	2018-07-18 18:18:21.773701	2018-07-18 18:18:21.773701
+18	\N	4	2	2018-07-18 18:18:30.025505	2018-07-18 18:18:30.025505
+19	\N	1	5	2018-07-31 16:36:05.403031	2018-07-31 16:36:05.403031
+20	2	1	4	2018-07-31 16:36:05.405011	2018-07-31 16:36:05.405011
+21	\N	1	5	2018-07-31 16:36:14.295201	2018-07-31 16:36:14.295201
+22	2	1	4	2018-07-31 16:36:14.297156	2018-07-31 16:36:14.297156
+23	\N	5	1	2018-07-31 16:38:16.563	2018-07-31 16:38:16.563
+24	\N	6	1	2018-07-31 16:38:58.384959	2018-07-31 16:38:58.384959
+25	\N	5	2	2018-07-31 16:49:02.860638	2018-07-31 16:49:02.860638
+26	\N	6	2	2018-07-31 16:49:04.911775	2018-07-31 16:49:04.911775
+27	\N	6	2	2018-07-31 16:49:30.852036	2018-07-31 16:49:30.852036
+28	\N	1	2	2018-08-02 01:14:30.778984	2018-08-02 01:14:30.778984
+29	\N	6	2	2018-08-02 10:30:21.781486	2018-08-02 10:30:21.781486
+30	\N	3	2	2018-08-02 23:14:29.46522	2018-08-02 23:14:29.46522
+31	\N	7	1	2018-08-07 20:32:57.800844	2018-08-07 20:32:57.800844
+32	\N	8	1	2018-08-07 20:33:04.961868	2018-08-07 20:33:04.961868
+33	\N	3	5	2018-08-27 17:15:35.026533	2018-08-27 17:15:35.026533
+34	2	3	4	2018-08-27 17:15:35.02934	2018-08-27 17:15:35.02934
+35	\N	3	2	2018-08-27 17:19:21.319779	2018-08-27 17:19:21.319779
+36	\N	3	2	2018-08-27 17:19:26.129313	2018-08-27 17:19:26.129313
+37	\N	3	2	2018-08-27 17:19:33.612109	2018-08-27 17:19:33.612109
+38	\N	3	2	2018-08-27 17:19:36.054714	2018-08-27 17:19:36.054714
+39	\N	3	2	2018-08-28 12:36:21.86134	2018-08-28 12:36:21.86134
+40	\N	3	2	2018-08-28 14:33:40.128963	2018-08-28 14:33:40.128963
+41	\N	9	1	2018-08-30 12:12:54.59834	2018-08-30 12:12:54.59834
+42	\N	4	2	2018-09-08 14:01:44.366696	2018-09-08 14:01:44.366696
+43	\N	10	1	2018-09-08 16:18:51.346201	2018-09-08 16:18:51.346201
+44	\N	3	2	2018-09-08 16:42:21.941788	2018-09-08 16:42:21.941788
+45	\N	3	2	2018-09-08 16:42:26.109771	2018-09-08 16:42:26.109771
+46	\N	3	2	2018-09-08 16:42:31.96473	2018-09-08 16:42:31.96473
+47	\N	3	2	2018-09-08 16:44:25.569367	2018-09-08 16:44:25.569367
+48	\N	11	1	2018-09-11 09:16:02.634099	2018-09-11 09:16:02.634099
+49	\N	8	5	2018-09-11 09:54:53.662687	2018-09-11 09:54:53.662687
+50	3	8	4	2018-09-11 09:54:53.664801	2018-09-11 09:54:53.664801
+51	\N	12	1	2018-09-12 01:00:10.258292	2018-09-12 01:00:10.258292
+52	\N	13	1	2018-09-12 01:31:17.686712	2018-09-12 01:31:17.686712
+53	\N	14	1	2018-09-12 19:37:11.457745	2018-09-12 19:37:11.457745
+54	\N	3	5	2018-09-12 19:42:25.405717	2018-09-12 19:42:25.405717
+55	5	3	4	2018-09-12 19:42:25.407924	2018-09-12 19:42:25.407924
+56	\N	5	5	2018-09-12 19:43:19.000208	2018-09-12 19:43:19.000208
+57	5	5	4	2018-09-12 19:43:19.002287	2018-09-12 19:43:19.002287
+58	\N	13	5	2018-09-12 19:44:57.80662	2018-09-12 19:44:57.80662
+59	2	13	4	2018-09-12 19:44:57.808832	2018-09-12 19:44:57.808832
+60	\N	14	5	2018-09-12 19:45:37.861245	2018-09-12 19:45:37.861245
+61	2	14	4	2018-09-12 19:45:37.863391	2018-09-12 19:45:37.863391
+62	\N	15	1	2018-09-12 19:51:51.0436	2018-09-12 19:51:51.0436
+63	\N	16	1	2018-09-12 20:17:51.801017	2018-09-12 20:17:51.801017
+64	\N	1	5	2018-09-14 00:35:19.706874	2018-09-14 00:35:19.706874
+65	2	1	4	2018-09-14 00:35:19.709395	2018-09-14 00:35:19.709395
+66	\N	17	1	2018-09-14 01:09:09.586985	2018-09-14 01:09:09.586985
+67	\N	3	2	2018-09-17 15:33:29.511297	2018-09-17 15:33:29.511297
+68	\N	3	2	2018-09-17 15:33:41.112089	2018-09-17 15:33:41.112089
+69	\N	3	2	2018-09-17 15:33:42.795391	2018-09-17 15:33:42.795391
+\.
+
+
+--
+-- Name: patient_flows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.patient_flows_id_seq', 69, true);
+
+
+--
+-- Data for Name: patient_pre_meds; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.patient_pre_meds (id, patient_id, pre_med_id, created_at, updated_at, prescribed) FROM stdin;
+1	1	1	2018-06-07 15:33:47.321077	2018-06-07 15:33:47.321077	t
+4	2	2	2018-06-07 15:34:16.087007	2018-06-07 15:34:16.087007	t
+5	3	1	2018-06-07 18:17:34.475714	2018-06-07 18:17:34.475714	t
+7	4	1	2018-07-18 18:06:24.350324	2018-07-18 18:06:24.350324	t
+8	4	2	2018-07-18 18:06:24.351227	2018-07-18 18:06:24.351227	t
+21	5	1	2018-09-12 19:43:03.485229	2018-09-12 19:43:03.485229	t
+23	13	1	2018-09-12 19:43:39.507715	2018-09-12 19:43:39.507715	t
+25	14	1	2018-09-12 19:45:25.12086	2018-09-12 19:45:25.12086	t
+29	15	1	2018-09-12 19:53:09.044921	2018-09-12 19:53:09.044921	t
+\.
+
+
+--
+-- Name: patient_pre_meds_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.patient_pre_meds_id_seq', 30, true);
+
+
+--
+-- Data for Name: patient_prescriptions; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.patient_prescriptions (id, patient_id, prescription_id, prescribed, created_at, updated_at) FROM stdin;
+7	2	3	t	2018-06-07 15:34:31.578863	2018-06-07 15:34:31.578863
+8	2	4	t	2018-06-07 15:34:31.579653	2018-06-07 15:34:31.579653
+9	1	1	t	2018-06-07 17:54:27.014003	2018-06-07 17:54:27.014003
+21	4	2	t	2018-07-18 18:07:22.703865	2018-07-18 18:07:22.703865
+30	3	1	t	2018-08-27 17:15:35.018477	2018-08-27 17:15:35.018477
+41	5	1	t	2018-09-12 19:43:18.993571	2018-09-12 19:43:18.993571
+45	13	1	t	2018-09-12 19:44:57.800146	2018-09-12 19:44:57.800146
+\.
+
+
+--
+-- Name: patient_prescriptions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.patient_prescriptions_id_seq', 55, true);
+
+
+--
+-- Data for Name: patient_previous_mom_clinics; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.patient_previous_mom_clinics (id, patient_id, location, clinic_year, created_at, updated_at, attended) FROM stdin;
+\.
+
+
+--
+-- Name: patient_previous_mom_clinics_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.patient_previous_mom_clinics_id_seq', 85, true);
+
+
+--
+-- Data for Name: patient_procedures; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.patient_procedures (id, patient_id, procedure_id, tooth_number, surface_code, provider_id, created_at, updated_at) FROM stdin;
+1	1	227	\N	\N	\N	2018-06-07 15:31:30.417591	2018-06-07 15:31:30.417591
+2	1	233	\N	\N	\N	2018-06-07 15:31:30.419456	2018-06-07 15:31:30.419456
+3	2	227	\N	\N	\N	2018-06-07 15:32:27.82292	2018-06-07 15:32:27.82292
+4	2	233	\N	\N	\N	2018-06-07 15:32:27.823901	2018-06-07 15:32:27.823901
+5	2	267	11	\N	\N	2018-06-07 15:34:22.064909	2018-06-07 15:34:22.064909
+7	3	227	\N	\N	\N	2018-06-07 18:16:22.797295	2018-06-07 18:16:22.797295
+8	3	233	\N	\N	\N	2018-06-07 18:16:22.798254	2018-06-07 18:16:22.798254
+9	3	266	2	\N	\N	2018-06-07 18:17:43.515206	2018-06-07 18:17:43.515206
+10	4	227	\N	\N	\N	2018-07-18 17:59:46.550898	2018-07-18 17:59:46.550898
+11	4	233	\N	\N	\N	2018-07-18 17:59:46.551869	2018-07-18 17:59:46.551869
+12	4	266	1	\N	\N	2018-07-18 18:06:52.361976	2018-07-18 18:06:52.361976
+13	1	252	11	D	\N	2018-07-31 16:32:52.861249	2018-07-31 16:32:52.861249
+14	1	252	7	BDLMO	\N	2018-07-31 16:33:12.526448	2018-07-31 16:33:12.526448
+15	5	227	\N	\N	\N	2018-07-31 16:38:16.563998	2018-07-31 16:38:16.563998
+16	5	233	\N	\N	\N	2018-07-31 16:38:16.56497	2018-07-31 16:38:16.56497
+17	6	227	\N	\N	\N	2018-07-31 16:38:58.385974	2018-07-31 16:38:58.385974
+18	6	233	\N	\N	\N	2018-07-31 16:38:58.3869	2018-07-31 16:38:58.3869
+19	5	230	\N	\N	\N	2018-07-31 16:49:31.734127	2018-07-31 16:49:31.734127
+20	6	230	\N	\N	\N	2018-07-31 16:49:40.187519	2018-07-31 16:49:40.187519
+21	7	227	\N	\N	\N	2018-08-07 20:32:57.802091	2018-08-07 20:32:57.802091
+22	7	233	\N	\N	\N	2018-08-07 20:32:57.803285	2018-08-07 20:32:57.803285
+23	8	227	\N	\N	\N	2018-08-07 20:33:04.963082	2018-08-07 20:33:04.963082
+24	8	233	\N	\N	\N	2018-08-07 20:33:04.964189	2018-08-07 20:33:04.964189
+25	3	252	1	D	\N	2018-08-27 17:15:28.508956	2018-08-27 17:15:28.508956
+26	3	229	\N	\N	\N	2018-08-28 14:33:46.491724	2018-08-28 14:33:46.491724
+27	9	227	\N	\N	\N	2018-08-30 12:12:54.599587	2018-08-30 12:12:54.599587
+28	9	233	\N	\N	\N	2018-08-30 12:12:54.600765	2018-08-30 12:12:54.600765
+29	3	314	\N	\N	\N	2018-08-30 15:01:49.773451	2018-08-30 15:01:49.773451
+30	3	250	1	BDF	\N	2018-09-06 12:23:57.445725	2018-09-06 12:23:57.445725
+31	3	241	2	DFO	\N	2018-09-06 12:24:28.283752	2018-09-06 12:24:28.283752
+32	3	250	2	BDF	\N	2018-09-06 12:24:59.786337	2018-09-06 12:24:59.786337
+33	3	259	2	\N	\N	2018-09-06 12:25:31.318916	2018-09-06 12:25:31.318916
+34	3	252	2	B	\N	2018-09-06 12:25:50.519964	2018-09-06 12:25:50.519964
+35	3	250	4	BDM	\N	2018-09-06 12:27:30.932291	2018-09-06 12:27:30.932291
+36	3	251	4	BFMO	\N	2018-09-06 12:28:02.395911	2018-09-06 12:28:02.395911
+37	3	248	1	B	\N	2018-09-06 12:28:28.319476	2018-09-06 12:28:28.319476
+38	3	244	8	BD	\N	2018-09-06 12:29:00.831698	2018-09-06 12:29:00.831698
+39	3	252	12	D	\N	2018-09-06 12:29:34.255016	2018-09-06 12:29:34.255016
+40	3	259	1	\N	\N	2018-09-06 12:30:02.909902	2018-09-06 12:30:02.909902
+41	3	254	2	B	\N	2018-09-06 12:31:23.300715	2018-09-06 12:31:23.300715
+42	3	266	2	B	\N	2018-09-06 12:32:05.786222	2018-09-06 12:32:05.786222
+43	3	321	2	\N	\N	2018-09-06 12:33:17.059601	2018-09-06 12:33:17.059601
+44	3	322	1	\N	\N	2018-09-06 12:33:23.57705	2018-09-06 12:33:23.57705
+45	3	323	2	\N	\N	2018-09-06 12:33:36.898371	2018-09-06 12:33:36.898371
+46	3	326	3	\N	\N	2018-09-06 12:34:26.168338	2018-09-06 12:34:26.168338
+47	3	320	1	B	\N	2018-09-06 12:35:16.602495	2018-09-06 12:35:16.602495
+48	3	333	26	O	\N	2018-09-06 13:18:21.738655	2018-09-06 13:18:21.738655
+49	3	333	6	B	\N	2018-09-06 13:18:57.772582	2018-09-06 13:18:57.772582
+50	3	254	11	B	\N	2018-09-06 13:34:42.131171	2018-09-06 13:34:42.131171
+51	3	333	2	B	\N	2018-09-06 17:45:35.832362	2018-09-06 17:45:35.832362
+52	3	256	6	B	\N	2018-09-06 17:54:29.220271	2018-09-06 17:54:29.220271
+53	3	291	1	O	\N	2018-09-06 17:57:23.605973	2018-09-06 17:57:23.605973
+54	3	292	1	O	\N	2018-09-06 17:58:53.760079	2018-09-06 17:58:53.760079
+55	3	293	1	O	\N	2018-09-06 17:59:57.70861	2018-09-06 17:59:57.70861
+56	3	248	1	B	\N	2018-09-06 18:01:19.535019	2018-09-06 18:01:19.535019
+57	3	331	1	O	\N	2018-09-06 18:14:24.784894	2018-09-06 18:14:24.784894
+58	4	259	2	\N	\N	2018-09-08 13:55:23.839099	2018-09-08 13:55:23.839099
+59	4	292	6	B	\N	2018-09-08 13:56:08.427647	2018-09-08 13:56:08.427647
+60	4	321	1	\N	\N	2018-09-08 13:56:43.170044	2018-09-08 13:56:43.170044
+61	4	292	11	O	\N	2018-09-08 13:57:52.39367	2018-09-08 13:57:52.39367
+62	4	268	1	\N	\N	2018-09-08 13:58:21.704115	2018-09-08 13:58:21.704115
+63	4	303	1	B	\N	2018-09-08 13:58:54.689698	2018-09-08 13:58:54.689698
+64	4	229	\N	\N	\N	2018-09-08 14:01:55.443198	2018-09-08 14:01:55.443198
+65	4	230	\N	\N	\N	2018-09-08 14:01:58.305807	2018-09-08 14:01:58.305807
+66	4	231	\N	\N	\N	2018-09-08 14:02:01.282154	2018-09-08 14:02:01.282154
+67	10	233	\N	\N	\N	2018-09-08 16:18:51.347451	2018-09-08 16:18:51.347451
+68	10	227	\N	\N	\N	2018-09-08 16:18:51.348655	2018-09-08 16:18:51.348655
+69	3	326	1	B	\N	2018-09-08 16:27:17.093909	2018-09-08 16:27:17.093909
+70	3	326	1	B	\N	2018-09-08 16:27:55.036326	2018-09-08 16:27:55.036326
+71	3	231	\N	\N	\N	2018-09-08 16:42:26.548688	2018-09-08 16:42:26.548688
+72	3	229	\N	\N	\N	2018-09-08 16:44:21.213687	2018-09-08 16:44:21.213687
+73	11	233	\N	\N	\N	2018-09-11 09:16:02.637822	2018-09-11 09:16:02.637822
+74	11	227	\N	\N	\N	2018-09-11 09:16:02.641838	2018-09-11 09:16:02.641838
+75	12	233	\N	\N	\N	2018-09-12 01:00:10.260265	2018-09-12 01:00:10.260265
+76	12	227	\N	\N	\N	2018-09-12 01:00:10.26168	2018-09-12 01:00:10.26168
+77	13	233	\N	\N	\N	2018-09-12 01:31:17.688885	2018-09-12 01:31:17.688885
+78	13	227	\N	\N	\N	2018-09-12 01:31:17.690328	2018-09-12 01:31:17.690328
+79	14	233	\N	\N	\N	2018-09-12 19:37:11.459383	2018-09-12 19:37:11.459383
+80	14	227	\N	\N	\N	2018-09-12 19:37:11.460622	2018-09-12 19:37:11.460622
+81	3	268	2	\N	\N	2018-09-12 19:39:19.813654	2018-09-12 19:39:19.813654
+82	3	266	1	\N	\N	2018-09-12 19:39:49.798357	2018-09-12 19:39:49.798357
+83	3	266	1	\N	\N	2018-09-12 19:40:04.278741	2018-09-12 19:40:04.278741
+84	3	268	2	O	\N	2018-09-12 19:40:20.698549	2018-09-12 19:40:20.698549
+85	3	321	1	\N	\N	2018-09-12 19:40:35.320845	2018-09-12 19:40:35.320845
+86	13	281	2	\N	\N	2018-09-12 19:43:47.475988	2018-09-12 19:43:47.475988
+87	13	266	6	\N	\N	2018-09-12 19:43:55.976815	2018-09-12 19:43:55.976815
+88	13	239	12	M	\N	2018-09-12 19:44:05.702353	2018-09-12 19:44:05.702353
+89	13	252	1	O	\N	2018-09-12 19:44:17.445095	2018-09-12 19:44:17.445095
+90	13	259	2	\N	\N	2018-09-12 19:44:43.983537	2018-09-12 19:44:43.983537
+91	13	259	2	\N	\N	2018-09-12 19:44:51.705731	2018-09-12 19:44:51.705731
+92	15	233	\N	\N	\N	2018-09-12 19:51:51.044665	2018-09-12 19:51:51.044665
+93	15	227	\N	\N	\N	2018-09-12 19:51:51.045672	2018-09-12 19:51:51.045672
+94	15	259	2	\N	\N	2018-09-12 19:53:20.415854	2018-09-12 19:53:20.415854
+95	15	252	2	O	\N	2018-09-12 19:53:37.595044	2018-09-12 19:53:37.595044
+96	16	233	\N	\N	\N	2018-09-12 20:17:51.802056	2018-09-12 20:17:51.802056
+97	16	227	\N	\N	\N	2018-09-12 20:17:51.803051	2018-09-12 20:17:51.803051
+98	1	252	1	N/A	\N	2018-09-14 00:34:35.945861	2018-09-14 00:34:35.945861
+99	4	239	12	B	\N	2018-09-14 00:44:04.307322	2018-09-14 00:44:04.307322
+100	4	239	6	B	\N	2018-09-14 00:44:16.480918	2018-09-14 00:44:16.480918
+101	4	241	8	N/A	\N	2018-09-14 00:44:26.513582	2018-09-14 00:44:26.513582
+102	4	239	1	L	\N	2018-09-14 00:44:40.160458	2018-09-14 00:44:40.160458
+103	4	247	22	BDMO	\N	2018-09-14 00:58:34.024595	2018-09-14 00:58:34.024595
+104	4	247	17	BDMO	\N	2018-09-14 00:58:44.357392	2018-09-14 00:58:44.357392
+105	17	233	\N	\N	\N	2018-09-14 01:09:09.58842	2018-09-14 01:09:09.58842
+106	17	227	\N	\N	\N	2018-09-14 01:09:09.589407	2018-09-14 01:09:09.589407
+107	4	240	1	BD	\N	2018-09-14 10:17:36.951846	2018-09-14 10:17:36.951846
+108	4	242	13	DFMO	\N	2018-09-14 10:18:18.665728	2018-09-14 10:18:18.665728
+109	4	241	14	N/A	\N	2018-09-14 10:18:48.688051	2018-09-14 10:18:48.688051
+110	4	242	1	BDMO	\N	2018-09-14 10:19:11.200272	2018-09-14 10:19:11.200272
+111	4	242	18	BDFILM	\N	2018-09-14 10:19:29.533623	2018-09-14 10:19:29.533623
+112	4	242	3	BDFL	\N	2018-09-14 10:24:27.231275	2018-09-14 10:24:27.231275
+113	4	242	2	DFMO	\N	2018-09-14 10:24:37.110181	2018-09-14 10:24:37.110181
+114	4	242	24	BDFIL	\N	2018-09-14 10:24:49.608963	2018-09-14 10:24:49.608963
+115	2	243	12	BL	\N	2018-09-14 10:26:35.053533	2018-09-14 10:26:35.053533
+116	2	243	7	BDFILO	\N	2018-09-14 10:27:02.586028	2018-09-14 10:27:02.586028
+117	3	250	23	BDFMO	\N	2018-09-14 10:37:35.496531	2018-09-14 10:37:35.496531
+118	3	251	14	BDMO	\N	2018-09-14 10:38:08.375109	2018-09-14 10:38:08.375109
+119	3	248	7	BM	\N	2018-09-14 10:38:22.441903	2018-09-14 10:38:22.441903
+120	3	244	1	B	\N	2018-09-14 10:39:29.096386	2018-09-14 10:39:29.096386
+121	3	243	17	BMO	\N	2018-09-14 10:40:15.218755	2018-09-14 10:40:15.218755
+122	3	242	8	DFMO	\N	2018-09-14 10:40:43.141448	2018-09-14 10:40:43.141448
+123	3	241	14	DFO	\N	2018-09-14 10:40:56.661758	2018-09-14 10:40:56.661758
+124	3	242	24	BDLMO	\N	2018-09-14 10:41:06.193691	2018-09-14 10:41:06.193691
+125	3	242	29	BDFILMO	\N	2018-09-14 10:41:25.817454	2018-09-14 10:41:25.817454
+126	3	242	28	BDFILMO	\N	2018-09-14 10:42:02.674413	2018-09-14 10:42:02.674413
+127	3	242	13	BDFLMO	\N	2018-09-14 10:42:18.966215	2018-09-14 10:42:18.966215
+128	3	251	7	BDFILMO	\N	2018-09-14 10:42:52.610541	2018-09-14 10:42:52.610541
+129	3	242	13	BDFILMO	\N	2018-09-14 10:43:22.38553	2018-09-14 10:43:22.38553
+130	3	241	22	BDF	\N	2018-09-14 10:43:36.497678	2018-09-14 10:43:36.497678
+131	3	242	20	BDIMO	\N	2018-09-14 11:30:31.804104	2018-09-14 11:30:31.804104
+132	3	242	18	BDILO	\N	2018-09-14 11:31:28.868921	2018-09-14 11:31:28.868921
+133	3	242	4	DFILM	\N	2018-09-14 11:31:57.645462	2018-09-14 11:31:57.645462
+134	3	242	23	BDLMO	\N	2018-09-14 11:32:47.963434	2018-09-14 11:32:47.963434
+135	3	251	2	BDILMO	\N	2018-09-14 11:33:21.612002	2018-09-14 11:33:21.612002
+136	3	240	8	DO	\N	2018-09-17 15:14:11.37959	2018-09-17 15:14:11.37959
+137	4	252	8	N/A	\N	2018-09-17 15:21:35.19585	2018-09-17 15:21:35.19585
+138	3	252	2	N/A	\N	2018-09-17 15:21:47.061327	2018-09-17 15:21:47.061327
+139	3	259	1	\N	\N	2018-09-17 15:22:41.242766	2018-09-17 15:22:41.242766
+140	3	241	16	BLO	\N	2018-09-17 15:23:56.484945	2018-09-17 15:23:56.484945
+141	4	241	16	BLO	\N	2018-09-17 15:23:57.025578	2018-09-17 15:23:57.025578
+142	3	241	16	FIM	\N	2018-09-17 15:24:20.313286	2018-09-17 15:24:20.313286
+143	3	242	8	BDFILMO	\N	2018-09-17 15:24:42.638883	2018-09-17 15:24:42.638883
+144	3	241	12	DMO	\N	2018-09-17 15:26:01.365019	2018-09-17 15:26:01.365019
+145	3	242	14	DFIMO	\N	2018-09-17 15:26:45.569132	2018-09-17 15:26:45.569132
+146	3	239	8	I	\N	2018-09-17 15:27:48.81982	2018-09-17 15:27:48.81982
+147	4	239	8	I	\N	2018-09-17 15:28:20.303466	2018-09-17 15:28:20.303466
+148	3	239	8	I	\N	2018-09-17 15:28:20.689901	2018-09-17 15:28:20.689901
+149	3	241	13	DMO	\N	2018-09-17 15:30:27.335456	2018-09-17 15:30:27.335456
+150	3	241	12	BDM	\N	2018-09-17 15:30:35.897888	2018-09-17 15:30:35.897888
+151	3	321	3	\N	\N	2018-09-17 15:31:10.657238	2018-09-17 15:31:10.657238
+152	3	323	7	\N	\N	2018-09-17 15:31:15.475419	2018-09-17 15:31:15.475419
+153	3	328	2	\N	\N	2018-09-17 15:31:23.248094	2018-09-17 15:31:23.248094
+154	3	266	1	\N	\N	2018-09-17 15:31:34.159693	2018-09-17 15:31:34.159693
+155	3	267	2	\N	\N	2018-09-17 15:31:39.06896	2018-09-17 15:31:39.06896
+156	3	268	2	\N	\N	2018-09-17 15:31:43.150297	2018-09-17 15:31:43.150297
+157	3	281	2	\N	\N	2018-09-17 15:32:07.01979	2018-09-17 15:32:07.01979
+158	3	297	12	\N	\N	2018-09-17 15:32:11.712826	2018-09-17 15:32:11.712826
+159	3	307	\N	\N	\N	2018-09-17 15:32:15.623341	2018-09-17 15:32:15.623341
+160	3	313	\N	\N	\N	2018-09-17 15:32:18.876026	2018-09-17 15:32:18.876026
+161	3	313	\N	\N	\N	2018-09-17 15:32:22.013702	2018-09-17 15:32:22.013702
+162	3	314	\N	\N	\N	2018-09-17 15:32:24.830894	2018-09-17 15:32:24.830894
+163	3	320	2	\N	\N	2018-09-17 15:32:35.303831	2018-09-17 15:32:35.303831
+164	3	228	\N	\N	\N	2018-09-17 15:34:05.82231	2018-09-17 15:34:05.82231
+165	3	230	\N	\N	\N	2018-09-17 15:34:09.916449	2018-09-17 15:34:09.916449
+166	3	228	\N	\N	\N	2018-09-17 15:34:56.785024	2018-09-17 15:34:56.785024
+\.
+
+
+--
+-- Name: patient_procedures_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.patient_procedures_id_seq', 166, true);
+
+
+--
+-- Data for Name: patient_zipcodes; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.patient_zipcodes (id, zip, city, state, latitude, longitude, created_at, updated_at, county) FROM stdin;
+\.
+
+
+--
+-- Name: patient_zipcodes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.patient_zipcodes_id_seq', 1, false);
+
+
+--
+-- Data for Name: patients; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.patients (id, first_name, last_name, date_of_birth, sex, street, city, state, zip, race, travel_time, attended_previous_mom_event, previous_mom_event_location, chief_complaint, last_dental_visit, pain, pain_length_in_days, created_at, updated_at, survey_id, phone, previous_chart_number, chart_printed, interpreter_needed, language, veteran_status, has_permanent_residence, pchc_patient) FROM stdin;
+\.
+
+
+--
+-- Name: patients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.patients_id_seq', 17, true);
+
+
+--
+-- Data for Name: pre_meds; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.pre_meds (id, description, cost, created_at, updated_at) FROM stdin;
+1	Amoxicillin	10	2018-06-07 15:26:55.028226	2018-06-07 15:26:55.028226
+2	Clindamycin	10	2018-06-07 15:26:55.030964	2018-06-07 15:26:55.030964
+\.
+
+
+--
+-- Name: pre_meds_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.pre_meds_id_seq', 2, true);
+
+
+--
+-- Data for Name: prescriptions; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.prescriptions (id, name, strength, quantity, dosage, cost, created_at, updated_at, "position") FROM stdin;
+1	Amoxicillin	500mg	21	1 TID x 7 days	25	2018-06-07 15:26:55.008623	2018-06-07 15:26:55.008623	\N
+2	Clindamycin	300mg	21	1 TID x 7 days	50	2018-06-07 15:26:55.012324	2018-06-07 15:26:55.012324	\N
+3	Ibuprofen	800mg	8	1 Q 6h prn pain	12.5	2018-06-07 15:26:55.015145	2018-06-07 15:26:55.015145	\N
+4	Acetaminophen	500mg	12	2 Q 6-8h prn pain	7.5	2018-06-07 15:26:55.017851	2018-06-07 15:26:55.017851	\N
+\.
+
+
+--
+-- Name: prescriptions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.prescriptions_id_seq', 4, true);
+
+
+--
+-- Data for Name: previous_clinics; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.previous_clinics (id, location, year, created_at, updated_at) FROM stdin;
+1	CCRI	2012	2018-06-07 15:26:55.05444	2018-06-07 15:26:55.05444
+2	CCRI	2013	2018-06-07 15:26:55.056886	2018-06-07 15:26:55.056886
+3	CCRI	2014	2018-06-07 15:26:55.058682	2018-06-07 15:26:55.058682
+4	CCRI	2015	2018-06-07 15:26:55.060714	2018-06-07 15:26:55.060714
+5	CCRI	2016	2018-06-07 15:26:55.062569	2018-06-07 15:26:55.062569
+\.
+
+
+--
+-- Name: previous_clinics_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.previous_clinics_id_seq', 5, true);
+
+
+--
+-- Data for Name: procedure_treatment_area_mappings; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.procedure_treatment_area_mappings (id, procedure_id, treatment_area_id, created_at, updated_at, assigned) FROM stdin;
+70	228	1	\N	\N	\N
+71	229	1	\N	\N	\N
+72	230	1	\N	\N	\N
+73	231	1	\N	\N	\N
+74	232	1	\N	\N	\N
+75	252	2	\N	\N	\N
+76	259	2	\N	\N	\N
+77	266	3	\N	\N	\N
+78	267	3	\N	\N	\N
+79	268	3	\N	\N	\N
+80	281	5	\N	\N	\N
+81	297	5	\N	\N	\N
+82	307	5	\N	\N	\N
+83	308	5	\N	\N	\N
+84	313	5	\N	\N	\N
+85	314	5	\N	\N	\N
+86	320	5	\N	\N	\N
+87	321	4	\N	\N	\N
+88	322	4	\N	\N	\N
+89	323	4	\N	\N	\N
+90	324	4	\N	\N	\N
+91	326	4	\N	\N	\N
+92	328	4	\N	\N	\N
+\.
+
+
+--
+-- Name: procedure_treatment_area_mappings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.procedure_treatment_area_mappings_id_seq', 92, true);
+
+
+--
+-- Data for Name: procedures; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.procedures (id, code, description, requires_tooth_number, requires_surface_code, procedure_type, auto_add, cost, number_of_surfaces, created_at, updated_at) FROM stdin;
+234	1110	Prophy - Adult	f	f	\N	f	94	\N	2018-06-07 15:30:25.226851	2018-06-07 15:30:25.226851
+235	1120	Prophy - Child	f	f	\N	f	68	\N	2018-06-07 15:30:25.230102	2018-06-07 15:30:25.230102
+236	1206	Fluoride Varnish	f	f	\N	f	48	\N	2018-06-07 15:30:25.233671	2018-06-07 15:30:25.233671
+237	1330	Oral Hygiene Instruction	f	f	\N	f	30	\N	2018-06-07 15:30:25.236233	2018-06-07 15:30:25.236233
+238	1351	Sealant -per tooth	t	f	\N	f	55	\N	2018-06-07 15:30:25.239793	2018-06-07 15:30:25.239793
+247	2390	Resin based composite crown anterior	t	f	Composite	f	413	4	2018-06-07 15:30:25.264927	2018-06-07 15:30:25.264927
+253	2910	Recement Inlay	t	f	\N	f	104	\N	2018-06-07 15:30:25.285594	2018-06-07 15:30:25.285594
+255	2930	Stainless steel crown prim.	t	f	\N	f	300	\N	2018-06-07 15:30:25.290813	2018-06-07 15:30:25.290813
+257	2933	Stainless steel crown w / resin window	t	f	\N	f	332	\N	2018-06-07 15:30:25.296066	2018-06-07 15:30:25.296066
+258	2940	Sedative/Temporary Filling	t	f	\N	f	112	\N	2018-06-07 15:30:25.298609	2018-06-07 15:30:25.298609
+260	2951	Pin retention	t	f	\N	f	72	\N	2018-06-07 15:30:25.307847	2018-06-07 15:30:25.307847
+261	2954	refab post & cored	t	f	\N	f	315	\N	2018-06-07 15:30:25.310452	2018-06-07 15:30:25.310452
+262	3110	Pulp cap - direct	t	f	\N	f	84	\N	2018-06-07 15:30:25.313103	2018-06-07 15:30:25.313103
+263	3120	Pulp cap - indirect	t	f	\N	f	79	\N	2018-06-07 15:30:25.315687	2018-06-07 15:30:25.315687
+264	3220	Therapeutic Pulpotomy	t	f	\N	f	200	\N	2018-06-07 15:30:25.318229	2018-06-07 15:30:25.318229
+265	3240	Pulpal Therapy Posterior	t	f	\N	f	298	\N	2018-06-07 15:30:25.320851	2018-06-07 15:30:25.320851
+269	3340	Root Canal - 4+ Canals	t	f	\N	f	0	\N	2018-06-07 15:30:25.343045	2018-06-07 15:30:25.343045
+270	3346	Retreatment of previous root canal - anterior	t	f	\N	f	775	\N	2018-06-07 15:30:25.345687	2018-06-07 15:30:25.345687
+271	4210	Gingivectomy - four or more contiguous teeth	t	f	\N	f	600	\N	2018-06-07 15:30:25.348246	2018-06-07 15:30:25.348246
+272	4211	Gingivectomy or gingivoplasty 1-3 teeth per quadrant	t	f	\N	f	252	\N	2018-06-07 15:30:25.350841	2018-06-07 15:30:25.350841
+273	4249	Clinical Crown Lengthening - hard tissue	t	f	\N	f	702	\N	2018-06-07 15:30:25.353452	2018-06-07 15:30:25.353452
+274	4341	Perio Scale & Root Plane Quad.	t	f	\N	f	231	\N	2018-06-07 15:30:25.356155	2018-06-07 15:30:25.356155
+275	4342	Perio Scale & Root Plane/tooth	t	f	\N	f	169	\N	2018-06-07 15:30:25.358685	2018-06-07 15:30:25.358685
+276	4355	Full Mouth Debridement	f	f	\N	f	184	\N	2018-06-07 15:30:25.361313	2018-06-07 15:30:25.361313
+277	5110	Complete Maxillary Denture	t	f	\N	f	1695	\N	2018-06-07 15:30:25.365022	2018-06-07 15:30:25.365022
+278	5120	Complete Mandibular Denture	t	f	\N	f	1700	\N	2018-06-07 15:30:25.367583	2018-06-07 15:30:25.367583
+279	5130	Immediate Maxillary Denture	t	f	\N	f	1841	\N	2018-06-07 15:30:25.370098	2018-06-07 15:30:25.370098
+280	5140	Immediate Mandibular Denture	t	f	\N	f	1846	\N	2018-06-07 15:30:25.372745	2018-06-07 15:30:25.372745
+281	5211	Maxillary partial denture resin base	t	f	\N	f	1200	\N	2018-06-07 15:30:25.37537	2018-06-07 15:30:25.37537
+282	5212	Mandibular partial	t	f	\N	f	1223	\N	2018-06-07 15:30:25.382194	2018-06-07 15:30:25.382194
+283	5213	Maxillary partial denture	t	f	\N	f	1622	\N	2018-06-07 15:30:25.384882	2018-06-07 15:30:25.384882
+284	5214	Mand partial	t	f	\N	f	1615	\N	2018-06-07 15:30:25.387597	2018-06-07 15:30:25.387597
+285	5216	Low Part. Cast noble cast base	t	f	\N	f	0	\N	2018-06-07 15:30:25.390239	2018-06-07 15:30:25.390239
+286	5281	Removable unilat part denture	t	f	\N	f	926	\N	2018-06-07 15:30:25.392864	2018-06-07 15:30:25.392864
+287	5410	Maxillary Denture Adjustment	t	f	\N	f	83	\N	2018-06-07 15:30:25.395474	2018-06-07 15:30:25.395474
+288	5411	Mandibular Denture Adjustment	t	f	\N	f	84	\N	2018-06-07 15:30:25.398024	2018-06-07 15:30:25.398024
+289	5421	Adjust partial denture maxillary	t	f	\N	f	83	\N	2018-06-07 15:30:25.400714	2018-06-07 15:30:25.400714
+290	5422	Adjust partial denture - mand	t	f	\N	f	83	\N	2018-06-07 15:30:25.403347	2018-06-07 15:30:25.403347
+294	5620	Repair cast framework	t	f	\N	f	275	\N	2018-06-07 15:30:25.413911	2018-06-07 15:30:25.413911
+295	5630	Repair or replace broken clasp	t	f	\N	f	250	\N	2018-06-07 15:30:25.416614	2018-06-07 15:30:25.416614
+296	5640	Replace broken teeth	t	f	\N	f	177	\N	2018-06-07 15:30:25.419146	2018-06-07 15:30:25.419146
+298	5660	Add clasp exist part denture	t	f	\N	f	253	\N	2018-06-07 15:30:25.428587	2018-06-07 15:30:25.428587
+299	5710	Rebase complete maxil denture	t	f	\N	f	527	\N	2018-06-07 15:30:25.431231	2018-06-07 15:30:25.431231
+300	5711	Rebase complete mand denture	t	f	\N	f	527	\N	2018-06-07 15:30:25.433878	2018-06-07 15:30:25.433878
+301	5720	Rebase maxil partial denture	t	f	\N	f	527	\N	2018-06-07 15:30:25.436469	2018-06-07 15:30:25.436469
+302	5721	Rebase mand partial denture	t	f	\N	f	527	\N	2018-06-07 15:30:25.439063	2018-06-07 15:30:25.439063
+304	5731	Reline complete mand-chairside	t	f	\N	f	350	\N	2018-06-07 15:30:25.444294	2018-06-07 15:30:25.444294
+305	5740	Reline maxil partial - chairside	t	f	\N	f	347	\N	2018-06-07 15:30:25.446922	2018-06-07 15:30:25.446922
+233	431	Oral Cancer Screening	f	f		t	70	\N	2018-06-07 15:30:25.224262	2018-09-08 13:08:06.728995
+232	330	Panoramic film	f	f		f	150	\N	2018-06-07 15:30:25.217803	2018-09-08 13:09:20.302443
+229	230	Additional Film	f	f		f	30	\N	2018-06-07 15:30:25.197824	2018-09-08 13:09:40.739482
+230	272	Bitewings - 2 films	f	f		f	58	\N	2018-06-07 15:30:25.204599	2018-09-08 13:10:15.727669
+231	274	Bitewings -4 films	f	f		f	80	\N	2018-06-07 15:30:25.211348	2018-09-08 13:11:23.967189
+240	2150	Amalgam 2 surface perm	t	f	Amalgam	f	210	2	2018-06-07 15:30:25.246105	2018-09-08 13:12:40.267795
+251	2394	Resin-based Composite - four or more surfaces poserior	t	f		f	395	4	2018-06-07 15:30:25.275935	2018-09-08 13:18:52.700961
+245	2332	Resin 3 surf. Anterior	t	f		f	295	3	2018-06-07 15:30:25.259594	2018-09-08 13:16:03.971561
+242	2161	Amalgam 4 surface perm	t	f	Amalgam	f	295	4	2018-06-07 15:30:25.251361	2018-09-08 13:16:50.509169
+244	2331	Resin 2 surf. Anterior	t	f		f	245	2	2018-06-07 15:30:25.256828	2018-09-08 13:18:03.770127
+246	2335	Resin 4 surf. w/incis angle	t	f		f	379	4	2018-06-07 15:30:25.262224	2018-09-08 13:19:21.78817
+254	2920	Recement crown	t	f		f	140	\N	2018-06-07 15:30:25.288216	2018-09-08 13:20:11.856139
+252	2740	Ceramic Crown	t	t		f	1425	\N	2018-06-07 15:30:25.278622	2018-09-08 13:20:46.535812
+259	2950	Core buildup for crown	t	f		f	360	\N	2018-06-07 15:30:25.301262	2018-09-08 13:22:47.167476
+266	3310	Root Canal - Anterior	t	f		f	925	\N	2018-06-07 15:30:25.323545	2018-09-08 13:23:53.644168
+268	3330	Root Canal - Molar	t	f		f	1375	\N	2018-06-07 15:30:25.336545	2018-09-08 13:24:18.205158
+267	3320	Root Canal - Bicuspid	t	f		f	1450	\N	2018-06-07 15:30:25.330146	2018-09-08 13:24:54.711357
+228	220	Intraoral - periapical first film	f	f		f	37	\N	2018-06-07 15:30:25.165656	2018-09-08 13:25:31.11206
+241	2160	Amalgam 3 surface perm	t	f	Amalgam	f	250	3	2018-06-07 15:30:25.248714	2018-09-08 13:27:33.361733
+243	2330	Resin 1 surf. Anterior	t	f		f	199	1	2018-06-07 15:30:25.253996	2018-09-08 13:28:10.496905
+256	2931	Prefab. Stainless steel crown permanent tooth	t	f		f	400	\N	2018-06-07 15:30:25.293504	2018-09-08 13:39:48.948061
+297	5650	Add tooth to partial	t	f		f	265	\N	2018-06-07 15:30:25.421752	2018-09-08 13:34:07.571384
+293	5610	Repair resin denture base	t	f		f	265	\N	2018-06-07 15:30:25.411259	2018-09-08 13:34:40.849155
+291	5510	Repair complete denture base	t	f		f	265	\N	2018-06-07 15:30:25.405923	2018-09-08 13:36:33.959005
+248	2391	Resin 1 surf. posterior-perm	t	f		f	225	1	2018-06-07 15:30:25.267558	2018-09-08 13:38:26.173173
+249	2392	Resin 2 surf. posterior-perm	t	f		f	273	2	2018-06-07 15:30:25.27016	2018-09-08 13:38:44.294636
+250	2393	Resin 3 surf. posterior-perm	t	f		f	337	3	2018-06-07 15:30:25.272993	2018-09-08 13:39:04.023111
+303	5730	Reline complete maxil-chairside	t	f		f	220	\N	2018-06-07 15:30:25.441613	2018-09-08 13:40:30.849406
+292	5520	Replace tooth on denture	t	f		f	235	\N	2018-06-07 15:30:25.408527	2018-09-08 13:40:55.103118
+227	150	Comp. Oral Exam	f	f		t	108	\N	2018-06-07 15:30:25.161932	2018-09-08 13:06:31.970317
+239	2140	Amalgam 1 surface perm	t	f	Amalgam	f	175	1	2018-06-07 15:30:25.243297	2018-09-08 13:12:13.505314
+315	5850	Tissue condition maxillary	t	f		f	191	\N	2018-06-07 15:30:25.488628	2018-09-08 13:01:21.211589
+313	5820	Upper Flipper Partial Denture	f	f		f	1000	\N	2018-06-07 15:30:25.475708	2018-09-08 13:35:17.777768
+314	5821	Lower Flipper Partial Denture	f	f		f	1000	\N	2018-06-07 15:30:25.482221	2018-09-08 13:35:55.745143
+333	9110	Palliative treatment of dental pain - minor	t	f		f	150	\N	2018-06-07 15:30:25.56335	2018-09-08 13:41:17.880934
+320	7140	Extraction Simple	t	f		f	230	\N	2018-06-07 15:30:25.501787	2018-09-08 13:46:31.849897
+321	7210	Surgical Removal	t	f		f	335	\N	2018-06-07 15:30:25.508299	2018-09-08 13:47:03.697929
+322	7220	Ext. Impact Soft Tissue	t	f		f	360	\N	2018-06-07 15:30:25.514805	2018-09-08 13:47:31.45863
+323	7230	Ext. Impact Part Bony	t	f		f	446	\N	2018-06-07 15:30:25.521435	2018-09-08 13:47:54.42824
+324	7240	Ext. Impact Comp Bony	t	f		f	520	\N	2018-06-07 15:30:25.527858	2018-09-08 13:48:21.083328
+326	7250	Extraction Roots	t	f		f	349	\N	2018-06-07 15:30:25.536957	2018-09-08 13:48:49.735048
+328	7310	Alveoloplasty in conjunction w/extractions per quadrant	t	f		f	350	\N	2018-06-07 15:30:25.546345	2018-09-08 13:49:16.570648
+331	7510	Incision and Drainage	t	f		f	235	\N	2018-06-07 15:30:25.558126	2018-09-08 13:49:40.304079
+327	7286	Biopsy of oral tissue - soft	f	f		f	376	\N	2018-06-07 15:30:25.54375	2018-09-08 13:50:08.382285
+306	5741	Reline mand partial - chairside	t	f	\N	f	350	\N	2018-06-07 15:30:25.449503	2018-06-07 15:30:25.449503
+307	5750	Reline Maxillary Denture	f	f	\N	f	438	\N	2018-06-07 15:30:25.452072	2018-06-07 15:30:25.452072
+308	5751	Reline Mandibular Denture	f	f	\N	f	440	\N	2018-06-07 15:30:25.458874	2018-06-07 15:30:25.458874
+309	5760	Reline maxillary partial (lab)	t	f	\N	f	434	\N	2018-06-07 15:30:25.465332	2018-06-07 15:30:25.465332
+310	5761	Reline maxillary partial (lab)	t	f	\N	f	436	\N	2018-06-07 15:30:25.467915	2018-06-07 15:30:25.467915
+311	5810	Interim comp denture (maxil)	t	f	\N	f	800	\N	2018-06-07 15:30:25.470522	2018-06-07 15:30:25.470522
+312	5811	Interim comp denture (mand)	t	f	\N	f	800	\N	2018-06-07 15:30:25.473208	2018-06-07 15:30:25.473208
+316	5999	Misc.	f	f	\N	f	0	\N	2018-06-07 15:30:25.491331	2018-06-07 15:30:25.491331
+317	6930	Recement Fixed Partial	t	f	\N	f	157	\N	2018-06-07 15:30:25.493932	2018-06-07 15:30:25.493932
+318	7111	Removal of primary tooth	t	f	\N	f	127	\N	2018-06-07 15:30:25.496518	2018-06-07 15:30:25.496518
+319	7130	Root Removal - exposed	t	f	\N	f	0	\N	2018-06-07 15:30:25.499224	2018-06-07 15:30:25.499224
+325	7241	Extraction - Complicated Bony	t	f	\N	f	545	\N	2018-06-07 15:30:25.534329	2018-06-07 15:30:25.534329
+329	7472	Removal of torus palatinus	t	f	\N	f	768	\N	2018-06-07 15:30:25.552897	2018-06-07 15:30:25.552897
+330	7473	Removal of torus mandibularis	t	f	\N	f	737	\N	2018-06-07 15:30:25.555509	2018-06-07 15:30:25.555509
+332	7944	Osteotomy - segmented or subapical - per quadrant	t	f	\N	f	6200	\N	2018-06-07 15:30:25.560704	2018-06-07 15:30:25.560704
+334	9940	Occusal Guard	t	f	\N	f	569	\N	2018-06-07 15:30:25.565907	2018-06-07 15:30:25.565907
+335	9951	Occlusal Adjustment	t	f	\N	f	150	\N	2018-06-07 15:30:25.568436	2018-06-07 15:30:25.568436
+336	9971	Odontoplasty 1 - 2 teeth	t	f	\N	f	173	\N	2018-06-07 15:30:25.57109	2018-06-07 15:30:25.57109
+337	9999	Reshape and polish occusal	t	f	\N	f	0	\N	2018-06-07 15:30:25.573734	2018-06-07 15:30:25.573734
+338	1203	Fluoride - Child	f	f	\N	f	275	\N	2018-06-07 15:30:25.576431	2018-06-07 15:30:25.576431
+339	1204	Fluoride - Adult	f	f	\N	f	35	\N	2018-06-07 15:30:25.580352	2018-06-07 15:30:25.580352
+\.
+
+
+--
+-- Name: procedures_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.procedures_id_seq', 339, true);
+
+
+--
+-- Data for Name: races; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.races (id, category, created_at, updated_at) FROM stdin;
+1	African American/Black	2018-06-07 15:26:54.98344	2018-06-07 15:26:54.98344
+2	American Indian/Alaska Native	2018-06-07 15:26:54.985873	2018-06-07 15:26:54.985873
+3	Asian/Pacific Islander	2018-06-07 15:26:54.987723	2018-06-07 15:26:54.987723
+4	Caucasian/White	2018-06-07 15:26:54.989545	2018-06-07 15:26:54.989545
+5	Hispanic	2018-06-07 15:26:54.991298	2018-06-07 15:26:54.991298
+6	Indian	2018-06-07 15:26:54.993061	2018-06-07 15:26:54.993061
+7	Other	2018-06-07 15:26:54.994855	2018-06-07 15:26:54.994855
+\.
+
+
+--
+-- Name: races_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.races_id_seq', 7, true);
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.schema_migrations (version) FROM stdin;
+20180607151203
+20100214190054
+20120216235440
+20100309010740
+20110427194526
+20110331211224
+20100228013739
+20100214184227
+20180607145742
+20100306000115
+20130414151507
+20120411121158
+20111021224603
+20100225205931
+20120323181330
+20100214184704
+20100214184837
+20180607150801
+20120112111806
+20100214185751
+20100303020814
+20140221194030
+20110409162525
+20110319195949
+20100214182110
+20100228161917
+20130513011519
+20120112105720
+20120412154254
+20110410154737
+20100227213442
+20100306023246
+20140429144117
+20100305233624
+20110409202513
+20120116134201
+20100214190118
+20180607145158
+20120405205706
+20100225211128
+20110408204608
+20100304205457
+20100303020103
+20110408211420
+20120321013549
+20150424124703
+20110409165555
+20180912012553
+20180912012627
+\.
+
+
+--
+-- Data for Name: support_requests; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.support_requests (id, user_id, area_id, treatment_area_id, ip_address, resolved, resolved_at, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: support_requests_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.support_requests_id_seq', 1, false);
+
+
+--
+-- Data for Name: surveys; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.surveys (id, city, state, zip, age, sex, race, rating_of_services, created_at, updated_at, pain, pain_length_in_days, heard_about_clinic, told_needed_more_dental_treatment, has_place_to_be_seen_for_dental_care, no_insurance, insurance_from_job, medicaid_or_chp_plus, self_purchase_insurance, other_insurance, tobacco_use, is_enrolled_in_medicare_medicaid, dental_insurance, medical_insurance, has_place_to_be_seen_for_medical_care, er_last_6_months, er_last_year, veteran_status, has_permanent_residence, pchc_patient) FROM stdin;
+1	Boston	MA	02215	26	M	African American/Black	5	2018-06-07 15:31:30.333994	2018-06-07 15:33:47.319698	f	0	Friend or Family	t	f	\N	\N	\N	\N	\N	t	f	f	f	f	t	f	\N	f	\N
+2	Boston	MA	02215	18	M	African American/Black	4	2018-06-07 15:32:27.819048	2018-06-07 15:34:16.084252	f	0	Friend or Family	t	f	\N	\N	\N	\N	\N	t	f	f	f	f	f	f	\N	t	\N
+3	Wakefield	RI	02879	19	F	Caucasian/White	10	2018-06-07 18:16:22.793209	2018-06-07 18:17:34.474278	f	0	Friend or Family	f	f	\N	\N	\N	\N	\N	t	f	f	f	f	t	f	\N	f	\N
+4	AnyCity	CA	90210	17	M	Other	10	2018-07-18 17:59:46.547134	2018-07-18 18:06:24.349023	t	30	Friend or Family	t	f	\N	\N	\N	\N	\N	t	t	t	t	f	f	f	\N	f	\N
+5	Wakefield	RI	02879	0	F	Hispanic	1	2018-07-31 16:38:16.56007	2018-07-31 16:50:51.505645	f	0		t	f	\N	\N	\N	\N	\N	t	f	f	f	f	f	f	\N	t	\N
+6	Woof	PP	12345	4	F	Boxer	10	2018-07-31 16:38:58.382266	2018-07-31 16:51:00.712337	f	0	Flyer or Poster	f	f	\N	\N	\N	\N	\N	f	f	f	f	f	f	f	\N	t	\N
+7	Providence	RI	02908	57	F	Caucasian/White	\N	2018-08-07 20:32:57.79753	2018-08-07 20:34:53.492284	f	0	Friend or Family	\N	f	\N	\N	\N	\N	\N	\N	f	f	f	t	f	f	\N	\N	\N
+9	wakefiled	JA	01010	25	M	African American/Black	\N	2018-09-11 09:16:02.542462	2018-09-11 09:16:51.710998	f	0	Friend or Family	\N	f	\N	\N	\N	\N	\N	\N	f	f	t	f	f	f	\N	\N	\N
+8	Wakefield	RI	02879	57	M	Caucasian/White	3	2018-08-07 20:33:04.958708	2018-09-11 09:20:06.787988	t	365	Flyer or Poster	f	f	\N	\N	\N	\N	\N	t	f	f	f	f	f	f	\N	f	\N
+10	Wakefield	RI	02879	27	F	Caucasian/White	10	2018-09-12 19:37:11.44396	2018-09-12 19:45:25.119579	f	0	Flyer or Poster	\N	t	\N	\N	\N	\N	\N	f	f	f	t	t	f	f	\N	t	\N
+11	Wakefield	RI	02879	47	F	Caucasian/White	\N	2018-09-12 20:17:51.798288	2018-09-12 20:18:21.89882	f	0	billboard	\N	t	\N	\N	\N	\N	\N	\N	f	f	t	t	f	f	\N	\N	\N
+\.
+
+
+--
+-- Name: surveys_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.surveys_id_seq', 11, true);
+
+
+--
+-- Data for Name: treatment_areas; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.treatment_areas (id, name, capacity, created_at, updated_at, amalgam_composite_procedures) FROM stdin;
+1	Radiology	50	2018-06-07 15:26:54.965601	2018-06-07 15:26:54.965601	\N
+2	Restoration	50	2018-06-07 15:26:54.968422	2018-06-07 15:26:54.968422	t
+3	Endodontics	50	2018-06-07 15:26:54.970773	2018-06-07 15:26:54.970773	\N
+4	Surgery	50	2018-06-07 15:26:54.972757	2018-06-07 15:26:54.972757	\N
+5	Prosthetics	15	2018-06-07 15:26:54.974784	2018-06-07 15:26:54.974784	\N
+\.
+
+
+--
+-- Name: treatment_areas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.treatment_areas_id_seq', 5, true);
+
+
+--
+-- Data for Name: treatments; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.treatments (id, name, created_at, updated_at, provided) FROM stdin;
+1	Filling	2018-06-07 15:26:54.943406	2018-06-07 15:26:54.943406	t
+2	Partial denture	2018-06-07 15:26:54.946318	2018-06-07 15:26:54.946318	t
+3	Denture repair	2018-06-07 15:26:54.948115	2018-06-07 15:26:54.948115	t
+4	Extraction	2018-06-07 15:26:54.950101	2018-06-07 15:26:54.950101	t
+\.
+
+
+--
+-- Name: treatments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.treatments_id_seq', 4, true);
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: ubuntu
+--
+
+COPY public.users (id, login, name, email, crypted_password, salt, remember_token, remember_token_expires_at, x_ray_station_id, user_type, created_at, updated_at, encrypted_password) FROM stdin;
+11	admin		\N	\N	\N	\N	\N	\N	1	2018-06-07 18:10:08.833168	2018-06-07 18:10:08.833168	$2a$10$nltVx3Idl5JfYaAF52hWW.TaO5rW4B38ue7cojQfut0eg4O094f1G
+12	check_in		\N	\N	\N	\N	\N	\N	2	2018-06-07 18:10:08.914512	2018-06-07 18:10:08.914512	$2a$10$l90AFfbqb60EXSSFzj6MwOi1LyCtSLWPEc31uAJrn58Cf2eWtKJSm
+13	check_out		\N	\N	\N	\N	\N	\N	3	2018-06-07 18:10:08.99311	2018-06-07 18:10:08.99311	$2a$10$yPYW95y1q.mDPlzUgQ4fK.yeW1IS/JwoN.0WzmP26bEKQmV/iMGD.
+14	assignment_desk		\N	\N	\N	\N	\N	\N	6	2018-06-07 18:10:09.071179	2018-06-07 18:10:09.071179	$2a$10$8mh56tI69CT5kUfjQ.omUe/TGyXdgnYiUIqKZQigNJm3sj8IXwq4e
+15	pharmacy		\N	\N	\N	\N	\N	\N	5	2018-06-07 18:10:09.149116	2018-06-07 18:10:09.149116	$2a$10$i/RhtBei2UNjEkEic9GoUeNIAYDLliiixHxjXl4nJJAuaX1ZJVH72
+16	xray_1		\N	\N	\N	\N	\N	1	4	2018-06-07 18:10:09.227045	2018-06-07 18:10:09.227045	$2a$10$Wsm/K0bgZcdobnqt7vESlO4bYUSDywbJL.1J2C5ITzls028svhjka
+17	xray_2		\N	\N	\N	\N	\N	2	4	2018-06-07 18:10:09.305251	2018-06-07 18:10:09.305251	$2a$10$YMUukTrxKz6SbsKtZMZkGeEEUPS04OG3R2Jaf5NBv7MrXP3e5JDhu
+18	xray_3		\N	\N	\N	\N	\N	3	4	2018-06-07 18:10:09.383645	2018-06-07 18:10:09.383645	$2a$10$ksfpGlmvGuz13783GfQ29OBZLre3Bp7N6vHwakVammDnknPArL08.
+19	xray_4		\N	\N	\N	\N	\N	4	4	2018-06-07 18:10:09.461944	2018-06-07 18:10:09.461944	$2a$10$Clg3Il2WZDNVxSf5B6CopebDbc9mF2KKqIN8oPCdFR8NqkyEvH6Wi
+20	xray_5		\N	\N	\N	\N	\N	5	4	2018-06-07 18:10:09.540359	2018-06-07 18:10:09.540359	$2a$10$vUD5O3r/RckCjX8iAMkX1.wyXQ7jTBKbp2E40en6166faBWvylwuO
+\.
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ubuntu
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 20, true);
+
+
+--
+-- Name: heard_about_clinics_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.heard_about_clinics
+    ADD CONSTRAINT heard_about_clinics_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: patient_assignments_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.patient_assignments
+    ADD CONSTRAINT patient_assignments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: patient_flows_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.patient_flows
+    ADD CONSTRAINT patient_flows_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: patient_pre_meds_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.patient_pre_meds
+    ADD CONSTRAINT patient_pre_meds_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: patient_prescriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.patient_prescriptions
+    ADD CONSTRAINT patient_prescriptions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: patient_previous_mom_clinics_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.patient_previous_mom_clinics
+    ADD CONSTRAINT patient_previous_mom_clinics_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: patient_procedures_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.patient_procedures
+    ADD CONSTRAINT patient_procedures_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: patient_zipcodes_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.patient_zipcodes
+    ADD CONSTRAINT patient_zipcodes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: patients_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.patients
+    ADD CONSTRAINT patients_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pre_meds_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.pre_meds
+    ADD CONSTRAINT pre_meds_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: prescriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.prescriptions
+    ADD CONSTRAINT prescriptions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: previous_clinics_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.previous_clinics
+    ADD CONSTRAINT previous_clinics_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: procedure_treatment_area_mappings_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.procedure_treatment_area_mappings
+    ADD CONSTRAINT procedure_treatment_area_mappings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: procedures_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.procedures
+    ADD CONSTRAINT procedures_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: races_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.races
+    ADD CONSTRAINT races_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: support_requests_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.support_requests
+    ADD CONSTRAINT support_requests_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: surveys_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.surveys
+    ADD CONSTRAINT surveys_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: treatment_areas_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.treatment_areas
+    ADD CONSTRAINT treatment_areas_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: treatments_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.treatments
+    ADD CONSTRAINT treatments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: ubuntu
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_patient_prescriptions_on_patient_id; Type: INDEX; Schema: public; Owner: ubuntu
+--
+
+CREATE INDEX index_patient_prescriptions_on_patient_id ON public.patient_prescriptions USING btree (patient_id);
+
+
+--
+-- Name: index_patient_prescriptions_on_prescription_id; Type: INDEX; Schema: public; Owner: ubuntu
+--
+
+CREATE INDEX index_patient_prescriptions_on_prescription_id ON public.patient_prescriptions USING btree (prescription_id);
+
+
+--
+-- Name: index_patient_procedures_on_patient_id; Type: INDEX; Schema: public; Owner: ubuntu
+--
+
+CREATE INDEX index_patient_procedures_on_patient_id ON public.patient_procedures USING btree (patient_id);
+
+
+--
+-- Name: index_patient_procedures_on_procedure_id; Type: INDEX; Schema: public; Owner: ubuntu
+--
+
+CREATE INDEX index_patient_procedures_on_procedure_id ON public.patient_procedures USING btree (procedure_id);
+
+
+--
+-- Name: index_patient_zipcodes_on_zip; Type: INDEX; Schema: public; Owner: ubuntu
+--
+
+CREATE INDEX index_patient_zipcodes_on_zip ON public.patient_zipcodes USING btree (zip);
+
+
+--
+-- Name: index_users_on_login; Type: INDEX; Schema: public; Owner: ubuntu
+--
+
+CREATE UNIQUE INDEX index_users_on_login ON public.users USING btree (login);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: ubuntu
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
+
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
