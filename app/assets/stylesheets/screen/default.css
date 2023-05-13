@@ -281,7 +281,7 @@ div.row {
 form.new_patient div.row span.label,
 form.edit_patient div.row span.label{
   float: left;
-  width: 125px;
+  width: 150px;
   text-align: right;
 }
 
@@ -316,7 +316,7 @@ div.row #date-input-toggle{
 
 div.row span.formw {
   text-align: left;
-  margin-left: 20px;
+  margin-left: 38px;
 }
 
 div.input-right div.row .formexample {
