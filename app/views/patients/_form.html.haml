@@ -59,6 +59,10 @@
       %div.row
         %span.label= f.label :covid_vaccinated, 'Have you been \nvaccinated for Covid?'
         %span.formw= yes_no_group f, :covid_vaccinated
+      %div.row
+        %span.label= f.label :covid_boosters, 'Have you received boosters?'
+        %span.formw= f.select :covid_boosters, *@patient.covid_boosters_options,
+          required: true
 
     %div.contact_information_header
       %h4 2: Contact Information

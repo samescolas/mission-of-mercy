@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20230513193425) do
+ActiveRecord::Schema.define(version: 20230527190433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(version: 20230513193425) do
     t.boolean  "has_permanent_residence"
     t.boolean  "pchc_patient"
     t.boolean  "covid_vaccinated"
+    t.integer  "covid_boosters"
   end
 
   create_table "pre_meds", force: true do |t|

@@ -35,4 +35,8 @@ class PatientDecorator < ApplicationDecorator
 
     [visits, {:include_blank => true}]
   end
+
+  def covid_boosters_options
+    [[1, 2, 3], {:include_blank => true}]
+  end
 end
