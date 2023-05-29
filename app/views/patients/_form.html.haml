@@ -57,10 +57,10 @@
         %span.label= f.label :language
         %span.formw= f.select :language, languages, include_blank: true
       %div.row
-        %span.label= f.label :covid_vaccinated, 'Have you been \nvaccinated for Covid?'
+        %span.label= f.label :covid_vaccinated, 'Received the Covid vaccine?'
         %span.formw= yes_no_group f, :covid_vaccinated
       %div.row
-        %span.label= f.label :covid_boosters, 'Have you received boosters?'
+        %span.label= f.label :covid_boosters, 'Received Covid boosters?'
         %span.formw= f.select :covid_boosters, *@patient.covid_boosters_options,
           required: true
 
