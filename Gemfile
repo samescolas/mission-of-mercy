@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 4.1.9'
-gem 'json',  '~> 1.7.7'
+gem 'json',  '>=1.7.7'
 gem 'unicorn'
-gem 'pg', '~> 0.20'
+gem 'pg', '>=0.20.0'
 gem 'haml'
 gem 'sass'
 gem 'dotenv-rails'
@@ -16,33 +16,34 @@ gem 'rack-pjax'
 gem 'virtus'
 gem 'axlsx'
 gem 'axlsx_rails'
-gem 'prawn', '~> 0.15.0'
-gem 'prawn-js', git: 'https://github.com/RailsData/prawn-js'
+gem 'prawn', '>=0.15.0'
+gem 'prawn-js'
 
 gem 'resque'
 gem 'resque-web', require: 'resque_web'
 
-gem "jquery-rails", "~> 2.3.0"
+gem "jquery-rails", ">=2.3.0"
 gem 'will_paginate-bootstrap'
 
 gem 'rails_setup'
 gem 'faker',            :require => false
 gem 'rubyzip', '0.9.9', :require => false
 
+#gem 'rails-letsencrypt'
 
-#gem 'coffee-rails', '~> 4.0.0'
+#gem 'coffee-rails', '>=4.0.0'
 gem 'coffee-rails'
-gem 'sass-rails',   '~> 4.0.0'
+gem 'sass-rails',   '>=4.0.0'
 gem 'uglifier'
-gem 'compass-rails', github: 'Compass/compass-rails'
-gem 'bootstrap-sass-rails', '~> 2.3.2.1'
+gem 'compass-rails'#, github: 'Compass/compass-rails'
+gem 'bootstrap-sass-rails', '>=2.3.2.1'
 gem 'font-awesome-rails'
 
 gem 'sprockets', '2.11.0'
 
 # MOMMA Gems
 
-gem 'print_chart', '~> 0.0.2', 
+gem 'print_chart', '>=0.0.2',
   git: 'https://github.com/mission-of-mercy/print_chart.git'
 gem 'support_notification',
   git: 'https://github.com/mission-of-mercy/support_notification.git'
@@ -53,9 +54,9 @@ group :development, :test do
 end
 
 group :test do
-  gem 'minitest-spec-rails', '~> 5.2.0'
+  gem 'minitest-spec-rails', '>=5.2.0'
   gem 'minitest-metadata'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'launchy'
   gem 'database_cleaner'
   gem 'timecop'
