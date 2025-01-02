@@ -48,7 +48,7 @@
         %span.label= f.label 'Are you a veteran?'
         %span.formw= yes_no_group f, :veteran_status
       %div.row
-        %span.label= f.label 'Current patient?'
+        %span.label= f.label :pchc_patient, 'Current patient at PCHC?'
         %span.formw= yes_no_group f, :pchc_patient
       %div.row
         %span.label= f.label :interpreter_needed, "Interpreter needed?"

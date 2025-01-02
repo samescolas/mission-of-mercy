@@ -16,8 +16,8 @@ gem 'rack-pjax'
 gem 'virtus'
 gem 'axlsx'
 gem 'axlsx_rails'
-gem 'prawn', '>=0.15.0'
-gem 'prawn-js'
+gem 'prawn', '~> 0.15.0'
+#gem 'prawn-js', git: 'https://github.com/RailsData/prawn-js'
 
 gem 'resque'
 gem 'resque-web', require: 'resque_web'
@@ -35,8 +35,9 @@ gem 'rubyzip', '0.9.9', :require => false
 gem 'coffee-rails'
 gem 'sass-rails',   '>=4.0.0'
 gem 'uglifier'
-gem 'compass-rails'#, github: 'Compass/compass-rails'
-gem 'bootstrap-sass-rails', '>=2.3.2.1'
+gem 'compass-rails',
+	git: 'https://github.com/Compass/compass-rails.git'
+gem 'bootstrap-sass-rails', '~> 2.3.2.1'
 gem 'font-awesome-rails'
 
 gem 'sprockets', '2.11.0'

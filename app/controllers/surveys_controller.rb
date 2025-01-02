@@ -55,6 +55,7 @@ class SurveysController < ApplicationController
       medicaid_or_chp_plus self_purchase_insurance is_enrolled_in_medicare_medicaid
       dental_insurance medical_insurance has_place_to_be_seen_for_medical_care
       er_last_year er_last_6_months has_permanent_residence veteran_status pchc_patient
+      covid_vaccinated covid_boosters
     ])
   end
 end

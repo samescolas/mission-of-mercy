@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180912012627) do
+ActiveRecord::Schema.define(version: 20230713151104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,11 +115,13 @@ ActiveRecord::Schema.define(version: 20180912012627) do
     t.string   "phone"
     t.integer  "previous_chart_number"
     t.boolean  "chart_printed",                          default: false, null: false
-    t.boolean  "interpreter_needed",                     default: false, null: false
+    t.boolean  "interpreter_needed",                                     null: false
     t.text     "language"
     t.boolean  "veteran_status"
     t.boolean  "has_permanent_residence"
     t.boolean  "pchc_patient"
+    t.boolean  "covid_vaccinated"
+    t.integer  "covid_boosters"
   end
 
   create_table "pre_meds", force: true do |t|
