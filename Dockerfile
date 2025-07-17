@@ -31,8 +31,8 @@ COPY . /root/app
 #WORKDIR /home/mom/app
 WORKDIR /root/app
 
-#RUN /root/.rbenv/bin/rbenv install 2.3.8 && /root/.rbenv/bin/rbenv global 2.3.8
-RUN /root/.rbenv/bin/rbenv install 2.0.0-p648 && /root/.rbenv/bin/rbenv global 2.0.0-p648
+RUN /root/.rbenv/bin/rbenv install 2.3.8 && /root/.rbenv/bin/rbenv global 2.3.8
+#RUN /root/.rbenv/bin/rbenv install 2.0.0-p648 && /root/.rbenv/bin/rbenv global 2.0.0-p648
 
 RUN /root/.rbenv/shims/gem install bundler -v 1.17.3
 
