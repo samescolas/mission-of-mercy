@@ -1,0 +1,92 @@
+services:
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - certs:/etc/nginx/certs
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+    labels:
+      - com.github.nginx-proxy.nginx-proxy
+    networks:
+      - app-network
+    restart: always
+
+  acme-companion:
+    image: nginxproxy/acme-companion
+    container_name: acme-companion
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - certs:/etc/nginx/certs
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - acme:/etc/acme.sh
+    environment:
+      DEFAULT_EMAIL: your@email.com
+      NGINX_PROXY_CONTAINER: nginx-proxy
+    networks:
+      - app-network
+    restart: always
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: mom
+      POSTGRES_PASSWORD: Summer2025
+      POSTGRES_DB: rimom
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    environment:
+      VIRTUAL_HOST: mom.mlswebdesign.com
+      LETSENCRYPT_HOST: mom.mlswebdesign.com
+      LETSENCRYPT_EMAIL: sam@mlswebdesign.com
+      DATABASE_HOST: db
+      DATABASE_USERNAME: mom
+      DATABASE_PASSWORD: Summer2025
+      DATABASE_NAME: rimom
+      DB_NAME: rimom
+      TEST_DB_NAME: rimom-test
+      DB_USERNAME: mom
+      DB_PASSWORD: Summer2025
+      DB_HOST: db
+      SECRET_TOKEN: 7b433023ce52cd60d3d5ae25583aff68436063d910ced8182739b8e61b6cb8c8a88103532638a31016314feda1c3945fd2a740c411c554dd315b2cc9875c4a30
+      SECRET_KEY_BASE: 49bddcc206c8ac14843da15faf856576200c67e8d1d9b781e4bcac8bc042df0c69e2e0a568c9144fcdae67b45505196c00dd17afbc0cf572b4742f91ce62e206
+      DEVISE_SECRET_KEY: bcab1e88bad7a6654634db1708c8a73366947ca6d158b8d3a21540a2d906525d9d7c0612323d5a25a1832a2a4858eeebd4a732c4c91f33ddcf1ec781d4f49ac7
+      STATE: RI
+      BACKUP_PATH: ~/backups
+      XRAY_PATH: ~/backups
+      XRAY_SYSTEM: dexis
+      DASHBOARD_USERNAME: dashboard
+      DASHBOARD_PASSWORD: secret_key
+      DASHBOARD_URL: https://mom.mlswebdesign.com/dashboard #wtf is this?
+    depends_on:
+      - db
+    networks:
+      - app-network
+    restart: always
+
+volumes:
+  pgdata:
+  acme:
+  certs:
+  vhost:
+  html:
+
+networks:
+  app-network:
