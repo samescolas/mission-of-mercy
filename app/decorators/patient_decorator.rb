@@ -11,7 +11,7 @@ class PatientDecorator < ApplicationDecorator
   end
 
   def sex_select_options
-    [[["M", "M"], ["F","F"]], {:include_blank => true}]
+    [[["M", "M"], ["F","F"], ["Prefer not to say", "Prefer not to say"], ["Other", "Other"]], {:include_blank => true}]
   end
 
   def chief_complaint_options
