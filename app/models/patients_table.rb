@@ -14,12 +14,26 @@ class PatientsTable
     @patient_search
   end
 
-  def each
-    patients.each {|patient| yield patient, controls_for(patient) }
+  def each(&block)
+    patients.each(&block)
   end
 
-  def controls(&block)
+
+  #def each
+    #patients.each {|patient| yield patient, controls_for(patient) }
+  #end
+	def controls(view_context = nil, &block)
     @patient_controls = block
+    @view_context = view_context
+  end
+
+  def controls_for(patient)
+    return unless @patient_controls
+    if @view_context
+      @view_context.capture(patient, &@patient_controls)
+    else
+      @patient_controls.call(patient) # fallback
+    end
   end
 
   def show?(field)
@@ -42,10 +56,6 @@ class PatientsTable
 
   private
 
-  attr_reader :patients, :fields, :patient_search, :patient_controls
-
-  def controls_for(patient)
-    CaptureHelper.helpers.capture(patient, &patient_controls) if patient_controls
-  end
+  attr_reader :patients, :fields, :patient_search, :patient_controls, :view_context
 
 end

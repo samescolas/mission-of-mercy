@@ -3,7 +3,6 @@
 = header do
   %h1= "#{@treatment_area.name} Checkout"
 
-- @patients_table.controls do |patient|
-  = link_to_checkout(@treatment_area, patient)
+- @patients_table.controls(self, &checkout_controls_lambda(@treatment_area))
 
 = render "patients/patients"

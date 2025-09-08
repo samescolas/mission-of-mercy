@@ -1,15 +1,10 @@
 - title 'Reprint Chart'
 
-- @patients_table.controls do |patient|
-  = link_to patient.chart_printed ? "Reprint" : "Print",
-    chart_patient_path(patient),
-    class: 'primary', data: { chart_number: patient.id }
-
 :coffeescript
   $(document).on 'click', 'a[href$="/chart"]', (e) ->
     e.preventDefault()
     button = $(e.target)
-    mom.utilities.printChart($(this).data('chart-number')).done (data) ->
+    mom.utilities.printChart(button.data('chart-number')).done (data) ->
       button.text("Printing ...").attr('disabled', 'disabled')
 
 = render "nav"
@@ -17,4 +12,6 @@
 = header do
   %h1 Reprint Chart
 
-= render "patients"
+- @patients_table.controls(&reprint_controls_lambda)
+
+= render "patients/patients"

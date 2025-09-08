@@ -23,6 +23,8 @@
       = f.submit "Search", class: 'btn'
       = f.submit "Clear", class: 'btn'
 
+- @patients_table.controls(self, &controls) if defined?(controls)
+
 - if @patients_table.any?
   %table
     %thead
@@ -34,7 +36,8 @@
         %th Age
         %th Sex
     %tbody
-      - @patients_table.each do |patient, controls|
+      - @patients_table.each do |patient|
+        - control = @patients_table.controls_for(patient)
         %tr
           %td= patient.id
           %td= patient.last_name
@@ -42,7 +45,7 @@
           %td= patient.dob
           %td= patient.age
           %td= patient.sex
-          %td.controls= controls
+          %td.controls= control || "NO CONTROLS"
 
   = will_paginate @patients_table
 

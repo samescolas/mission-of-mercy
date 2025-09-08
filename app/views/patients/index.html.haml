@@ -31,6 +31,17 @@
         %th Date of birth
         %th Age
         %th Sex
+        - if current_user.user_type == UserType::XRAY
+          %th XRAY
+        - if current_user.user_type == UserType::CHECKOUT
+          %th Checkout
+        - if current_user.user_type == UserType::PHARMACY
+          %th Pharmacy
+        - if current_user.user_type == UserType::ASSIGNMENT
+          %th Assignment
+        - if current_user.user_type == UserType::CHECKIN
+          %th Check-in
+
     %tbody
       - @patients.each do |patient|
         %tr{:class=> cycle('even', 'odd')}
@@ -40,6 +51,7 @@
           %td= patient.dob
           %td= patient.age
           %td= patient.sex
+
           - if current_user.user_type == UserType::XRAY
             %td.controls= radiology_link(patient)
 
@@ -55,6 +67,12 @@
           - if current_user.user_type == UserType::ASSIGNMENT
             %td.controls
               = link_to "Assign", edit_assignment_desk_path(patient),
+                class: 'primary'
+
+          - if current_user.user_type == UserType::CHECKIN
+            %td.controls
+              = link_to "Check-in",
+                new_patient_path(patient: { previous_chart_number: patient.id }),
                 class: 'primary'
 
   = will_paginate @patients
