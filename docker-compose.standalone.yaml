@@ -18,6 +18,17 @@ services:
   db:
     # Don't publish Postgres to the host; `web` reaches it over app-network.
     ports: !reset []
+    # The base file uses unless-stopped, which means "stay down after a
+    # deliberate stop". Combined with always on nginx and web, a `compose stop`
+    # followed by a host reboot brings the app back up with no database behind
+    # it. Matching always here keeps the three consistent.
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mom -d rimom"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
   web:
     # Unicorn instead of WEBrick -- see config/unicorn.docker.rb for why.
@@ -35,3 +46,22 @@ services:
       XRAY_PATH: /root/xray/
       # Shown on the admin maintenance page only; nothing writes to it.
       BACKUP_PATH: /root/xray
+    # The base file's plain `depends_on: db` waits only for the db container to
+    # start, not for Postgres to accept connections. On a host reboot that race
+    # makes web boot against a database that isn't listening yet; restart:always
+    # eventually recovers it, but only after a visible crash loop. Waiting for
+    # the healthcheck makes a cold boot deterministic.
+    depends_on:
+      db:
+        condition: service_healthy
+    # Visibility only: `docker compose ps` will show healthy/unhealthy at a
+    # glance during the clinic. Docker does NOT restart unhealthy containers
+    # outside Swarm -- unicorn's own `timeout 60` is what reaps wedged workers.
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://127.0.0.1:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      # Generous: a cold start runs bundle check and boots 4 unicorn workers,
+      # and an empty gems volume means a full bundle install first.
+      start_period: 300s
