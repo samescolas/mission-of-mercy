@@ -1,0 +1,37 @@
+# Clinic-day deployment: no Cloudflare tunnel, nginx on port 80, unicorn workers.
+#
+#   docker compose -f docker-compose.yaml -f docker-compose.standalone.yaml up -d
+#
+# Intended for a private network behind a VPN, so it serves plain HTTP. Rails
+# stays in development mode on purpose -- production mode needs precompiled
+# assets and force_ssl disabled (config/environments/production.rb:43), neither
+# of which is set up.
+services:
+  nginx:
+    # !override, not a plain list: compose *appends* ports across files, so
+    # without it this would listen on 4242 and 80 both.
+    ports: !override
+      - "80:80"
+    volumes: !override
+      - ./nginx/conf.d/standalone.conf:/etc/nginx/conf.d/default.conf:ro
+
+  db:
+    # Don't publish Postgres to the host; `web` reaches it over app-network.
+    ports: !reset []
+
+  web:
+    # Unicorn instead of WEBrick -- see config/unicorn.docker.rb for why.
+    command: >
+      sh -c "rm -f tmp/pids/unicorn.pid &&
+             (/root/.rbenv/shims/bundle check || /root/.rbenv/shims/bundle install) &&
+             /root/.rbenv/shims/bundle exec unicorn -c config/unicorn.docker.rb"
+    volumes:
+      # Merged by target path onto the base file's mounts, not replacing them.
+      # The Dexis handoff file (passtodex<station>.dat) is written here; for the
+      # x-ray workstation to read it, point the host side at a shared location.
+      - ./xray:/root/xray
+    environment:
+      WEB_CONCURRENCY: 4
+      XRAY_PATH: /root/xray/
+      # Shown on the admin maintenance page only; nothing writes to it.
+      BACKUP_PATH: /root/xray

@@ -3,8 +3,7 @@ services:
     image: nginx:alpine
     container_name: nginx
     ports:
-      - "80:80"
-      - "443:443"
+      - "4242:4242"
     volumes:
       - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
@@ -29,11 +28,20 @@ services:
 
   web:
     build: .
+    working_dir: /root/app
+    command: >
+      sh -c "rm -f tmp/pids/server.pid &&
+             (/root/.rbenv/shims/bundle check || /root/.rbenv/shims/bundle install) &&
+             /root/.rbenv/shims/bundle exec rails server -b 0.0.0.0 -p 3000"
     volumes:
-      - .:/app
+      - .:/root/app
+      # Gems live outside the image (Gemfile.lock is newer than the build), so
+      # keep them in a volume or every container recreate loses them.
+      - gems:/root/.rbenv/versions/2.3.8/lib/ruby/gems/2.3.0
     ports:
       - "3000:3000"
     environment:
+      RAILS_ENV: development
       DATABASE_HOST: db
       DATABASE_USERNAME: mom
       DATABASE_PASSWORD: Summer2025
@@ -61,6 +69,7 @@ services:
 
 volumes:
   pgdata:
+  gems:
   vhost:
   html:
 

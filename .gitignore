@@ -12,3 +12,7 @@ dump.rdb
 # CSV Import Files
 /zipcode.csv
 /procedures.csv
+
+# Dexis x-ray handoff files written at runtime
+/xray/*
+!/xray/.gitkeep
