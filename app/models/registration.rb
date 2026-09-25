@@ -9,8 +9,6 @@ class Registration
     @last_patient     = Patient.find_by_id(params[:last_patient_id])
     @previous_patient = Patient.find_by_id(patient.previous_chart_number)
 
-    patient.build_previous_mom_clinics
-
     if previous_patient
       load_previous_patient_into_current_patient
     else
@@ -96,8 +94,7 @@ class Registration
       last_name date_of_birth sex race race_other veteran_status pchc_patient phone street zip city state
       chief_complaint last_dental_visit pain time_in_pain travel_time_hours
       travel_time_minutes attended_previous_mom_event pain_length_in_days
-      travel_time language interpreter_needed has_permanent_residence covid_vaccinated covid_boosters] +
-      [:previous_mom_clinics_attributes => %w[location clinic_year attended id]]
+      travel_time language interpreter_needed has_permanent_residence covid_vaccinated covid_boosters]
     )
   end
 end

@@ -71,8 +71,8 @@
         %span.formw= f.text_field :street
       %div.row
         %span.label= f.label :zip
-        %span.formw= f.text_field :zip
         = image_tag "spinner.gif", :id => "zip-spinner", :class => "spinner"
+        %span.formw= f.text_field :zip
       %div.row
         %span.label= f.label :city
         %span.formw= f.text_field :city, required: true
@@ -123,24 +123,6 @@
             = f.number_field :travel_time_minutes
           - else
             = f.text_field :travel_time
-      - if PreviousClinic.any?
-        %div.row
-          %span.label
-            %label Attended previous clinic?
-          %span.formw
-            = f.radio_button :attended_previous_mom_event, true
-            = f.label :attended_previous_mom_event, "Yes", :value => true
-            = f.radio_button :attended_previous_mom_event, false
-            = f.label :attended_previous_mom_event, "No", :value => false
-
-        #previous_mom_location_div.row
-          %span.label
-            Clinic(s) attended
-            %br
-          = f.fields_for :previous_mom_clinics, @patient.previous_mom_clinics.sort_by { |p| p.location + p.clinic_year.to_s } do |p|
-            %span.formw
-              = p.hidden_field :location
-              = p.hidden_field :clinic_year
-              = p.check_box :attended
-              = p.label :attended, p.object.description
-            %br
+      %div.row
+        %span.label= f.label :attended_previous_mom_event, 'Have you attended the clinic previously?'
+        %span.formw= yes_no_group f, :attended_previous_mom_event

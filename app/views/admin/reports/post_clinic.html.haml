@@ -124,25 +124,17 @@
       %td{:colspan => 2}= "Average travel time: #{@report.avg_travel_time}"
 
 %h2
-  %u Previous Mom Clinics
+  %u Previous Clinic Attendance
 
 %table
   %thead
     %tr
-      %th Clinic Location
-      %th Clinic Year
+      %th Attended a previous clinic
       %th Total Patients
       %th Percentage
   %tbody
-    - @report.previous_moms.each do |mom|
-      %tr
-        %td= mom["location"]
-        %td= mom["clinic_year"]
-        %td= mom["patient_count"]
-        %td= mom["percent"]
-  %tfoot
     %tr
-      %td{:colspan => 2} Total unique patients:
+      %td Yes
       %td= @report.distinct_previous_moms
       %td= percent_of_clinic @report.distinct_previous_moms, @report.patient_count
 

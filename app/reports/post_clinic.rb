@@ -1,6 +1,6 @@
 class Reports::PostClinic
   attr_reader :town_count, :towns, :ethnicities, :ages, :travel_times,
-              :avg_travel_time, :genders, :previous_moms, :insurances,
+              :avg_travel_time, :genders, :insurances,
               :tobacco_use, :ratings, :areas, :time_in_pain, :counties,
               :distinct_previous_moms, :heard_about_clinic, :patient_count,
               :told_needed_more_dental_treatment, :tobacco_use_ages,
@@ -201,19 +201,7 @@ class Reports::PostClinic
   end
 
   def load_previous_moms
-    sql = %{SELECT location, clinic_year, count(*) as patient_count
-            FROM patient_previous_mom_clinics
-            GROUP BY location, clinic_year
-            ORDER BY clinic_year}
-
-    @previous_moms = Patient.connection.select_all(sql)
-
-    calculate_percentage @previous_moms
-
-    distinct_sql = %{SELECT count(distinct patient_id)
-                     FROM patient_previous_mom_clinics }
-
-    @distinct_previous_moms = Patient.connection.select_value(distinct_sql)
+    @distinct_previous_moms = Patient.where(attended_previous_mom_event: true).count
   end
 
   def load_insurance

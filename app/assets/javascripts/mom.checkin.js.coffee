@@ -42,9 +42,6 @@ class mom.checkin
       e.preventDefault()
       this.fillContactInformation()
 
-    $('input[name="patient[attended_previous_mom_event]"]').change (e) =>
-      this.togglePreviousMom()
-
     $('#patient_zip').keyup =>
       this.lookupZip()
 
@@ -53,7 +50,6 @@ class mom.checkin
 
     # Toggle Fields
 
-    this.togglePreviousMom(false)
     this.togglePatientPain(false)
     this.toggleOtherRace(false)
     this.toggleLanguage(false)
@@ -110,18 +106,6 @@ class mom.checkin
 
     $('#date_input').val('select')
     $('#date-format').slideUp()
-
-  togglePreviousMom: (animate) ->
-    animate   ||= true
-    previousMom = $('#previous_mom_location_div')
-
-    if $('#patient_attended_previous_mom_event_true').is(':checked')
-      if animate
-        previousMom.slideDown()
-      else
-        previousMom.show()
-    else
-      previousMom.slideUp()
 
   lookupZip: ->
     zip = $('#patient_zip').val()

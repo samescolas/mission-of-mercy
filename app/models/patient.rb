@@ -236,19 +236,6 @@ class Patient < ActiveRecord::Base
     end
   end
 
-  def build_previous_mom_clinics
-    PreviousClinic.order("year").each do |clinic|
-      existing = self.previous_mom_clinics.detect do |c|
-        c.clinic_year == clinic.year && c.location == clinic.location
-      end
-
-      unless existing
-        self.previous_mom_clinics.build(clinic_year: clinic.year,
-                                        location: clinic.location)
-      end
-    end
-  end
-
   # All charts that came before or after this chart
   #
   def associated_charts

@@ -11,7 +11,6 @@ class Admin::PatientsController < ApplicationController
 
   def edit
     @patient = @patient.decorate
-    @patient.build_previous_mom_clinics
   end
 
   def update

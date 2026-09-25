@@ -40,7 +40,7 @@ module Reports
           survey.sex,
           survey.race,
           patient.travel_time,
-          *clinics,
+          patient.attended_previous_mom_event,
           survey.told_needed_more_dental_treatment,
           survey.has_place_to_be_seen_for_dental_care,
           patient.last_dental_visit,
@@ -59,13 +59,6 @@ module Reports
 
       attr_reader :survey, :patient
 
-      def clinics
-        PreviousClinic.order("year").map do |clinic|
-          patient.previous_mom_clinics.where(clinic_year: clinic.year,
-                                             location: clinic.location).any?
-        end
-      end
-
       def insurances
         Reports::Ada.insurances.map do |column_name|
           survey.send(column_name)
@@ -80,7 +73,7 @@ module Reports
     def render
       book.add_worksheet(:name => "Mission of Mercy") do |sheet|
         sheet.add_row ["Age", "Gender", "Race", "Travel Time"] +
-          PreviousClinic.order("year").map(&:description) +
+          ["Attended Previous Clinic"] +
           ["Needs More Dental Care", "Has a Dentist", "Last Dental Visit",
            "In Pain?", "Pain Length in days", "Uses Tobacco?", "Enrolled Medicare/Medicaid", "Veteran", "Permanent Residence"] +
           Reports::Ada.insurances.map(&:titleize)
